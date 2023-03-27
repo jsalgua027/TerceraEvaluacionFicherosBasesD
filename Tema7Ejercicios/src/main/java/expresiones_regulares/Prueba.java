@@ -68,7 +68,7 @@ public class Prueba {
 
         }
         // ejercicio3
-        String patron3 = "[0-9][a-z]";
+        String patron3 = "[a-z|A-Z][0-9]";
         String texto2 = " juego de palabras  aa244ab456b   a2d3d4f5";
 
         Pattern pattern3 = Pattern.compile(patron3);
