@@ -9,7 +9,7 @@ import javax.swing.JPanel;
  *
  * @author jsalc
  */
-public class MiPanel extends JPanel {
+public class MiPanelPg5 extends JPanel {
 
     /**
      * @param args the command line arguments
@@ -19,7 +19,7 @@ public class MiPanel extends JPanel {
 
     // Constructor pasando un color, que llama al método initComponents(),
     // y luego al método cambiarColorFondo 
-    public MiPanel(Color color) {
+    public MiPanelPg5(Color color) {
         initComponents();
         cambiarColorFondo(color);
     }
@@ -28,7 +28,7 @@ public class MiPanel extends JPanel {
     private void initComponents() {
         // Construimos la etiqueta con el texto que queremos que muestre
         etiqueta = new JLabel("Etiqueta de MiPanel");
-        // Añade la etiqueta al contenedor MiPanel (al JPanel)
+        // Añade la etiqueta al contenedor MiPanelPg5 (al JPanel)
         this.add(etiqueta);
     }
 
@@ -50,8 +50,8 @@ public class MiPanel extends JPanel {
         ventanaPrincipal.setSize(800, 600);
         ventanaPrincipal.setLocationRelativeTo(null);
 
-        // Añadimos un objeto MiPanel al JFrame
-        ventanaPrincipal.add(new MiPanel(Color.cyan));
+        // Añadimos un objeto MiPanelPg5 al JFrame
+        ventanaPrincipal.add(new MiPanelPg5(Color.cyan));
 
         // Hacemos visible la ventana
         ventanaPrincipal.setVisible(true);

@@ -10,7 +10,7 @@ import javax.swing.JFrame;
  *
  * @author jsalc
  */
-public class Test {
+public class PanelBasico {
 
     public static void main(String[] args) {
 

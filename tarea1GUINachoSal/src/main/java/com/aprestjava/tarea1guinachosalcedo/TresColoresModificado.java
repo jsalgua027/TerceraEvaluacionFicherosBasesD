@@ -14,7 +14,7 @@ import javax.swing.JPanel;
  *
  * @author jsalc
  */
-public class MiPanel2  extends JPanel{
+public class TresColoresModificado  extends JPanel{
 
     /**
      * @param args the command line arguments
@@ -28,7 +28,7 @@ public class MiPanel2  extends JPanel{
 
     // Constructor pasando un color, que llama al método initComponents(),
     // y luego al método cambiarColorFondo 
-    public MiPanel2(Color color) {
+    public TresColoresModificado(Color color) {
         initComponents();
         cambiarColorFondo(color);
     }
@@ -74,11 +74,11 @@ public class MiPanel2  extends JPanel{
         
         
         
-        MiPanel2 p1 = new MiPanel2(Color.pink);
-        MiPanel2 p2 = new MiPanel2(Color.yellow);
-        MiPanel2 p3 = new MiPanel2(Color.red);
-        MiPanel2 p4 = new MiPanel2(Color.blue);
-        MiPanel2 p5 = new MiPanel2(Color.green);
+        TresColoresModificado p1 = new TresColoresModificado(Color.pink);
+        TresColoresModificado p2 = new TresColoresModificado(Color.yellow);
+        TresColoresModificado p3 = new TresColoresModificado(Color.red);
+        TresColoresModificado p4 = new TresColoresModificado(Color.blue);
+        TresColoresModificado p5 = new TresColoresModificado(Color.green);
         
         p1.etiqueta.setText("hola");
         p2.etiqueta.setText("Que tal?");
