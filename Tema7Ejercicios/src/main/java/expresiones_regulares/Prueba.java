@@ -32,7 +32,7 @@ public class Prueba {
     
      */
  /*
-    3    debe de  cumplir letra numero cuantas veces se quiera ej: a5g6a9r9t9 
+    3    debe de  cumplir letra numero cuantas veces se quiera ej: a5g6a9r9t9  y se tienen que clumpir en todo el strinf
     
      */
     public static void main(String[] args) {
@@ -43,6 +43,8 @@ public class Prueba {
 
         String textoSinPatron = "hola pepito perez";
         String textoConPatron = "La ciudad de estepona tiene una Localizacion:S ";
+        
+        System.out.println(textoConPatron.matches(patron));
 
         Pattern pattern = Pattern.compile(patron);
         Matcher matcher = pattern.matcher(textoConPatron);
@@ -67,12 +69,14 @@ public class Prueba {
             System.out.println("Patrón encontrado: " + matcher2.group());
 
         }
-        // ejercicio3
-        String patron3 = "[a-z|A-Z][0-9]";
+        
+        // ejercicio3  [([a-z|A-Z][0-9])+$
+        String patron3 = "^([a-z|A-Z][0-9])+$";
         String texto2 = " juego de palabras  aa244ab456b   a2d3d4f5";
+        String textoCorrecto= "a4g5h5j8k5";
 
         Pattern pattern3 = Pattern.compile(patron3);
-        Matcher matcher3 = pattern3.matcher(texto);
+        Matcher matcher3 = pattern3.matcher(textoCorrecto);
 
         System.out.println("Patrones encontrados en la cadena texto2, del tercer apartado");
         while (matcher3.find()) {
