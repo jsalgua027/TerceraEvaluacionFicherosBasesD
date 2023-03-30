@@ -88,14 +88,18 @@ public class Tarea3GUINachoSal extends JPanel {
             //Los métodos están vacíos porque es obligatorio implementarlos
             @Override
             public void mouseClicked(MouseEvent me) {
+                
+                
             }
 
             @Override
             public void mousePressed(MouseEvent me) {
+                    
             }
 
             @Override
             public void mouseReleased(MouseEvent me) {
+                
             }
 
             @Override
