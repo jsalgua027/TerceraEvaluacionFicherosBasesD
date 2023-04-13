@@ -15,6 +15,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 /**
@@ -120,6 +122,21 @@ public class Main {
                 tokens = linea.split(";");
                 Robot auxR = new Robot(Integer.parseInt(tokens[0]), Integer.parseInt(tokens[1]));
                 lista.add(auxR);
+
+//                 String patron = "\\d+";
+//                 Pattern pattern = Pattern.compile(patron);
+//                   Matcher matcher = pattern.matcher(tokens[0]);
+//                   
+//                   if(matcher.find()){
+//                    
+//                   
+//                   }
+//
+//                    if(matcher.find()){
+//                   
+//                   
+//                   }
+//                
             }
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
@@ -129,49 +146,16 @@ public class Main {
 
     public static void main(String[] args) {
         ArrayList<Robot> lista = getListaRobores(20);
- 
+
         lista.forEach(System.out::println);
         escrituraLista(lista, "ListaRobots.txt");
         lecturaFicheroYMuestro("ListaRobots.txt");
-         List<Robot> lista2 = lecturaFicheroPasoALista("ListaRobots.txt");
-          
-         for (Robot robot : lista2) {
-             System.out.println( robot.impresion2());
+        List<Robot> lista2 = lecturaFicheroPasoALista("ListaRobots.txt");
+
+        for (Robot robot : lista2) {
+            System.out.println(robot.impresion2());
         }
 
-//
-//        // ordenar por vida menor mayor
-//        Collections.sort(lista, (r1, r2) -> Integer.compare(r1.vida(), r2.vida()));
-//        System.out.println("Ordenados por vida de menor a mayor");
-//        lista.forEach(System.out::println);
-//
-//        // mayor a menor
-//        Comparator<Robot> menorMayor = (r1, r2) -> Integer.compare(r1.vida(), r2.vida());
-//        System.out.println("Ordenados por vida de mayor a menor");
-//        Collections.sort(lista, menorMayor.reversed());
-//        lista.forEach(System.out::println);
-//
-//        System.out.println("Robots con más del 50%");
-//
-//        for (Robot robot : lista) {
-//            if (robot.vida() > 50) {
-//
-//                System.out.println(robot);
-//            }
-//        }
-//
-//        System.out.println("Robots con más del 50% usando API Stream");
-//
-//        // STREAM!!!!!!!!!!!!
-//        Stream<Robot> streamRobot = lista.stream();
-//        Stream<Robot> streamRobotFiltrados = streamRobot.filter(r -> r.vida() >= 50);// filtro segun criterio
-//        streamRobotFiltrados.forEach(System.out::println);
-//
-//        System.out.println("3 Robots con mayor orcentaje de  vida");
-//
-//        lista.stream()
-//                .limit(3) // me quedo con los 3 primeros com ya los tengo ordenados
-//                .forEach(r -> System.err.println(r.numeroSerie())); // imprimo sus numeros de serie
     }
 
 }
