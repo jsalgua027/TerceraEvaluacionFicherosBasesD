@@ -1,4 +1,0 @@
-Localizacion: E; tiene: 7
-Localizacion: N; tiene: 19
-Localizacion: O; tiene: 8
-Localizacion: S; tiene: 10

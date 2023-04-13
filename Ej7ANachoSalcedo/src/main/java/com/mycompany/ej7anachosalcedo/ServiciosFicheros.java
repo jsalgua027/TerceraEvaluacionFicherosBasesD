@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
  *
  * @author nacho
  */
-public class UtilidadesFicheros {
+public class ServiciosFicheros {
 
     public static void lecturaFicheroYMuestro(String nombreArchivo) {
 

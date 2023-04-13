@@ -19,14 +19,14 @@ public class LocalizacinesMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        UtilidadesFicheros.lecturaFicheroYMuestro("localizaciones2.txt");
+        ServiciosFicheros.lecturaFicheroYMuestro("localizaciones.txt");
 
         List<String> listaStringCompleta ;
 
         List<String> listaStringPuntosCardinales ;
         Map<String, Integer> contadorPuntos ;
 
-        listaStringCompleta = UtilidadesFicheros.lecturaFicheroPasoALista("localizaciones2.txt");
+        listaStringCompleta = ServiciosFicheros.lecturaFicheroPasoALista("localizaciones.txt");
 
         for (String l : listaStringCompleta) {
 
@@ -34,11 +34,11 @@ public class LocalizacinesMain {
 
         }
 
-        listaStringPuntosCardinales = UtilidadesFicheros.devolverPuntosCardinales(listaStringCompleta);
+        listaStringPuntosCardinales = ServiciosFicheros.devolverPuntosCardinales(listaStringCompleta);
 
         listaStringPuntosCardinales.forEach(System.out::println);
 
-        contadorPuntos = UtilidadesFicheros.devulevoMap(listaStringPuntosCardinales);
+        contadorPuntos = ServiciosFicheros.devulevoMap(listaStringPuntosCardinales);
 
         for (Map.Entry<String, Integer> entry : contadorPuntos.entrySet()) {
             Object key = entry.getKey();
@@ -46,7 +46,7 @@ public class LocalizacinesMain {
             System.out.println("Localización : " + key + " -- tiene : " + val);
 
         }
-          UtilidadesFicheros.escrituraMap(contadorPuntos, "map2.txt");
+          ServiciosFicheros.escrituraMap(contadorPuntos, "contadorLocalizaciones.txt");
     }
 
 }
