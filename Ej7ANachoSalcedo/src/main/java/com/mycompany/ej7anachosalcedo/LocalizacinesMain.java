@@ -21,16 +21,16 @@ public class LocalizacinesMain {
     public static void main(String[] args) {
         UtilidadesFicheros.lecturaFicheroYMuestro("localizaciones2.txt");
 
-        List<String> listaStringCompleta = new ArrayList<>();
+        List<String> listaStringCompleta ;
 
-        List<String> listaStringPuntosCardinales = new ArrayList<>();
-        Map<String, Integer> contadorPuntos = new TreeMap<>();
+        List<String> listaStringPuntosCardinales ;
+        Map<String, Integer> contadorPuntos ;
 
         listaStringCompleta = UtilidadesFicheros.lecturaFicheroPasoALista("localizaciones2.txt");
 
         for (String l : listaStringCompleta) {
 
-            System.out.println(l.toString());
+            System.out.println(l);
 
         }
 
@@ -43,7 +43,7 @@ public class LocalizacinesMain {
         for (Map.Entry<String, Integer> entry : contadorPuntos.entrySet()) {
             Object key = entry.getKey();
             Object val = entry.getValue();
-            System.out.println("key: " + key + "-- value: " + val);
+            System.out.println("Localización : " + key + " -- tiene : " + val);
 
         }
           UtilidadesFicheros.escrituraMap(contadorPuntos, "map2.txt");
