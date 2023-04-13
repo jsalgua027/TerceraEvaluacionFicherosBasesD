@@ -38,7 +38,7 @@ public class LocalizacinesMain {
 
         listaStringPuntosCardinales.forEach(System.out::println);
 
-        contadorPuntos = UtilidadesFicheros.devulevoMap(listaStringCompleta);
+        contadorPuntos = UtilidadesFicheros.devulevoMap(listaStringPuntosCardinales);
 
         for (Map.Entry<String, Integer> entry : contadorPuntos.entrySet()) {
             Object key = entry.getKey();
