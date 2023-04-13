@@ -1,0 +1,4 @@
+Localizacion : E ; tiene : 0
+Localizacion : N ; tiene : 8
+Localizacion : O ; tiene : 0
+Localizacion : S ; tiene : 5

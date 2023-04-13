@@ -4,8 +4,11 @@
  */
 package com.mycompany.ej7anachosalcedo;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -135,6 +138,30 @@ public class UtilidadesFicheros {
         resultado.put("O", contadorO);
 
         return resultado;
+    }
+
+    public static void escrituraMap(Map<String, Integer> aux, String nombreArchivo) {
+
+        String tmp = " ";
+
+        try ( BufferedWriter flujo = new BufferedWriter(new FileWriter(nombreArchivo))) {
+
+            for (Map.Entry<String, Integer> entry : aux.entrySet()) {
+                Object key = entry.getKey();
+                Object val = entry.getValue();
+                tmp = "Localizacion : "+entry.getKey()+" ; tiene : " + String.valueOf(entry.getValue());
+                flujo.write(tmp);
+                flujo.newLine();
+
+            }
+            flujo.flush();
+
+
+            System.out.println("Fichero " + nombreArchivo + " creado correctamente.");
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
 }

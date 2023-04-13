@@ -19,14 +19,14 @@ public class LocalizacinesMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        UtilidadesFicheros.lecturaFicheroYMuestro("localizaciones.txt");
+        UtilidadesFicheros.lecturaFicheroYMuestro("localizaciones2.txt");
 
         List<String> listaStringCompleta = new ArrayList<>();
 
         List<String> listaStringPuntosCardinales = new ArrayList<>();
         Map<String, Integer> contadorPuntos = new TreeMap<>();
 
-        listaStringCompleta = UtilidadesFicheros.lecturaFicheroPasoALista("localizaciones.txt");
+        listaStringCompleta = UtilidadesFicheros.lecturaFicheroPasoALista("localizaciones2.txt");
 
         for (String l : listaStringCompleta) {
 
@@ -46,7 +46,7 @@ public class LocalizacinesMain {
             System.out.println("key: " + key + "-- value: " + val);
 
         }
-
+          UtilidadesFicheros.escrituraMap(contadorPuntos, "map2.txt");
     }
 
 }
