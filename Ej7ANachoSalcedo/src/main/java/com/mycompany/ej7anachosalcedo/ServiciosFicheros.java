@@ -147,8 +147,8 @@ public class ServiciosFicheros {
         try ( BufferedWriter flujo = new BufferedWriter(new FileWriter(nombreArchivo))) {
 
             for (Map.Entry<String, Integer> entry : aux.entrySet()) {
-                Object key = entry.getKey();
-                Object val = entry.getValue();
+//                Object key = entry.getKey();
+//                Object val = entry.getValue();
                 tmp = "Localizacion : "+entry.getKey()+" ; tiene : " + String.valueOf(entry.getValue());
                 flujo.write(tmp);
                 flujo.newLine();
