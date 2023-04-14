@@ -8,12 +8,11 @@ package ejercicio2_vehiculo;
  *
  * @author nacho
  */
-public class Furgoneta extends Vehiculo{
-    
-   
-	// Atributos específicos
-private int carga;
-private int volumen;
+public class Furgoneta extends Vehiculo {
+
+    // Atributos específicos
+    private int carga;
+    private int volumen;
 
     public Furgoneta(int carga, int volumen, Long bastidor, String matricula, String marca, String modelo, String color, double tarifa, boolean disponible) {
         super(bastidor, matricula, marca, modelo, color, tarifa, disponible);
@@ -40,24 +39,22 @@ private int volumen;
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-           sb.append(super.toString());
-        sb.append("Furgoneta{");
-        sb.append("carga=").append(carga);
-        sb.append(", volumen=").append(volumen);
-        sb.append('}');
+        sb.append(super.toString());
+
+        sb.append(":").append(carga);
+        sb.append(":").append(volumen);
+
         return sb.toString();
     }
 
     @Override
     public void arrancar() {
-         System.out.println("La Furgoneta S"+super.getBastidor()+" esta arracado");
+        System.out.println("La Furgoneta S" + super.getBastidor() + " esta arracado");
     }
 
     @Override
     public void parar() {
-        System.out.println("La Furgoneta S"+super.getBastidor()+" esta parada");
+        System.out.println("La Furgoneta S" + super.getBastidor() + " esta parada");
     }
 
-
-    
 }

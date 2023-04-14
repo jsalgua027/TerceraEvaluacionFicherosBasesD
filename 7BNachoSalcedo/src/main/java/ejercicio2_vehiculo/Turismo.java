@@ -39,23 +39,21 @@ public class Turismo extends Vehiculo {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(super.toString());
-        sb.append("Turismo{");
-        sb.append("puertas=").append(puertas);
-        sb.append(", marchaAutomatica=").append(marchaAutomatica);
-        sb.append('}');
+
+        sb.append(":").append(puertas);
+        sb.append(":").append(marchaAutomatica);
+
         return sb.toString();
     }
 
     @Override
     public void arrancar() {
-         System.out.println("El Turismo "+super.getBastidor()+" esta arracado");
+        System.out.println("El Turismo " + super.getBastidor() + " esta arracado");
     }
 
     @Override
     public void parar() {
-        System.out.println("El turismo "+super.getBastidor()+" esta parada");
+        System.out.println("El turismo " + super.getBastidor() + " esta parada");
     }
 
 }
-
-

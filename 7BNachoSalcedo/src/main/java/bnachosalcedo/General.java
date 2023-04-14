@@ -94,7 +94,7 @@ public class General {
         listaVehiculos.add(f9);
         listaVehiculos.add(f10);
         
-        
+        ServicoCoches.escrituraMap(listaVehiculos, "Vehiculos.txt");
         
                 
 
