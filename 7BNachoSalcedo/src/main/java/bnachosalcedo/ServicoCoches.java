@@ -25,7 +25,7 @@ import java.util.regex.Pattern;
  */
 public class ServicoCoches {
 
-    public static void escrituraMap(List<Vehiculo> aux, String nombreArchivo) {
+    public static void escritura(List<Vehiculo> aux, String nombreArchivo) {
 
         String tmp = " ";
 
@@ -60,10 +60,8 @@ public class ServicoCoches {
         }
 
     }
-    
-    
-    
-     public static List<Vehiculo> lecturaFicheroPasoALista(String nombreArchivo) {
+
+    public static List<Vehiculo> lecturaFicheroPasoALista(String nombreArchivo) {
         List<Vehiculo> lista = new ArrayList<>();
         // Fichero a leer con datos de ejemplo
         String idFichero = nombreArchivo;
@@ -86,8 +84,37 @@ public class ServicoCoches {
                 // línea en función del carácter separador de campos del fichero CSV
                 tokens = linea.split(":");
 
-                
-                
+                if (tokens[0].contains("0 -")) {
+                    String regex = "^[0-2]\\s-\\s";
+                    tokens[0] = tokens[0].replaceAll(regex, "");
+
+                    Vehiculo auxt1 = new Turismo(Integer.parseInt(tokens[8]), Boolean.parseBoolean(tokens[9]),
+                            Long.parseLong(tokens[1]), tokens[2], tokens[3], tokens[4], tokens[5], Double.parseDouble(tokens[6]), Boolean.parseBoolean(tokens[7]));
+
+                    lista.add(auxt1);
+                }
+
+                if (tokens[0].contains("1 -")) {
+                    String regex = "^[0-2]\\s-\\s";
+                    tokens[0] = tokens[0].replaceAll(regex, "");
+
+                    Vehiculo auxD = new Deportivo(Integer.parseInt(tokens[8]),
+                            Long.valueOf(tokens[1]), tokens[2], tokens[3], tokens[4], tokens[5],
+                            Double.parseDouble(tokens[6]), Boolean.parseBoolean(tokens[7]));
+                    lista.add(auxD);
+                }
+
+                if (tokens[0].contains("2 -")) {
+                    String regex = "^[0-2]\\s-\\s";
+                    tokens[0] = tokens[0].replaceAll(regex, "");
+
+                    Vehiculo auxF = new Furgoneta(Integer.parseInt(tokens[9]), Integer.parseInt(tokens[8]),
+                            Long.valueOf(tokens[1]), tokens[2], tokens[3], tokens[4], tokens[5],
+                            Double.parseDouble(tokens[6]), Boolean.parseBoolean(tokens[7]));
+
+                    lista.add(auxF);
+                }
+
 //        String patron = "^(0|1|2)-.*";
 //        Pattern pattern = Pattern.compile(patron);
 //        Matcher matcher;
@@ -102,20 +129,12 @@ public class ServicoCoches {
 //            }
 //
 //        
-                
-                
-             //   lista.add(tokens[0].trim());
-
+                //   lista.add(tokens[0].trim());
             }
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
         return lista;
     }
-        
-    
-    
-    
-    
-    
+
 }

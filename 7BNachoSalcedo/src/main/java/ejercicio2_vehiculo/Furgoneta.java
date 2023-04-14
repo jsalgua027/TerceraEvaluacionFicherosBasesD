@@ -20,6 +20,9 @@ public class Furgoneta extends Vehiculo {
         this.volumen = volumen;
     }
 
+    public Furgoneta() {
+    }
+
     public int getCarga() {
         return carga;
     }

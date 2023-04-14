@@ -19,6 +19,9 @@ public class Turismo extends Vehiculo {
         this.marchaAutomatica = marchaAutomatica;
     }
 
+    public Turismo() {
+    }
+
     public int getPuertas() {
         return puertas;
     }

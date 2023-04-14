@@ -94,8 +94,14 @@ public class General {
         listaVehiculos.add(f9);
         listaVehiculos.add(f10);
         
-        ServicoCoches.escrituraMap(listaVehiculos, "Vehiculos.txt");
+        ServicoCoches.escritura(listaVehiculos, "Vehiculos.txt");
         
+        List<Vehiculo> listaArchivo = ServicoCoches.lecturaFicheroPasoALista( "Vehiculos.txt");
+        
+        
+        for (Vehiculo v : listaArchivo) {
+            System.out.println(v.toString());
+        }
                 
 
     }
