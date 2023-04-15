@@ -100,7 +100,7 @@ public class ServicoCoches {
 
                     Vehiculo auxD = new Deportivo(Integer.parseInt(tokens[8]),
                             Long.valueOf(tokens[1]), tokens[2], tokens[3], tokens[4], tokens[5],
-                            Double.parseDouble(tokens[6]), Boolean.parseBoolean(tokens[7]));
+                            Double.parseDouble(tokens[6]), Boolean.valueOf(tokens[7]));
                     lista.add(auxD);
                 }
 
