@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
  *
  * @author nacho
  */
-public class ServicoCoches {
+public class ServicioCoches {
 
     public static void escritura(List<Vehiculo> aux, String nombreArchivo) {
 
@@ -88,53 +88,106 @@ public class ServicoCoches {
                     String regex = "^[0-2]\\s-\\s";
                     tokens[0] = tokens[0].replaceAll(regex, "");
 
-                    Vehiculo auxt1 = new Turismo(Integer.parseInt(tokens[8]), Boolean.parseBoolean(tokens[9]),
-                            Long.parseLong(tokens[1]), tokens[2], tokens[3], tokens[4], tokens[5], Double.parseDouble(tokens[6]), Boolean.parseBoolean(tokens[7]));
+                    Vehiculo auxt1 = new Turismo(Integer.parseInt(tokens[7]), Boolean.parseBoolean(tokens[8]),
+                            Long.parseLong(tokens[0]), tokens[1], tokens[2], tokens[3], tokens[4], Double.parseDouble(tokens[5]), Boolean.parseBoolean(tokens[6]));
 
                     lista.add(auxt1);
+//                        System.out.println("turismmo: " +tokens[0]);
                 }
 
                 if (tokens[0].contains("1 -")) {
                     String regex = "^[0-2]\\s-\\s";
                     tokens[0] = tokens[0].replaceAll(regex, "");
 
-                    Vehiculo auxD = new Deportivo(Integer.parseInt(tokens[8]),
-                            Long.valueOf(tokens[1]), tokens[2], tokens[3], tokens[4], tokens[5],
-                            Double.parseDouble(tokens[6]), Boolean.valueOf(tokens[7]));
+                    Vehiculo auxD = new Deportivo(Integer.parseInt(tokens[7]),
+                            Long.valueOf(tokens[0]), tokens[1], tokens[2], tokens[3], tokens[4],
+                            Double.parseDouble(tokens[5]), Boolean.parseBoolean(tokens[6]));
                     lista.add(auxD);
+//                      System.out.println("deportivo: " +tokens[0]);
                 }
 
                 if (tokens[0].contains("2 -")) {
                     String regex = "^[0-2]\\s-\\s";
                     tokens[0] = tokens[0].replaceAll(regex, "");
 
-                    Vehiculo auxF = new Furgoneta(Integer.parseInt(tokens[9]), Integer.parseInt(tokens[8]),
-                            Long.valueOf(tokens[1]), tokens[2], tokens[3], tokens[4], tokens[5],
-                            Double.parseDouble(tokens[6]), Boolean.parseBoolean(tokens[7]));
+                    Vehiculo auxF = new Furgoneta(Integer.parseInt(tokens[8]), Integer.parseInt(tokens[7]),
+                            Long.valueOf(tokens[0]), tokens[1], tokens[2], tokens[3], tokens[4],
+                            Double.parseDouble(tokens[5]), Boolean.parseBoolean(tokens[6]));
 
                     lista.add(auxF);
+//                      System.out.println("furgoneta: " +tokens[0]);
                 }
 
-//        String patron = "^(0|1|2)-.*";
-//        Pattern pattern = Pattern.compile(patron);
-//        Matcher matcher;
-//
-//      
-//
-//            String txt = aux.get(i);
-//            matcher = pattern.matcher(txt);
-//            while (matcher.find()) {
-//                resultado.add(matcher.group());
-//
-//            }
-//
-//        
-                //   lista.add(tokens[0].trim());
             }
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
         return lista;
+    }
+
+    public static void escrituraPorTipo(List<Vehiculo> aux) {
+
+        String idFicheroTu = "turismos.txt";
+        String idFicheroDe = "deportivos.txt";
+        String idFicheroFu = "furgonetas.txt";
+
+        try ( BufferedWriter flujo = new BufferedWriter(new FileWriter(idFicheroTu))) {
+
+            for (Vehiculo v : aux) {
+
+                if (v instanceof Turismo) {
+                    flujo.write(v.toString());
+                    flujo.newLine();
+
+                }
+
+            }
+
+            flujo.flush();
+
+            System.out.println("Fichero " + idFicheroTu + " creado correctamente.");
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        try ( BufferedWriter flujo = new BufferedWriter(new FileWriter(idFicheroDe))) {
+
+            for (Vehiculo v : aux) {
+
+                if (v instanceof Deportivo) {
+
+                    flujo.write(v.toString());
+                    flujo.newLine();
+                }
+
+            }
+
+            flujo.flush();
+
+            System.out.println("Fichero " + idFicheroDe + " creado correctamente.");
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        try ( BufferedWriter flujo = new BufferedWriter(new FileWriter(idFicheroFu))) {
+
+            for (Vehiculo v : aux) {
+
+                if (v instanceof Furgoneta) {
+
+                    flujo.write(v.toString());
+                    flujo.newLine();
+                }
+
+            }
+
+            flujo.flush();
+
+            System.out.println("Fichero " + idFicheroFu + " creado correctamente.");
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
 }

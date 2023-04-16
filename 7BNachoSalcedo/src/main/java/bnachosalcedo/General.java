@@ -8,8 +8,9 @@ import ejercicio2_vehiculo.Deportivo;
 import ejercicio2_vehiculo.Furgoneta;
 import ejercicio2_vehiculo.Turismo;
 import ejercicio2_vehiculo.Vehiculo;
-import java.util.AbstractList;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -94,15 +95,23 @@ public class General {
         listaVehiculos.add(f9);
         listaVehiculos.add(f10);
         
-        ServicoCoches.escritura(listaVehiculos, "Vehiculos.txt");
+        ServicioCoches.escritura(listaVehiculos, "Vehiculos.txt");
+        // APARTADO B
+        List<Vehiculo> listaArchivo = ServicioCoches.lecturaFicheroPasoALista( "Vehiculos.txt");
         
-        List<Vehiculo> listaArchivo = ServicoCoches.lecturaFicheroPasoALista( "Vehiculos.txt");
-        
-        
+        System.out.println("Lista desordenada");
         for (Vehiculo v : listaArchivo) {
             System.out.println(v.toString());
         }
-                
+        System.out.println("");
+        System.out.println("Lista ordenada");
+        System.out.println("");
+        Comparator<Vehiculo>criterioMarca = (v1,v2)-> v1.getMarca().compareToIgnoreCase(v2.getMarca());
+        Collections.sort(listaArchivo, criterioMarca);
+        listaArchivo.forEach(System.out::println);
+       // APARTADO C
+        ServicioCoches.escrituraPorTipo(listaArchivo);
+        
 
     }
 
