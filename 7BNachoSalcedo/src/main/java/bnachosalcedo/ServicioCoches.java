@@ -95,7 +95,7 @@ public class ServicioCoches {
 //                        System.out.println("turismmo: " +tokens[0]);
                 }
 
-                if (tokens[0].contains("1 -")) {
+                else if (tokens[0].contains("1 -")) {
                     String regex = "^[0-2]\\s-\\s";
                     tokens[0] = tokens[0].replaceAll(regex, "");
 
@@ -189,5 +189,31 @@ public class ServicioCoches {
         }
 
     }
+    
+    
+     public static void escritura2(List<Vehiculo> aux, String nombreArchivo) {
+
+        String tmp = " ";
+
+        try ( BufferedWriter flujo = new BufferedWriter(new FileWriter(nombreArchivo))) {
+
+            for (Vehiculo v : aux) {
+
+               tmp = v.toString();
+                flujo.write(tmp);
+                flujo.newLine();
+            }
+
+            flujo.flush();
+
+            System.out.println("Fichero " + nombreArchivo + " creado correctamente.");
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    
+    
 
 }

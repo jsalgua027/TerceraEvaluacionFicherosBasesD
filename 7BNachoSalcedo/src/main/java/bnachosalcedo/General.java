@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  *
@@ -96,8 +97,19 @@ public class General {
         listaVehiculos.add(f10);
         
         ServicioCoches.escritura(listaVehiculos, "Vehiculos.txt");
+        ServicioCoches.escritura2(listaVehiculos, "vehiculos.csv");
         // APARTADO B
         List<Vehiculo> listaArchivo = ServicioCoches.lecturaFicheroPasoALista( "Vehiculos.txt");
+        // predicado para el flitro 
+        Predicate<Vehiculo>predicadoColor = (v)->v.getColor().equalsIgnoreCase("Rojo");
+        long contador=0;
+         contador=listaVehiculos.stream().filter(predicadoColor).count();
+         // hago el mapeo por marca , distinc para que me cuente solo los distintos y lo imprimo con el forEach
+           listaVehiculos.stream()
+                   .map(v->v.getMarca())
+                   .distinct()
+                   .forEach(System.out::println);
+          System.out.println("Los vehiculos de color rojo son: " + contador);      
         
         System.out.println("Lista desordenada");
         for (Vehiculo v : listaArchivo) {
