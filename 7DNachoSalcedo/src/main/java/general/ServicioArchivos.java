@@ -4,6 +4,7 @@
  */
 package general;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -39,40 +40,43 @@ public class ServicioArchivos {
         }
 
     }
-    
-    
-    public static void  borrarFichero(String nombreDirectorio, String archivoBorrar){
-                
-            Path element = Paths.get("/home/usuario/carpeta");
-		try {
-			Files.delete(element);
-		} catch (IOException e) {
-			System.out.println("Problema borrando el archivo.");
-			System.out.println(e.toString());
-		}
 
-    
-    }
-    
-    public static void copiarArchivos (String origenP, String destinoP){
+    public static void borrarFichero(String archivoBorrar) {
 
-             Path origen  = Paths.get(origenP);
-		Path destino = Paths.get("./"+destinoP);
-		try
-		{  
-			Files.copy(origen, destino);
-		}
-		catch(IOException e) {     
-			System.out.println("Problema copiando el archivo.");
-			System.out.println(e.toString());
-		}
-     
-        
-        
-    
-    
+        Path element = Paths.get(archivoBorrar);
+        try {
+            Files.delete(element);
+        } catch (IOException e) {
+            System.out.println("Problema borrando el archivo.");
+            System.out.println(e.toString());
+        }
+
     }
-    
-    
+
+    public static void copiarArchivos(String origenP, String destinoP) {
+
+        Path origen = Paths.get(origenP);
+        Path destino = Paths.get(destinoP);
+        try {
+            Files.copy(origen, destino);
+        } catch (IOException e) {
+            System.out.println("Problema copiando el archivo.");
+            System.out.println(e.toString());
+        }
+
+    }
+
+    public static void mostrarConteniDirectorio(String directorio) {
+        File f = new File(directorio);
+        if (f.exists()) {
+            File[] ficheros = f.listFiles();
+            for (File file2 : ficheros) {
+                System.out.println(file2.getName());
+            }
+        } else {
+            System.out.println("El directorio a listar no existe");
+        }
+
+    }
 
 }

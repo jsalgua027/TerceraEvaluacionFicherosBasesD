@@ -93,9 +93,7 @@ public class ServicioCoches {
 
                     lista.add(auxt1);
 //                        System.out.println("turismmo: " +tokens[0]);
-                }
-
-                else if (tokens[0].contains("1 -")) {
+                } else if (tokens[0].contains("1 -")) {
                     String regex = "^[0-2]\\s-\\s";
                     tokens[0] = tokens[0].replaceAll(regex, "");
 
@@ -189,9 +187,8 @@ public class ServicioCoches {
         }
 
     }
-    
-    
-     public static void escritura2(List<Vehiculo> aux, String nombreArchivo) {
+
+    public static void escritura2(List<Vehiculo> aux, String nombreArchivo) {
 
         String tmp = " ";
 
@@ -199,7 +196,7 @@ public class ServicioCoches {
 
             for (Vehiculo v : aux) {
 
-               tmp = v.toString();
+                tmp = v.toString();
                 flujo.write(tmp);
                 flujo.newLine();
             }
@@ -213,7 +210,66 @@ public class ServicioCoches {
 
     }
 
-    
-    
+    public static List<Vehiculo> tresArchivosALista() {
+
+        String[] archivos = {".\\copias\\deportivos.txt", ".\\copias\\furgonetas.txt", ".\\copias\\turismos.txt"};
+        List<Vehiculo> lista = new ArrayList();
+        for (int i = 0; i < archivos.length; i++) {
+
+            String idFichero = archivos[i];
+
+            // Variables para guardar los datos que se van leyendo
+            String[] tokens;
+            String linea;
+
+            System.out.println("Leyendo el fichero: " + idFichero);
+
+            // Inicialización del flujo "datosFichero" en función del archivo llamado "idFichero"
+            // Estructura try-with-resources. Permite cerrar los recursos una vez finalizadas
+            // las operaciones con el archivo
+            try ( Scanner datosFichero = new Scanner(new File(idFichero), "UTF-8")) {
+                // hasNextLine devuelve true mientras haya líneas por leer
+                while (datosFichero.hasNextLine()) {
+                    // Guarda la línea completa en un String
+                    linea = datosFichero.nextLine();
+                    // Se guarda en el array de String cada elemento de la
+                    // línea en función del carácter separador de campos del fichero CSV
+                    tokens = linea.split(":");
+
+                    if (idFichero.equalsIgnoreCase(".\\copias\\turismos.txt")) {
+
+                        Vehiculo auxt1 = new Turismo(Integer.parseInt(tokens[7]), Boolean.parseBoolean(tokens[8]),
+                                Long.parseLong(tokens[0]), tokens[1], tokens[2], tokens[3], tokens[4], Double.parseDouble(tokens[5]), Boolean.parseBoolean(tokens[6]));
+
+                        lista.add(auxt1);
+
+                    } else if (idFichero.equalsIgnoreCase(".\\copias\\deportivos.txt")) {
+
+                        Vehiculo auxD = new Deportivo(Integer.parseInt(tokens[7]),
+                                Long.valueOf(tokens[0]), tokens[1], tokens[2], tokens[3], tokens[4],
+                                Double.parseDouble(tokens[5]), Boolean.parseBoolean(tokens[6]));
+                        lista.add(auxD);
+
+                    }
+
+                    if (idFichero.equalsIgnoreCase(".\\copias\\furgonetas.txt")) {
+
+                        Vehiculo auxF = new Furgoneta(Integer.parseInt(tokens[8]), Integer.parseInt(tokens[7]),
+                                Long.valueOf(tokens[0]), tokens[1], tokens[2], tokens[3], tokens[4],
+                                Double.parseDouble(tokens[5]), Boolean.parseBoolean(tokens[6]));
+
+                        lista.add(auxF);
+
+                    }
+
+                }
+            } catch (FileNotFoundException e) {
+                System.out.println(e.getMessage());
+            }
+
+        }
+
+        return lista;
+    }
 
 }
