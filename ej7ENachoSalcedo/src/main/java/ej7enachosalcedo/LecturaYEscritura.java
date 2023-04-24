@@ -6,10 +6,13 @@ package ej7enachosalcedo;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -46,7 +49,7 @@ public class LecturaYEscritura {
         String tmp = " ";
 
         for (Factura factura : aux) {
-            try ( BufferedWriter flujo = new BufferedWriter(new FileWriter("CSV/facturas" + factura.getCodigoUnico() + ".csv"))) {
+            try ( BufferedWriter flujo = new BufferedWriter(new FileWriter("facturascsv/facturas" + factura.getCodigoUnico() + ".csv"))) {
 
                 tmp = factura.toString();
                 flujo.write(tmp);
@@ -96,6 +99,74 @@ public class LecturaYEscritura {
         serializador.marshal(catalogo, new File(ruta));
 
     }
-;
+
+    public static void leerArchivoCSV(String ruta) {
+        // Fichero a leer con datos de ejemplo
+        String idFichero = ruta;
+
+        // Variables para guardar los datos que se van leyendo
+        String[] tokens;
+        String linea;
+
+        System.out.println("Leyendo el fichero: " + idFichero);
+
+        // Inicialización del flujo "datosFichero" en función del archivo llamado "idFichero"
+        // Estructura try-with-resources. Permite cerrar los recursos una vez finalizadas
+        // las operaciones con el archivo
+        try ( Scanner datosFichero = new Scanner(new File(idFichero), "UTF-8")) {
+            // hasNextLine devuelve true mientras haya líneas por leer
+            while (datosFichero.hasNextLine()) {
+                // Guarda la línea completa en un String
+                linea = datosFichero.nextLine();
+                // Se guarda en el array de String cada elemento de la
+                // línea en función del carácter separador de campos del fichero CSV
+                tokens = linea.split(";");
+                for (String string : tokens) {
+                    System.out.print(string + "\t");
+                }
+                System.out.println();
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    public static Factura leerCsvYcrearObjeto(String ruta) {
+
+        // Fichero a leer con datos de ejemplo
+        String idFichero = ruta;
+
+        // Variables para guardar los datos que se van leyendo
+        String[] tokens;
+        String linea;
+        Factura aux = new Factura();
+        System.out.println("Leyendo el fichero: " + idFichero);
+
+        // Inicialización del flujo "datosFichero" en función del archivo llamado "idFichero"
+        // Estructura try-with-resources. Permite cerrar los recursos una vez finalizadas
+        // las operaciones con el archivo
+        try ( Scanner datosFichero = new Scanner(new File(idFichero), "UTF-8")) {
+            // hasNextLine devuelve true mientras haya líneas por leer
+            while (datosFichero.hasNextLine()) {
+                // Guarda la línea completa en un String
+                linea = datosFichero.nextLine();
+                // Se guarda en el array de String cada elemento de la
+                // línea en función del carácter separador de campos del fichero CSV
+                tokens = linea.split(";");
+                for (String string : tokens) {
+                  ;
+                   aux.setCodigoUnico(tokens[0]);
+                   aux.setFechaEmision(LocalDate.parse(tokens[1]));
+                   aux.setDescripcion(tokens[2]);
+                   aux.setTotalImporteFactura(Double.parseDouble(tokens[3]));
+                }
+            
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+        return aux;
+    }
 
 }
