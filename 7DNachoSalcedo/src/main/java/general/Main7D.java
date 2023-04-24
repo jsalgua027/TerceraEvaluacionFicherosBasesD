@@ -98,6 +98,7 @@ public class Main7D {
         System.out.println("Obtener una lista con todas las tarifas diferentes que se aplican a los vehículos");
         List<Double> listaTarifas = listaAux.stream()
                 .map(v -> v.getTarifa())
+                .distinct()
                 .toList();
         System.out.println("Imprimo la listas de tarifas");
         listaTarifas.forEach(System.out::println);
