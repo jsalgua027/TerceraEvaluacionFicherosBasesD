@@ -4,6 +4,7 @@
  */
 package eje7fnachosalcedo;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -15,12 +16,14 @@ public class MainEje7F {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         List<Empleado>listaEmpleados;
+  
+        ServicioArchivos.crearDirectorio("JSO");
+        
         listaEmpleados= GestionCSV.leerCsvYcrearObjeto("RelPerCen.csv");
-       
-       
-       // GestionCSV.leerCsvYcrearObjeto("RelPerCen.csv");
+       GestionJSON.escribirJSO(listaEmpleados, "JSO/listaEmpleados.json");
+
     }
     
 }
