@@ -46,7 +46,7 @@
             </dependency>
  </dependencies>
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
         <maven.compiler.source>18</maven.compiler.source>
         <maven.compiler.target>18</maven.compiler.target>
         <exec.mainClass>eje7fnachosalcedo.Eje7FNachoSalcedo</exec.mainClass>

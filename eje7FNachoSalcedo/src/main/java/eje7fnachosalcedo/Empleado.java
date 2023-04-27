@@ -11,9 +11,10 @@ import java.util.Objects;
  *
  * @author nacho
  */
-public class Profesor {
+public class Empleado {
     
-    private String nombreCompleto;
+    private String apellido;
+    private String nombre;
     private String dni;
     private String puesto;
     private LocalDate fechaPosesion;
@@ -22,15 +23,23 @@ public class Profesor {
     private boolean evaluador; // si true no false;
     private boolean coodinador;
 
-    public Profesor() {
+    public Empleado() {
     }
 
-    public String getNombreCompleto() {
-        return nombreCompleto;
+    public String getApellido() {
+        return apellido;
     }
 
-    public void setNombreCompleto(String nombreCompleto) {
-        this.nombreCompleto = nombreCompleto;
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getDni() {
@@ -92,8 +101,9 @@ public class Profesor {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Profesor{");
-        sb.append("nombreCompleto=").append(nombreCompleto);
+        sb.append("Empleado{");
+        sb.append("apellido=").append(apellido);
+        sb.append(", nombre=").append(nombre);
         sb.append(", dni=").append(dni);
         sb.append(", puesto=").append(puesto);
         sb.append(", fechaPosesion=").append(fechaPosesion);
@@ -108,14 +118,15 @@ public class Profesor {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 23 * hash + Objects.hashCode(this.nombreCompleto);
-        hash = 23 * hash + Objects.hashCode(this.dni);
-        hash = 23 * hash + Objects.hashCode(this.puesto);
-        hash = 23 * hash + Objects.hashCode(this.fechaPosesion);
-        hash = 23 * hash + Objects.hashCode(this.fechaCese);
-        hash = 23 * hash + Objects.hashCode(this.telefono);
-        hash = 23 * hash + (this.evaluador ? 1 : 0);
-        hash = 23 * hash + (this.coodinador ? 1 : 0);
+        hash = 71 * hash + Objects.hashCode(this.apellido);
+        hash = 71 * hash + Objects.hashCode(this.nombre);
+        hash = 71 * hash + Objects.hashCode(this.dni);
+        hash = 71 * hash + Objects.hashCode(this.puesto);
+        hash = 71 * hash + Objects.hashCode(this.fechaPosesion);
+        hash = 71 * hash + Objects.hashCode(this.fechaCese);
+        hash = 71 * hash + Objects.hashCode(this.telefono);
+        hash = 71 * hash + (this.evaluador ? 1 : 0);
+        hash = 71 * hash + (this.coodinador ? 1 : 0);
         return hash;
     }
 
@@ -130,11 +141,10 @@ public class Profesor {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Profesor other = (Profesor) obj;
+        final Empleado other = (Empleado) obj;
         return Objects.equals(this.dni, other.dni);
     }
-    
-    
+
     
     
     
