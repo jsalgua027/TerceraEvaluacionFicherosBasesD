@@ -15,6 +15,8 @@ import java.nio.file.Path;
 // La clase final Paths sólo contine métodos estáticos que devuelven
 // objetos tipo Path a partir de String o URI (Uniform Resource Identifier)
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 /**
@@ -54,7 +56,7 @@ public class SistemaFicheros {
 
         // Listar directorio actual
         listarDirectorio(".");
-        
+
         System.out.println("---------------");
         // Listar el directorio actual y subdirectorios
         listarTodo(".");
@@ -157,11 +159,38 @@ public class SistemaFicheros {
     // Usa Api Stream 
     public static void listarTodo(String ruta) {
 
-        try {   
+        try {
             Stream<Path> miStream = Files.walk(Paths.get(ruta));
-            miStream.forEach(System.out::println);        
+            miStream.forEach(System.out::println);
         } catch (IOException e) {
             System.out.println("Error listando directorios");
+        }
+    }
+
+    // Método recursivo para mostrar archivos y carpetas
+    public static void mostrarFicheros(File file) {
+        List<File> ficheros = new ArrayList<>();
+        List<File> carpetas = new ArrayList<>();
+
+        String texto = file.isDirectory() ? "D - " + file.getName() : file.getName();
+        System.out.println(texto);
+
+        if (file.isDirectory()) { // Directorio - Tiene hijos
+            File[] listaHijos = file.listFiles();
+            // Por cada elemento separo en archivos y directorios
+            for (File fichero : listaHijos) {
+                if (fichero.isFile()) {
+                    ficheros.add(fichero);
+                } else {
+                    carpetas.add(fichero);
+                }
+            }
+            // Ordena la lista de ficheros por nombre
+            ficheros.sort((f1, f2) -> f1.getName().compareTo(f2.getName()));
+            // Muestra los nombres de los ficheros
+            ficheros.forEach(f -> System.out.println("\t" + f.getName()));
+            // Por cada carpeta, llama a la recursividad
+            carpetas.forEach(c -> mostrarFicheros(c));
         }
     }
 
