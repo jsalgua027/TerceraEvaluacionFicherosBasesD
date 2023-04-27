@@ -10,6 +10,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  *
@@ -18,6 +19,11 @@ import java.util.List;
 public class GestionJSON {
     
     public static void escribirJSO(List<Empleado>aux,String ruta) throws IOException{
+        // Voy a filtrar la lista aux y sacar una nueva lista con la condicion de los años trabajados
+        // Y esa nueva lista es la que le paso al writeValue()
+//        Predicate filtroPoredad
+//        aux.stream()
+//                .filter(predicate)
     
        ObjectMapper mapeador = new ObjectMapper();
         
