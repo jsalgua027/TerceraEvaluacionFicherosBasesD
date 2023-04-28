@@ -26,7 +26,7 @@ public class GestionCSV {
         // Variables para guardar los datos que se van leyendo
         String[] tokens;
         String linea;
-        Empleado auxE = new Empleado();
+      
         List<Empleado> listaAux = new ArrayList<>();
         System.out.println("Leyendo el fichero: " + idFichero);
 
@@ -50,7 +50,7 @@ public class GestionCSV {
                  
                     
                 }
-                
+                  Empleado auxE = new Empleado();
                    auxE.setApellido(tokens[0]);
                     auxE.setNombre(tokens[1]);
                     auxE.setDni(tokens[2]);
