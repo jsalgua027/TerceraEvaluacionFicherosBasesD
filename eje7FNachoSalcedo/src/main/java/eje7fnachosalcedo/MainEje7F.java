@@ -113,7 +113,7 @@ public class MainEje7F {
 
         listaApellidosApistream.forEach(System.out::println);
 
-        boolean hay = false;
+        boolean hay = true;
 
         hay = listaEmpleados.stream()
                 .allMatch(n -> n.getNombre().contains("Jonh"));
