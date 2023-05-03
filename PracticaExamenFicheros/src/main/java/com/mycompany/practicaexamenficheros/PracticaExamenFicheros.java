@@ -105,7 +105,87 @@ public class PracticaExamenFicheros {
             System.out.println(e.getMessage());
         }
 
-    }
+    } // con pattern
+
+    public static List<Autobus> leerFicheroTXT(String ruta) { // Ej ruta = "Ejemplo.csv"
+        // Variables para guardar los datos que se van leyendo
+        String[] tokens;
+        String linea;
+        //El split son las comillas
+        String separador = "\"";
+
+        //Inicializo lista de profesores
+        List<Autobus> lista = new ArrayList<>();
+
+        System.out.println("Leyendo el fichero: " + ruta);
+
+        // Inicialización del flujo "datosFichero" en función del archivo llamado "idFichero"
+        // Estructura try-with-resources. Permite cerrar los recursos una vez finalizadas
+        // las operaciones con el archivo
+        try ( Scanner datosFichero = new Scanner(new File(ruta), "ISO-8859-1")) {
+//            //salto linea 
+//            datosFichero.nextLine();
+            // hasNextLine devuelve true mientras haya líneas por leer
+            while (datosFichero.hasNextLine()) {
+                // Guarda la línea completa en un String
+                linea = datosFichero.nextLine();
+                //Metodo para quitar comillas dobles usando una clase regex
+                //      linea = quitarComillas(linea);
+
+                // Se guarda en el array de String cada elemento de la
+                // línea en función del carácter separador de campos del fichero CSV
+                tokens = linea.split(separador);
+
+                //Metodo para quitar comillas dobles usando una clase regex
+                //        linea= quitarCaracter(linea, "-");
+                //"23S" "Estepona - Manilva" 07:10 12:15 18:00
+                //Comenzamos a tropear las lineas
+                //Creo un objeto autobus
+                Autobus bus = new Autobus();
+
+                //Ordenamos por orden los tokens
+                //Sale el id
+                bus.setCodigoBus(tokens[1]);
+
+                String array[] = tokens[3].split(" - ");
+
+                //Me quedo con el primero
+                bus.setOrigen(array[0]);
+                bus.setDestino(array[1]);
+
+                //Vamos a tratar las horas
+                String horas[] = tokens[4].split(" ");
+
+                //lista de horas
+                List<LocalTime> listaHoras = new ArrayList<>();
+                System.out.println("Leer Horas");
+
+                for (int i = 0; i < horas.length; i++) {
+
+                    System.out.println(horas[i]);
+
+                    if (!horas[i].isBlank()) {
+
+                        LocalTime hora = LocalTime.parse(horas[i]);
+
+                        listaHoras.add(hora);
+
+                    }
+
+                }
+
+                bus.setHorarios(listaHoras);
+
+                //agregamos todos los tokens al objeto creado
+                lista.add(bus);
+
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.println("Lectura del fichero " + ruta + " realizada");
+        return lista;
+    } // con splir
 
     public static void main(String[] args) {
 
