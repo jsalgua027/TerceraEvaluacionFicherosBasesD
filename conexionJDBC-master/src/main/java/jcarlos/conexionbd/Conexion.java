@@ -7,11 +7,18 @@ import java.sql.SQLException;
 
 public class Conexion {
 
-    private static final String SERVIDOR = "jdbc:mysql://localhost/";
-    private static final String NOMBRE_BASE_DATOS = "nombreBaseDatos";
-    private static final String USER = "root";
-    private static final String PASS = "1234";
+    private static final String SERVIDOR = "jdbc:mysql://192.168.56.101:3306/";
+    private static final String NOMBRE_BASE_DATOS = "pruebaConexion";
+    private static final String USER = "nacho";
+    private static final String PASS = "71206692";
 
+    
+//       private static final String SERVIDOR = "jdbc:mysql://localhost/";
+//    private static final String NOMBRE_BASE_DATOS = "nombreBaseDatos";
+//    private static final String USER = "root";
+//    private static final String PASS = "1234";
+
+    
     private static Connection instancia = null;
     
     // Patrón Singleton
