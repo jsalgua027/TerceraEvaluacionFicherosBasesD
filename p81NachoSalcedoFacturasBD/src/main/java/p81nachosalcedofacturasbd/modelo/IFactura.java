@@ -23,15 +23,15 @@ public interface IFactura {
     int insertFactura (FacturaVO factura) throws SQLException;
     
     // Método para insertar varios registros
-    int insertFactura (List<FacturaVO> lista) throws SQLException;
+    int insertFacturaVarios (List<FacturaVO> lista) throws SQLException;
     
-    // Método para borrar una persona
+    // Método para borrar una factura
     int deleteFactura (FacturaVO f) throws SQLException;
     
     // Método para borrar toda la tabla
     int deleteFactura() throws SQLException;
     
-    // Método para modificar una persona. Se modifica a la persona que tenga esa 'pk'
+    // Método para modificar una factura. Se modifica a la persona que tenga esa 'pk'
     // con los nuevos datos que traiga la persona 'nuevosDatos'
     int updateFactura(int pk, FacturaVO nuevosDatos) throws SQLException;
     

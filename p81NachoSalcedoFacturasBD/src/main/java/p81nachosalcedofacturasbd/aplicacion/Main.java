@@ -30,7 +30,7 @@ public class Main {
        
         try {
 
-            System.out.println("Nº personas insertadas " + daoFactura.insertFactura(listaFacturas));
+            System.out.println("Nº facturas insertadas " + daoFactura.insertFacturaVarios(listaFacturas));
             System.out.println("-----------------------------------------");
             System.out.println("Comprobamos en una nueva lista que se recogen los datos desde la tabla.");
             List<FacturaVO> nuevaLista = daoFactura.getAll();

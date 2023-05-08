@@ -114,7 +114,7 @@ public class FacturaDAO implements IFactura {
     }
 
     @Override
-    public int insertFactura(List<FacturaVO> lista) throws SQLException {
+    public int insertFacturaVarios(List<FacturaVO> lista) throws SQLException {
         int numFilas = 0;
 
         for (FacturaVO tmp : lista) {
@@ -164,7 +164,7 @@ public class FacturaDAO implements IFactura {
     public int updateFactura(int pk, FacturaVO factura) throws SQLException {
 
         int numFilas = 0;
-        String sql = "update factura set codigoUnico = ?, fechaEmision = ?, descripcion = ?, totalImporte=? where codigoUnico=?";
+        String sql = "update facturas set  fechaEmision = ?, descripcion = ?, totalImporte=? where codigoUnico=?";
 
         if (findByPk(pk) == null) {
             // La factura a actualizar no existe
@@ -175,10 +175,10 @@ public class FacturaDAO implements IFactura {
             try ( PreparedStatement prest = con.prepareStatement(sql)) {
 
                 // Establecemos los parámetros de la sentencia
-                prest.setInt(1, factura.getCodigoUnico());
-                prest.setDate(2, Date.valueOf(factura.getFechaEmision()));
-                prest.setString(3, factura.getDescripcion());
-                prest.setDouble(4, factura.getTotalImporteFactura());
+                prest.setInt(4, factura.getCodigoUnico());
+                prest.setDate(1, Date.valueOf(factura.getFechaEmision()));
+                prest.setString(2, factura.getDescripcion());
+                prest.setDouble(3, factura.getTotalImporteFactura());
 
                 numFilas = prest.executeUpdate();
             }
