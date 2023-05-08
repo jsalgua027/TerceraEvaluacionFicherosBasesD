@@ -44,7 +44,7 @@ public class FacturaDAO implements IFactura {
 //                f.setNombre(res.getString("nombre"));
 //                f.setFechaNacimiento(res.getDate("fecha_nac").toLocalDate());
                 f.setCodigoUnico(res.getInt("CodigoUnico"));
-                    f.setFechaEmision(LocalDate.parse((CharSequence) res.getDate("FechaEmision")));
+                    f.setFechaEmision(res.getDate("FechaEmision").toLocalDate());
                 f.setDescripcion(res.getString("Descripcion"));
                 f.setTotalImporteFactura(res.getDouble("TotalImporte"));
             
@@ -77,9 +77,9 @@ public class FacturaDAO implements IFactura {
             if (res.next()) {
                 // Recogemos los datos de la persona, guardamos en un objeto
                 factura.setCodigoUnico(res.getInt("CodigoUnico"));
-                  factura.setFechaEmision(LocalDate.parse((CharSequence) res.getDate("FechaEmision")));
+                  factura.setFechaEmision(res.getDate("FechaEmision").toLocalDate());
                 factura.setDescripcion(res.getString("Descripcion"));
-                factura.setTotalImporteFactura(res.getDouble("Total Importe"));
+                factura.setTotalImporteFactura(res.getDouble("TotalImporte"));
               
                 return factura;
             }
