@@ -148,7 +148,7 @@ public class FacturaDAO implements IFactura {
     public int deleteFactura(FacturaVO factura) throws SQLException {
         int numFilas = 0;
 
-        String sql = "delete from facturas where pk = ?";
+        String sql = "delete from facturas where codigoUnico= ?";
 
         // Sentencia parametrizada
         try ( PreparedStatement prest = con.prepareStatement(sql)) {
@@ -162,10 +162,10 @@ public class FacturaDAO implements IFactura {
     }
 
     @Override
-    public int updatePersona(int pk, PersonaVO nuevosDatos) throws SQLException {
+    public int updateFactura(int pk, FacturaVO factura) throws SQLException {
 
         int numFilas = 0;
-        String sql = "update persona set nombre = ?, fecha_nac = ? where pk=?";
+        String sql = "update factura set codigoUnico = ?, fechaEmision = ?, descripcion = ?, totalImporte=? where codigoUnico=?";
 
         if (findByPk(pk) == null) {
             // La persona a actualizar no existe
@@ -176,9 +176,10 @@ public class FacturaDAO implements IFactura {
             try ( PreparedStatement prest = con.prepareStatement(sql)) {
 
                 // Establecemos los parámetros de la sentencia
-                prest.setString(1, nuevosDatos.getNombre());
-                prest.setDate(2, Date.valueOf(nuevosDatos.getFechaNacimiento()));
-                prest.setInt(3, pk);
+                prest.setInt(1, factura.getCodigoUnico());
+                prest.setString(2, factura.getDescripcion());
+                prest.setDouble(3, factura.getTotalImporteFactura());
+                prest.setDate(4, Date.valueOf(factura.getFechaEmision()));
 
                 numFilas = prest.executeUpdate();
             }
