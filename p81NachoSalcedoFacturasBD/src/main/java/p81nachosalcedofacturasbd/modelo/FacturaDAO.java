@@ -167,7 +167,7 @@ public class FacturaDAO implements IFactura {
         String sql = "update factura set codigoUnico = ?, fechaEmision = ?, descripcion = ?, totalImporte=? where codigoUnico=?";
 
         if (findByPk(pk) == null) {
-            // La persona a actualizar no existe
+            // La factura a actualizar no existe
             return numFilas;
         } else {
             // Instanciamos el objeto PreparedStatement para inserción
