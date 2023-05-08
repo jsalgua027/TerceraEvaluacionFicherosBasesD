@@ -34,7 +34,7 @@ public class FacturaDAO implements IFactura {
         // ya que no necesitamos parametrizar la sentencia SQL
         try ( Statement st = con.createStatement()) {
             // Ejecutamos la sentencia y obtenemos las filas en el objeto ResultSet
-            ResultSet res = st.executeQuery("select * from persona");
+            ResultSet res = st.executeQuery("select * from facturas");
             // Ahora construimos la lista, recorriendo el ResultSet y mapeando los datos
             while (res.next()) {
                 FacturaVO f = new FacturaVO();
@@ -43,10 +43,11 @@ public class FacturaDAO implements IFactura {
 //                f.setPk(res.getInt("pk"));
 //                f.setNombre(res.getString("nombre"));
 //                f.setFechaNacimiento(res.getDate("fecha_nac").toLocalDate());
-                f.setCodigoUnico(res.getInt("Codigo Unico"));
+                f.setCodigoUnico(res.getInt("CodigoUnico"));
+                    f.setFechaEmision(LocalDate.parse((CharSequence) res.getDate("FechaEmision")));
                 f.setDescripcion(res.getString("Descripcion"));
-                f.setTotalImporteFactura(res.getDouble("Total Importe Factura"));
-                f.setFechaEmision(LocalDate.parse((CharSequence) res.getDate("Fecha Emision")));
+                f.setTotalImporteFactura(res.getDouble("TotalImporte"));
+            
 
                 //Añadimos el objeto a la lista
                 lista.add(f);
@@ -75,10 +76,11 @@ public class FacturaDAO implements IFactura {
             // si existe esa pk
             if (res.next()) {
                 // Recogemos los datos de la persona, guardamos en un objeto
-                factura.setCodigoUnico(res.getInt("Codigo Unico"));
+                factura.setCodigoUnico(res.getInt("CodigoUnico"));
+                  factura.setFechaEmision(LocalDate.parse((CharSequence) res.getDate("FechaEmision")));
                 factura.setDescripcion(res.getString("Descripcion"));
-                factura.setTotalImporteFactura(res.getDouble("Total Importe Factura"));
-                factura.setFechaEmision(LocalDate.parse((CharSequence) res.getDate("Fecha Emision")));
+                factura.setTotalImporteFactura(res.getDouble("Total Importe"));
+              
                 return factura;
             }
 
@@ -103,9 +105,10 @@ public class FacturaDAO implements IFactura {
 
                 // Establecemos los parámetros de la sentencia
                 prest.setInt(1, factura.getCodigoUnico());
-                prest.setString(2, factura.getDescripcion());
-                prest.setDouble(3, factura.getTotalImporteFactura());
-                prest.setDate(4, Date.valueOf(factura.getFechaEmision()));
+                  prest.setDate(2, Date.valueOf(factura.getFechaEmision()));
+                prest.setString(3, factura.getDescripcion());
+                prest.setDouble(4, factura.getTotalImporteFactura());
+              
 
                 numFilas = prest.executeUpdate();
             }
@@ -177,9 +180,10 @@ public class FacturaDAO implements IFactura {
 
                 // Establecemos los parámetros de la sentencia
                 prest.setInt(1, factura.getCodigoUnico());
-                prest.setString(2, factura.getDescripcion());
-                prest.setDouble(3, factura.getTotalImporteFactura());
-                prest.setDate(4, Date.valueOf(factura.getFechaEmision()));
+                   prest.setDate(2, Date.valueOf(factura.getFechaEmision()));
+                prest.setString(3, factura.getDescripcion());
+                prest.setDouble(4, factura.getTotalImporteFactura());
+             
 
                 numFilas = prest.executeUpdate();
             }
