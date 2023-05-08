@@ -23,7 +23,7 @@ public class Main {
 
         List<FacturaVO> listaFacturas = p81nachosalcedofacturasbd.modelo.LeerArchivo.leerCsvYcrearObjeto("facturas.csv");
 
-       // listaFacturas.forEach(System.out::println);
+        listaFacturas.forEach(System.out::println);
 
         FacturaDAO daoFactura = new FacturaDAO();
 

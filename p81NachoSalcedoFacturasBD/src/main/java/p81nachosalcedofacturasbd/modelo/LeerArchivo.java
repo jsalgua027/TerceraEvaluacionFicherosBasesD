@@ -27,7 +27,7 @@ public class LeerArchivo {
         // Variables para guardar los datos que se van leyendo
         String[] tokens;
         String linea;
-        FacturaVO aux = new FacturaVO();
+       
         System.out.println("Leyendo el fichero: " + idFichero);
 
         // Inicialización del flujo "datosFichero" en función del archivo llamado "idFichero"
@@ -36,20 +36,22 @@ public class LeerArchivo {
         try ( Scanner datosFichero = new Scanner(new File(idFichero), "UTF-8")) {
             // hasNextLine devuelve true mientras haya líneas por leer
             while (datosFichero.hasNextLine()) {
+                 FacturaVO aux = new FacturaVO();
                 // Guarda la línea completa en un String
                 linea = datosFichero.nextLine();
                 // Se guarda en el array de String cada elemento de la
                 // línea en función del carácter separador de campos del fichero CSV
                 tokens = linea.split(";");
                 for (String string : tokens) {
-                  ;
+                  
                    aux.setCodigoUnico(Integer.parseInt(tokens[0]));
                    aux.setFechaEmision(LocalDate.parse(tokens[1]));
                    aux.setDescripcion(tokens[2]);
                    aux.setTotalImporteFactura(Double.parseDouble(tokens[3]));
                 }
-              listaAux.add(aux);
+             listaAux.add(aux);
             }
+             
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }

@@ -40,14 +40,11 @@ public class FacturaDAO implements IFactura {
                 FacturaVO f = new FacturaVO();
                 // Recogemos los datos de la factura, guardamos en un objeto
 
-//                f.setPk(res.getInt("pk"));
-//                f.setNombre(res.getString("nombre"));
-//                f.setFechaNacimiento(res.getDate("fecha_nac").toLocalDate());
+//               
                 f.setCodigoUnico(res.getInt("CodigoUnico"));
-                    f.setFechaEmision(res.getDate("FechaEmision").toLocalDate());
+                f.setFechaEmision(res.getDate("FechaEmision").toLocalDate());
                 f.setDescripcion(res.getString("Descripcion"));
                 f.setTotalImporteFactura(res.getDouble("TotalImporte"));
-            
 
                 //Añadimos el objeto a la lista
                 lista.add(f);
@@ -77,10 +74,10 @@ public class FacturaDAO implements IFactura {
             if (res.next()) {
                 // Recogemos los datos de la persona, guardamos en un objeto
                 factura.setCodigoUnico(res.getInt("CodigoUnico"));
-                  factura.setFechaEmision(res.getDate("FechaEmision").toLocalDate());
+                factura.setFechaEmision(res.getDate("FechaEmision").toLocalDate());
                 factura.setDescripcion(res.getString("Descripcion"));
                 factura.setTotalImporteFactura(res.getDouble("TotalImporte"));
-              
+
                 return factura;
             }
 
@@ -105,10 +102,9 @@ public class FacturaDAO implements IFactura {
 
                 // Establecemos los parámetros de la sentencia
                 prest.setInt(1, factura.getCodigoUnico());
-                  prest.setDate(2, Date.valueOf(factura.getFechaEmision()));
+                prest.setDate(2, Date.valueOf(factura.getFechaEmision()));
                 prest.setString(3, factura.getDescripcion());
                 prest.setDouble(4, factura.getTotalImporteFactura());
-              
 
                 numFilas = prest.executeUpdate();
             }
@@ -180,10 +176,9 @@ public class FacturaDAO implements IFactura {
 
                 // Establecemos los parámetros de la sentencia
                 prest.setInt(1, factura.getCodigoUnico());
-                   prest.setDate(2, Date.valueOf(factura.getFechaEmision()));
+                prest.setDate(2, Date.valueOf(factura.getFechaEmision()));
                 prest.setString(3, factura.getDescripcion());
                 prest.setDouble(4, factura.getTotalImporteFactura());
-             
 
                 numFilas = prest.executeUpdate();
             }
