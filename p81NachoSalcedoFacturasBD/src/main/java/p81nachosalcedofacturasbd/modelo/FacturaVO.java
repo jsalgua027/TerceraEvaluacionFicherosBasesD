@@ -44,6 +44,8 @@ public class FacturaVO {
         this.totalImporteFactura = stream.findFirst().getAsDouble();
     }
 
+    
+
     public int getCodigoUnico() {
         return codigoUnico;
     }

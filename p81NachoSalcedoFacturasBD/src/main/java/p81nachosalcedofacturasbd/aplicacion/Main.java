@@ -6,6 +6,7 @@ package p81nachosalcedofacturasbd.aplicacion;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.List;
 import p81nachosalcedofacturasbd.modelo.FacturaDAO;
 import p81nachosalcedofacturasbd.modelo.FacturaVO;
@@ -40,9 +41,10 @@ public class Main {
             System.out.println(daoFactura.findByPk(1));
             System.out.println("-----------------------------------------");
             System.out.println("Se va a borrar la persona con pk 3");
-            //System.out.println("Nº personas borradas " + 
-            //  daoFactura.deleteFactura(new FacturaVO(3,"Pablo Pérez", LocalDate.of(1997, 12, 5))));
-            //  System.out.println("-----------------------------------------");
+//            System.out.println(daoFactura.deleteFactura(new FacturaVO(3,LocalDate.of(2023, 04, 24), "KCunGHuHfd", 860.49)) + 
+//                    "Nº personas borradas ");
+        
+              System.out.println("-----------------------------------------");
             nuevaLista = daoFactura.getAll();
             System.out.println("-------- Lista con datos recogidos desde la B.D despues de borrar una persona -------------");
             nuevaLista.forEach(System.out::println);
