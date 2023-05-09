@@ -37,20 +37,20 @@ public class Main {
             System.out.println("-------- Lista con datos recogidos desde la B.D -------------");
             nuevaLista.forEach(System.out::println);
             System.out.println("-----------------------------------------");
-            System.out.println("Persona con primary key 1: ");
+            System.out.println("Factura con primary key 1: ");
             System.out.println(daoFactura.findByPk(1));
             System.out.println("-----------------------------------------");
-            System.out.println("Se va a borrar la persona con pk 3");
+            System.out.println("Se va a borrar la factura con pk 3");
            System.out.println(daoFactura.deleteFactura(new FacturaVO(3,LocalDate.of(2023, 04, 24), "KCunGHuHfd", 860.49)) + 
-                    "Nº personas borradas ");
+                    "Nº Facturas borradas ");
         
               System.out.println("-----------------------------------------");
             nuevaLista = daoFactura.getAll();
-            System.out.println("-------- Lista con datos recogidos desde la B.D despues de borrar una persona -------------");
+            System.out.println("-------- Lista con datos recogidos desde la B.D despues de borrar una factura -------------");
             nuevaLista.forEach(System.out::println);
             System.out.println("-----------------------------------------");
-            System.out.println("Modificación de la persona con pk 5");
-            System.out.println("Nº Personas modificadas " + 
+            System.out.println("Modificación de la factura con pk 5");
+            System.out.println("Nº Facturas modificadas " + 
                     daoFactura.updateFactura(5, new FacturaVO(5,LocalDate.of(2023, 04, 24), "Factura Modificada", 2222.22)));
             System.out.println("-----------------------------------------");
             nuevaLista = daoFactura.getAll();
