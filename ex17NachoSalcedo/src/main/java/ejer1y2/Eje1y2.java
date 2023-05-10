@@ -21,27 +21,26 @@ public class Eje1y2 {
      */
     public static void main(String[] args) throws IOException {
         // TODO code application logic here
-        
-           List<Profesor> listaAux = new ArrayList<>();
-           Map<String, Double> mapAux = new HashMap<String, Double>();
-           
-          listaAux= LecturaYescritura.leerCsvYcrearObjeto("RelEmpCenAus.txt");
-           
+
+        List<Profesor> listaAux = new ArrayList<>();
+        Map<String, Double> mapAux = new HashMap<String, Double>();
+
+        listaAux = LecturaYescritura.leerCsvYcrearObjeto("RelEmpCenAus.txt");
+
         listaAux.forEach(System.out::println);
-          
-          mapAux=LecturaYescritura.listaMap(listaAux);
-          
-          for (Map.Entry<String, Double> entry : mapAux.entrySet()) {
+
+        mapAux = LecturaYescritura.listaMap(listaAux);
+
+        for (Map.Entry<String, Double> entry : mapAux.entrySet()) {
             Object key = entry.getKey();
             Object val = entry.getValue();
-            
-              System.out.println(key+"-"+ val);
-            
+
+            System.out.println(key + "-" + val);
+
         }
-          
-          LecturaYescritura.escribirJSO(mapAux, "totalHorasPorTrabajador.json");
-          
-          
+
+        LecturaYescritura.escribirJSO(mapAux, "totalHorasPorTrabajador.json");
+
     }
-    
+
 }

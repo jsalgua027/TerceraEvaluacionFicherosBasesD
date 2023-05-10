@@ -114,49 +114,33 @@ public class LecturaYescritura {
 
     }
 
-    public static Map<String,Double> listaMap (List<Profesor>aux){
-   Map<String, Double> mapAux = new HashMap<String, Double>();
-    
- 
-                for (Profesor p : aux) {
-           
-                    
-                    mapAux.put(p.getDni(), p.getTotalHoras());
-                    
-                    
-        }
-      
-   
-   
+    public static Map<String, Double> listaMap(List<Profesor> aux) {
+        Map<String, Double> mapAux = new HashMap<String, Double>();
 
-      
-    
-    
-    
-      return mapAux;
+        for (Profesor p : aux) {
+
+            mapAux.put(p.getDni(), p.getTotalHoras());
+
+        }
+
+        return mapAux;
     }
-    
-    
-     public static void escribirJSO(Map<String,Double>aux,String ruta) throws IOException{
+
+    public static void escribirJSO(Map<String, Double> aux, String ruta) throws IOException {
         // Voy a filtrar la lista aux y sacar una nueva lista con la condicion de los años trabajados
         // Y esa nueva lista es la que le paso al writeValue()
-        
-       
-       ObjectMapper mapeador = new ObjectMapper();
-        
+
+        ObjectMapper mapeador = new ObjectMapper();
+
         // Permite a mapeador usar fechas según java time
         mapeador.registerModule(new JavaTimeModule());
-        
+
         // Formato JSON bien formateado. Si se comenta, el fichero queda minificado
         mapeador.configure(SerializationFeature.INDENT_OUTPUT, true);
 
         // Escribe en un fichero JSON el catálogo de muebles
         mapeador.writeValue(new File(ruta), aux);
-                
-       
-    
+
     }
-    
-    
-    
+
 }
