@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.Persistence;
 
 /**
@@ -136,18 +137,32 @@ public class CreacionModificacionBorradoEntidades {
         // Creación de un cliente, asignandole la tarejeta anterior
         // Para ello busco la tarjeta y se la paso al método
         System.out.println("CREACIÓN DE UN CLIENTE CON UNA TARJETA EXISTENTE EN LA BD --------------");
-        TarjetaBancaria t = tc.findByNumero("122155");
-        crearClienteConTarjeta(t);
-        Consultas.mostrarClientes();
+        
+        try {
+            TarjetaBancaria t = tc.findByNumero("122155");
+          crearClienteConTarjeta(t);
+            Consultas.mostrarClientes();
 
+            
+        } catch (NonUniqueResultException e) {
+            
+            System.out.println("Esta repetida la clave");
+        }
+        
         System.out.println("CREACIÓN DE UN VEHICULO CON UN ALQUILER EXISTENTE EN LA BD --------------");
         // Creación de un vehículo, al que se le asigna un alquiler existente
         // Busco un alquiler y se lo asigno a este vehículo, por lo que 
         // al vehículo que tenga el alquiler 3 se le quita. De esto se 
         // encarga el controlador JPA.
-        Alquiler alq = ac.findAlquiler(3); // Existe
+        try {
+            Alquiler alq = ac.findAlquiler(3); // Existe
         crearVehiculoConAlquiler(alq);
         Consultas.mostrarVehiculos();
+            
+        } catch (Exception e) {
+            System.out.println("El vehiculo ya existe");
+        }
+        
         
         System.out.println("CREACIÓN DE UN ALQUILER, A PARTIR DE UN CLIENTE Y UN VEHÍCULO EXISTENTES --------------");
         Cliente c = cc.findCliente(1);
@@ -164,9 +179,15 @@ public class CreacionModificacionBorradoEntidades {
         System.out.println("BORRADO DE UN CLIENTE --------------");
         //borrarCliente(10000); // No existe --> NonexistentEntityException
         //borrarCliente(1); // Existe pero tiene alquileres activos --> IllegalOrphanException
-        Cliente paraBorrar = cc.findByNif("99999999S"); // Ernesto Mate
+        try {
+              Cliente paraBorrar = cc.findByNif("99999999S"); // Ernesto Mate
         borrarCliente(paraBorrar.getId());
         Consultas.mostrarTarjetas();
+            
+        } catch (Exception e) {
+            System.out.println("Ese cliente no existe");
+        }
+      
 
     }
 
