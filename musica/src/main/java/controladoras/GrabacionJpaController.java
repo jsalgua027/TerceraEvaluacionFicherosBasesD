@@ -6,7 +6,9 @@ package controladoras;
 
 import controladoras.exceptions.NonexistentEntityException;
 import entidades.musica.Grabacion;
+import entidades.musica.Instrumento;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -50,6 +52,42 @@ public class GrabacionJpaController implements Serializable {
             }
         }
     }
+    
+//     public void create(Grabacion grabacion) {
+//         if (grabacion.getListaInstrumentos()==null){
+//          grabacion.setListaInstrumentos(new ArrayList<Instrumento>());
+//         }
+//        EntityManager em = null;
+//        try {
+//            em = getEntityManager();
+//            em.getTransaction().begin();
+//            List<Instrumento>attachedInstrumentoList =new ArrayList<Instrumento>();
+//            for (Instrumento  grabacionListInstrumentosToAttach: grabacion.getListaInstrumentos()) {
+//                grabacionListInstrumentosToAttach=em.getReference(grabacionListInstrumentosToAttach.getClass(), grabacionListInstrumentosToAttach.getIdInstrumento());
+//                attachedInstrumentoList.add(grabacionListInstrumentosToAttach);
+//            }
+//            grabacion.setListaInstrumentos(attachedInstrumentoList);
+//            em.persist(grabacion);
+//            for (Instrumento grabacionListGrabacion : grabacion.getListaInstrumentos()) {
+//                Instrumento oldGrabacionOfInstrumentosList= grabacionListGrabacion.getInstrumento();
+//                grabacionListGrabacion.setInstrumento(grabacionListGrabacion);
+//                grabacionListGrabacion=em.merge(grabacionListGrabacion);
+//                if(oldGrabacionOfInstrumentosList!=null){
+//                
+//                oldGrabacionOfInstrumentosList.getListaGrabaciones().remove(grabacionListGrabacion);
+//                oldGrabacionOfInstrumentosList=em.merge(oldGrabacionOfInstrumentosList);
+//                }
+//                
+//            }
+//            em.getTransaction().commit();
+//        } finally {
+//            if (em != null) {
+//                em.close();
+//            }
+//        }
+//    }
+    
+    
 
     public void edit(Grabacion grabacion) throws NonexistentEntityException, Exception {
         EntityManager em = null;

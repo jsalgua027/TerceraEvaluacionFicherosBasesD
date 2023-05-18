@@ -12,10 +12,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -41,6 +42,14 @@ public class Instrumento implements Serializable {
     private String nombre;
     @Column(name = "tipo")
     private String tipo;
+    
+    @JoinColumn(name="IdInstrumento", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Instrumento instrumento;
+    
+    @OneToMany (mappedBy = "Instrumento")
+    private List<Grabacion> listaGrabaciones;
+    
 
     public Instrumento() {
     }
@@ -73,6 +82,20 @@ public class Instrumento implements Serializable {
         this.tipo = tipo;
     }
 
+    public Instrumento getInstrumento() {
+        return instrumento;
+    }
+
+    public void setInstrumento(Instrumento instrumento) {
+        this.instrumento = instrumento;
+    }
+
+    public List<Grabacion> getListaGrabaciones() {
+        return listaGrabaciones;
+    }
+
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;
