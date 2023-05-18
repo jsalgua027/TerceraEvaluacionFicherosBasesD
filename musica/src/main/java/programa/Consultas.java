@@ -69,7 +69,7 @@ public class Consultas {
     }
 
     private static void mostrarInstrumentos() {
-        System.out.println("-------Listado de Músicos------");
+        System.out.println("-------Listado de Instrumentos------");
         ic.findInstrumentoEntities().forEach(System.out::println);
         System.out.println("---------------------------------------");
 
@@ -77,7 +77,7 @@ public class Consultas {
 
     private static void mostrarGrabaciones() {
 
-        System.out.println("-------Listado de Músicos------");
+        System.out.println("-------Listado de Grabaciones------");
         gc.findGrabacionEntities().forEach(System.out::println);
 
         System.out.println("-----------------------------------");

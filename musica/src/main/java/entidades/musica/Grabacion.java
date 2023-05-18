@@ -48,7 +48,7 @@ public class Grabacion implements Serializable {
     private Date fecha;
     @JoinColumn(name = "idInstrumento", referencedColumnName = "idInstrumento")
     @OneToMany
-    private List<Instrumento> idInstrumento;
+    private List<Instrumento> listaInstrumentos;
 
     public Grabacion() {
     }
@@ -81,12 +81,12 @@ public class Grabacion implements Serializable {
         this.fecha = fecha;
     }
 
-    public List<Instrumento> getIdInstrumento() {
-        return idInstrumento;
+    public List<Instrumento> getListaInstrumentos() {
+        return listaInstrumentos;
     }
 
-    public void setIdInstrumento(List<Instrumento> idInstrumento) {
-        this.idInstrumento = idInstrumento;
+    public void setListaInstrumentos(List<Instrumento> listaInstrumentos) {
+        this.listaInstrumentos = listaInstrumentos;
     }
 
     @Override
@@ -111,8 +111,25 @@ public class Grabacion implements Serializable {
 
     @Override
     public String toString() {
-        return "Grabacion{" + "idGrabacion=" + idGrabacion + ", titulo=" + titulo + ", fecha=" + fecha + ", idInstrumento=" + idInstrumento.toString() + '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("Grabacion{");
+        sb.append("idGrabacion=").append(idGrabacion);
+        sb.append(", titulo=").append(titulo);
+        sb.append(", fecha=").append(fecha);
+        sb.append(", idInstrumento=");
+        sb.append(listaInstrumentos.toString());
+     //   sb.append(toStringInstrumentos());
+        sb.append('}');
+        return sb.toString();
     }
+
+   private String toStringInstrumentos(){
+      StringBuilder tmp = new StringBuilder();
+       for (Instrumento instru : listaInstrumentos) {
+           tmp.append(instru.getIdInstrumento()).append(", ");
+       }
+     return tmp.length()==0?tmp.toString():tmp.toString()+"\b\b";
+   }
 
   
 }

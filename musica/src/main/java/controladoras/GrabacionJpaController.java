@@ -28,7 +28,7 @@ public class GrabacionJpaController implements Serializable {
 
     public GrabacionJpaController() {
 
-        emf = Persistence.createEntityManagerFactory("com.mycompany_musica_jar_1.0-SNAPSHOTPU");
+        emf = Persistence.createEntityManagerFactory("com.mycompany_musica_jar_1.0-SNAPSHOTPU"); //com.mycompany_musica_jar_1.0-SNAPSHOTPU
     }
 
     private EntityManagerFactory emf = null;
