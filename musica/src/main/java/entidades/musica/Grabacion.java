@@ -111,7 +111,7 @@ public class Grabacion implements Serializable {
 
     @Override
     public String toString() {
-        return "Grabacion{" + "idGrabacion=" + idGrabacion + ", titulo=" + titulo + ", fecha=" + fecha + ", idInstrumento=" + idInstrumento + '}';
+        return "Grabacion{" + "idGrabacion=" + idGrabacion + ", titulo=" + titulo + ", fecha=" + fecha + ", idInstrumento=" + idInstrumento.toString() + '}';
     }
 
   
