@@ -5,11 +5,7 @@
 package programa;
 
 
-import controladoras_entidades.GrabacionJpaController;
-import controladoras_entidades.InstrumentoJpaController;
-import controladoras_entidades.MusicoJpaController;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+
 
 /**
  *
@@ -21,10 +17,10 @@ public class CreacionModificacionBorradoEntidades {
      * @param args the command line arguments
      */
     
-    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_musica_jar_1.0-SNAPSHOTPU");
-    private static final MusicoJpaController mc = new MusicoJpaController(emf);
-    private static final InstrumentoJpaController ic = new InstrumentoJpaController(emf);
-    private static final GrabacionJpaController gc = new GrabacionJpaController(emf);
+//    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_musica_jar_1.0-SNAPSHOTPU");
+//    private static final MusicoJpaController mc = new MusicoJpaController(emf);
+//    private static final InstrumentoJpaController ic = new InstrumentoJpaController(emf);
+//    private static final GrabacionJpaController gc = new GrabacionJpaController(emf);
     
     
     
