@@ -4,9 +4,10 @@
  */
 package programa;
 
-import controladoras.GrabacionJpaController;
-import controladoras.InstrumentoJpaController;
-import controladoras.MusicoJpaController;
+
+import controladoras_entidades.GrabacionJpaController;
+import controladoras_entidades.InstrumentoJpaController;
+import controladoras_entidades.MusicoJpaController;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -51,7 +52,10 @@ public class Consultas {
      * System.out.println("--------------------------------------------"); }
      *
      *
-     *
+     * public GrabacionJpaController(){
+      
+      emf= Persistence.createEntityManagerFactory("com.mycompany_musica_jar_1.0-SNAPSHOTPU");
+      }
      *
      *
      *

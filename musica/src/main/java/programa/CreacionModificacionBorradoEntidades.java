@@ -4,9 +4,10 @@
  */
 package programa;
 
-import controladoras.GrabacionJpaController;
-import controladoras.InstrumentoJpaController;
-import controladoras.MusicoJpaController;
+
+import controladoras_entidades.GrabacionJpaController;
+import controladoras_entidades.InstrumentoJpaController;
+import controladoras_entidades.MusicoJpaController;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
