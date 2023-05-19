@@ -20,38 +20,7 @@ public class Consultas {
 
     /**
      * @param args the command line arguments private static final
-     * EntityManagerFactory emf =
-     * Persistence.createEntityManagerFactory("alquiler"); private static final
-     * VehiculoJpaController vc = new VehiculoJpaController(emf); private static
-     * final AlquilerJpaController ac = new AlquilerJpaController(emf); private
-     * static final TarjetaBancariaJpaController tc = new
-     * TarjetaBancariaJpaController(emf); private static final
-     * ClienteJpaController cc = new ClienteJpaController(emf);
-     *
-     *
-     * public static void mostrarVehiculos() { System.out.println("---------
-     * Listado de Vehículos -------------");
-     * vc.findVehiculoEntities().forEach(System.out::println);
-     * System.out.println("--------------------------------------------");
-     *
-     * }
-     *
-     * public static void mostrarClientes() { System.out.println("---------
-     * Listado de Clientes -------------");
-     * cc.findClienteEntities().forEach(System.out::println);
-     * System.out.println("--------------------------------------------"); }
-     *
-     * public static void mostrarAlquileres() { System.out.println("---------
-     * Listado de Alquileres -------------");
-     * ac.findAlquilerEntities().forEach(System.out::println);
-     * System.out.println("--------------------------------------------"); }
-     *
-     * public static void mostrarTarjetas() { System.out.println("---------
-     * Listado de Tarjetas -------------");
-     * tc.findTarjetaBancariaEntities().forEach(System.out::println);
-     * System.out.println("--------------------------------------------"); }
-     *
-     *
+  
      * public GrabacionJpaController(){
      *
      * emf=
