@@ -5,6 +5,9 @@
 package entidades;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -78,6 +81,22 @@ public class Grabacion implements Serializable {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+     // Método añadido , no generadi por el IDE al crear la entidad
+    public LocalDate getFechaGrabacionLocalDate() {
+
+        return new Date(this.fecha.getTime()).
+                toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+    }
+
+    // metodo setter añadido, no generado por el Ide al crear la entidad
+    public void setFechaGrabacionLocalDate(LocalDate fecha) {
+
+     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    String formattedDate = fecha.format(formatter);
+    this.fecha = Date.from(LocalDate.parse(formattedDate, formatter).atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+
+    }
 
     public Instrumento getIdInstrumento() {
         return idInstrumento;
@@ -113,7 +132,7 @@ public class Grabacion implements Serializable {
         sb.append("Grabacion{");
         sb.append("idGrabacion=").append(idGrabacion);
         sb.append(", titulo=").append(titulo);
-        sb.append(", fecha=").append(fecha);
+        sb.append(", fecha=").append(getFechaGrabacionLocalDate());
         sb.append(", idInstrumento=").append(idInstrumento);
         sb.append('}');
         return sb.toString();
