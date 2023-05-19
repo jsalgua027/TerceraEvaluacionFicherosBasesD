@@ -36,21 +36,21 @@ public class Consultas {
     private static final GrabacionJpaController gc = new GrabacionJpaController(emf);
     private static final BiografiaJpaController bc = new BiografiaJpaController(emf);
 
-    private static void mostarMusicos() {
+    public static void mostarMusicos() {
         System.out.println("-------Listado de Músicos------");
         mc.findMusicoEntities().forEach(System.out::println);
         System.out.println("---------------------------------------");
 
     }
 
-    private static void mostrarInstrumentos() {
+    public static void mostrarInstrumentos() {
         System.out.println("-------Listado de Instrumentos------");
         ic.findInstrumentoEntities().forEach(System.out::println);
         System.out.println("---------------------------------------");
 
     }
 
-    private static void mostrarGrabaciones() {
+    public static void mostrarGrabaciones() {
 
         System.out.println("-------Listado de Grabaciones------");
         gc.findGrabacionEntities().forEach(System.out::println);
@@ -58,7 +58,7 @@ public class Consultas {
         System.out.println("-----------------------------------");
     }
 
-    private static void mostrarBiografia() {
+    public static void mostrarBiografia() {
 
         System.out.println("-------Listado de biografias------");
         bc.findBiografiaEntities().forEach(System.out::println);

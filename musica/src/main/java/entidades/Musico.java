@@ -55,6 +55,15 @@ public class Musico implements Serializable {
         this.idMusico = idMusico;
     }
 
+    public Musico(String nombre, String genero, Instrumento idInstrumento, Biografia biografia) {
+        this.nombre = nombre;
+        this.genero = genero;
+        this.idInstrumento = idInstrumento;
+        this.biografia = biografia;
+    }
+
+    
+    
     public Integer getIdMusico() {
         return idMusico;
     }
@@ -95,8 +104,6 @@ public class Musico implements Serializable {
         this.biografia = biografia;
     }
 
-    
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -124,12 +131,19 @@ public class Musico implements Serializable {
         sb.append("idMusico=").append(idMusico);
         sb.append(", nombre=").append(nombre);
         sb.append(", genero=").append(genero);
-        sb.append(", idInstrumento=").append(idInstrumento.getNombre());
-        sb.append(", biografia=").append(biografia.getLugarNacimiento());
+        try {
+            sb.append(", idInstrumento=").append(idInstrumento.getNombre());
+        } catch (NullPointerException e) {
+            sb.append(", idInstrumento=").append("No hay instrumento asociado");
+        }
+        try {
+            sb.append(", biografia=").append(biografia.getLugarNacimiento());
+        } catch (NullPointerException e) {
+            sb.append(", biografia=").append("No hay biografia asociada");
+        }
+
         sb.append('}');
         return sb.toString();
     }
 
-    
-    
 }

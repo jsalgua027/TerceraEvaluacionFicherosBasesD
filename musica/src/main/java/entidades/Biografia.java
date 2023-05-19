@@ -61,6 +61,15 @@ public class Biografia implements Serializable {
         this.idBiografia = idBiografia;
     }
 
+    public Biografia(String descripcion, Date fechaNacimiento, String lugarNacimiento, Musico idMusico) {
+        this.descripcion = descripcion;
+        this.fechaNacimiento = fechaNacimiento;
+        this.lugarNacimiento = lugarNacimiento;
+        this.idMusico = idMusico;
+    }
+ 
+    
+    
     public Integer getIdBiografia() {
         return idBiografia;
     }
@@ -144,7 +153,12 @@ public class Biografia implements Serializable {
         sb.append(", descripcion=").append(descripcion);
         sb.append(", fechaNacimiento=").append(getFechaNacimientoLocalDate());
         sb.append(", lugarNacimiento=").append(lugarNacimiento);
-        sb.append(", idMusico=").append(idMusico);
+        try {
+            sb.append(", idMusico=").append(idMusico);
+        } catch (NullPointerException e) {
+            sb.append(", idMusico=").append("No hay musico asociado");
+        }
+
         sb.append('}');
         return sb.toString();
     }

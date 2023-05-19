@@ -52,6 +52,15 @@ public class Instrumento implements Serializable {
         this.idInstrumento = idInstrumento;
     }
 
+    public Instrumento(String nombre, String tipo, List<Musico> musicoList, List<Grabacion> grabacionList) {
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.musicoList = musicoList;
+        this.grabacionList = grabacionList;
+    }
+    
+    
+
     public Integer getIdInstrumento() {
         return idInstrumento;
     }
@@ -119,10 +128,21 @@ public class Instrumento implements Serializable {
         sb.append("idInstrumento=").append(idInstrumento);
         sb.append(", nombre=").append(nombre);
         sb.append(", tipo=").append(tipo);
-        sb.append(", musicoList=");
-        sb.append(toStringInstrumentos());
-        sb.append(", grabacionList=");
-          sb.append(toStringGrabaciones());
+        try {
+            sb.append(", musicoList=");
+            sb.append(toStringInstrumentos());
+        } catch (NullPointerException e) {
+            sb.append("No hay lista de musicos asociadas");
+
+        }
+        try {
+            sb.append(", grabacionList=");
+            sb.append(toStringGrabaciones());
+        } catch (NullPointerException e) {
+            sb.append("No hay lista de grabaciones");
+
+        }
+
         sb.append('}');
         return sb.toString();
     }
@@ -136,7 +156,7 @@ public class Instrumento implements Serializable {
         return tmp.length() == 0 ? tmp.toString() : tmp.toString() + "\b\b";
     }
 
-     private String toStringGrabaciones() {
+    private String toStringGrabaciones() {
         StringBuilder tmp = new StringBuilder();
         for (Grabacion gra : grabacionList) {
             tmp.append(gra.getIdGrabacion()).append(", ");
@@ -144,7 +164,5 @@ public class Instrumento implements Serializable {
 
         return tmp.length() == 0 ? tmp.toString() : tmp.toString() + "\b\b";
     }
-    
-    
-  
+
 }

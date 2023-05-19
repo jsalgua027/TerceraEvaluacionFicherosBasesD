@@ -58,6 +58,12 @@ public class Grabacion implements Serializable {
         this.idGrabacion = idGrabacion;
     }
 
+    public Grabacion(String titulo, Date fecha, Instrumento idInstrumento) {
+        this.titulo = titulo;
+        this.fecha = fecha;
+        this.idInstrumento = idInstrumento;
+    }
+
     public Integer getIdGrabacion() {
         return idGrabacion;
     }
@@ -81,7 +87,8 @@ public class Grabacion implements Serializable {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-     // Método añadido , no generadi por el IDE al crear la entidad
+    // Método añadido , no generadi por el IDE al crear la entidad
+
     public LocalDate getFechaGrabacionLocalDate() {
 
         return new Date(this.fecha.getTime()).
@@ -92,9 +99,9 @@ public class Grabacion implements Serializable {
     // metodo setter añadido, no generado por el Ide al crear la entidad
     public void setFechaGrabacionLocalDate(LocalDate fecha) {
 
-     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    String formattedDate = fecha.format(formatter);
-    this.fecha = Date.from(LocalDate.parse(formattedDate, formatter).atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String formattedDate = fecha.format(formatter);
+        this.fecha = Date.from(LocalDate.parse(formattedDate, formatter).atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
 
     }
 
@@ -129,15 +136,19 @@ public class Grabacion implements Serializable {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         sb.append("Grabacion{");
         sb.append("idGrabacion=").append(idGrabacion);
         sb.append(", titulo=").append(titulo);
-        sb.append(", fecha=").append(getFechaGrabacionLocalDate());
-        sb.append(", idInstrumento=").append(idInstrumento);
+        sb.append(", fecha=").append(getFechaGrabacionLocalDate().format(formatter));
+        try {
+            sb.append(", idInstrumento=").append(idInstrumento);
+        } catch (NullPointerException e) {
+            sb.append(", No hay instrumentos asociados");
+        }
+
         sb.append('}');
         return sb.toString();
     }
 
-   
-    
 }
