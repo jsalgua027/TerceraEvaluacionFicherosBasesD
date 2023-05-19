@@ -52,11 +52,10 @@ public class Instrumento implements Serializable {
         this.idInstrumento = idInstrumento;
     }
 
-    public Instrumento(String nombre, String tipo, List<Musico> musicoList, List<Grabacion> grabacionList) {
+    public Instrumento(String nombre, String tipo) {
         this.nombre = nombre;
         this.tipo = tipo;
-        this.musicoList = musicoList;
-        this.grabacionList = grabacionList;
+      
     }
     
     

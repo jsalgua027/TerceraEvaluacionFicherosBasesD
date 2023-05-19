@@ -7,6 +7,7 @@ package entidades;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -148,10 +149,11 @@ public class Biografia implements Serializable {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         sb.append("Biografia{");
         sb.append("idBiografia=").append(idBiografia);
         sb.append(", descripcion=").append(descripcion);
-        sb.append(", fechaNacimiento=").append(getFechaNacimientoLocalDate());
+        sb.append(", fechaNacimiento=").append(getFechaNacimientoLocalDate().format(formatter));
         sb.append(", lugarNacimiento=").append(lugarNacimiento);
         try {
             sb.append(", idMusico=").append(idMusico);
