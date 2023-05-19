@@ -5,6 +5,8 @@
 package entidades;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -87,6 +89,21 @@ public class Biografia implements Serializable {
         return lugarNacimiento;
     }
 
+    // Método añadido , no generadi por el IDE al crear la entidad
+    public LocalDate getFechaNacimientoLocalDate() {
+
+        return new Date(this.fechaNacimiento.getTime()).
+                toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+    }
+
+    // metodo setter añadido, no generado por el Ide al crear la entidad
+    public void setFechaNacimientoLocalDate(LocalDate fecha) {
+
+        this.fechaNacimiento = Date.from(fecha.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+
+    }
+
     public void setLugarNacimiento(String lugarNacimiento) {
         this.lugarNacimiento = lugarNacimiento;
     }
@@ -125,13 +142,11 @@ public class Biografia implements Serializable {
         sb.append("Biografia{");
         sb.append("idBiografia=").append(idBiografia);
         sb.append(", descripcion=").append(descripcion);
-        sb.append(", fechaNacimiento=").append(fechaNacimiento);
+        sb.append(", fechaNacimiento=").append(getFechaNacimientoLocalDate());
         sb.append(", lugarNacimiento=").append(lugarNacimiento);
         sb.append(", idMusico=").append(idMusico);
         sb.append('}');
         return sb.toString();
     }
 
-    
-    
 }

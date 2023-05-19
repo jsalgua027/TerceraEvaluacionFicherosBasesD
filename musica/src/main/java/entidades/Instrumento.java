@@ -146,41 +146,5 @@ public class Instrumento implements Serializable {
     }
     
     
-    /*
-      @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("Vehiculo [id=");
-        builder.append(id);
-        builder.append(", bastidor=");
-        builder.append(bastidor);
-        builder.append(", disponible=");
-        builder.append(disponible);
-        builder.append(", marca=");
-        builder.append(marca);
-        builder.append(", matricula=");
-        builder.append(matricula);
-        builder.append(", modelo=");
-        builder.append(modelo);
-        builder.append(", precio=");
-        builder.append(precio);
-        builder.append(", alquileresVehiculo=");
-        builder.append(toStringAlquileres());
-        builder.append("]");
-        return builder.toString();
-    }
-
-    private String toStringAlquileres() {
-        StringBuilder tmp = new StringBuilder();
-        for (Alquiler alquiler : alquilerList) {
-            tmp.append(alquiler.getId()).append(", ");
-        }
- 
-        return tmp.length()==0?tmp.toString():tmp.toString()+"\b\b";
-    }
-
-}
-    
-    
-     */
+  
 }
