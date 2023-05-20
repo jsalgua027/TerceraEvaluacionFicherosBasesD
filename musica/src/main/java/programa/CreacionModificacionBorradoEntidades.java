@@ -15,6 +15,8 @@ import entidades.Grabacion;
 import entidades.Instrumento;
 import entidades.Musico;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
@@ -23,16 +25,33 @@ import javax.persistence.Persistence;
  * @author nacho
  */
 public class CreacionModificacionBorradoEntidades {
-    
+
     public static void asignarMusicoABiografia(Biografia auxB, Musico auxA) {
-        
+
         auxB.setIdMusico(auxA);
-        
+
     }
-    
-    public static void asignarInstrumentoAMusica(Musico auxM, Instrumento auxI) {
+
+    public static void asignarInstrumentoAMusico(Musico auxM, Instrumento auxI) {
         auxM.setIdInstrumento(auxI);
-        
+
+    }
+
+    public static void realizarGrabacion( Grabacion aux ,Instrumento insAux) {
+        boolean repetir = false;
+//       List<Instrumento> listaIntrumentos = new ArrayList<>();
+//        do {
+//            if (insAux.getMusicoList()==null) {
+//                System.out.println("El instrumento no tiene musico asignado");
+//                repetir=false;
+//            } else {
+//                repetir = true;
+//             
+                aux.setIdInstrumento(insAux);
+//            }
+//
+//        } while (true);
+
     }
 
     /**
@@ -43,10 +62,10 @@ public class CreacionModificacionBorradoEntidades {
     private static final InstrumentoJpaController ic = new InstrumentoJpaController(emf);
     private static final GrabacionJpaController gc = new GrabacionJpaController(emf);
     private static final BiografiaJpaController bc = new BiografiaJpaController(emf);
-    
+
     public static void main(String[] args) throws IllegalOrphanException, NonexistentEntityException {
         Biografia bioPrueba = new Biografia("hhhhhhhh", Utilidades.Utilidades.LocalADate(LocalDate.of(2000, 3, 4)), "Madrid", null);
-        
+
         Biografia bio1 = new Biografia("Biografía 1", Utilidades.Utilidades.LocalADate(LocalDate.of(1990, 5, 10)), "Ciudad 1", null);
         Biografia bio2 = new Biografia("Biografía 2", Utilidades.Utilidades.LocalADate(LocalDate.of(1985, 8, 20)), "Ciudad 2", null);
         Biografia bio3 = new Biografia("Biografía 3", Utilidades.Utilidades.LocalADate(LocalDate.of(1978, 2, 15)), "Ciudad 3", null);
@@ -70,7 +89,7 @@ public class CreacionModificacionBorradoEntidades {
 //          bc.create(bio9);
 //          bc.create(bio10);
         Musico musicoPrueba = new Musico("Paco", "Rap", null, bioPrueba);
-        
+
         Musico musico1 = new Musico("Paco", "Rap", null, bio1);
         Musico musico2 = new Musico("Juan", "Rock", null, bio2);
         Musico musico3 = new Musico("Luisa", "Pop", null, bio3);
@@ -100,7 +119,7 @@ public class CreacionModificacionBorradoEntidades {
         //  mc.destroy(musicoPrueba.getIdMusico());
 
         Instrumento instruPrueba = new Instrumento("Piano", "Prueba");
-        
+
         Instrumento instrumento1 = new Instrumento("Guitarra", "Cuerda");
         Instrumento instrumento2 = new Instrumento("Batería", "Percusión");
         Instrumento instrumento3 = new Instrumento("Violín", "Cuerda");
@@ -125,9 +144,16 @@ public class CreacionModificacionBorradoEntidades {
 //         ic.create(instrumento10);
         // ic.destroy(2);
         Consultas.mostrarInstrumentos();
-        
+
         Grabacion grabaciPrue = new Grabacion("Primera Grabacion", Utilidades.Utilidades.LocalADate(LocalDate.now()), instruPrueba);
         Consultas.mostrarGrabaciones();
+        //asignarInstrumentoAMusico(musico1, instrumento1);
+      //  realizarGrabacion(grabaciPrue,instrumento9);
+        gc.create(grabaciPrue);
+        
+      // Consultas.mostarMusicos();
+         Consultas.mostrarGrabaciones();
+       
     }
-    
+
 }
