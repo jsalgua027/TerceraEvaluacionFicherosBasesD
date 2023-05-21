@@ -145,12 +145,26 @@ public class CreacionModificacionBorradoEntidades {
         // ic.destroy(2);
         Consultas.mostrarInstrumentos();
 
-        Grabacion grabaciPrue = new Grabacion("Primera Grabacion", Utilidades.Utilidades.LocalADate(LocalDate.now()), instruPrueba);
-        Consultas.mostrarGrabaciones();
+        /*
+            Biografia bio1 = new Biografia("Biografía 1", Utilidades.Utilidades.LocalADate(LocalDate.of(1990, 5, 10)), "Ciudad 1", null);
+            Musico musico1 = new Musico("Paco", "Rap", null, bio1);
+           Instrumento instrumento1 = new Instrumento("Guitarra", "Cuerda");
+        
+         voy a coneectar  todas las entidades para que no tengan un campo a null
+        */
+        musico1.setIdInstrumento(instrumento1);
+        bio1.setIdMusico(musico1);
+       
+        
+        Grabacion grabaciPrue = new Grabacion("Primera Grabacion", Utilidades.Utilidades.LocalADate(LocalDate.now()), instrumento1);
+     //   Consultas.mostrarGrabaciones();
         //asignarInstrumentoAMusico(musico1, instrumento1);
       //  realizarGrabacion(grabaciPrue,instrumento9);
-        gc.create(grabaciPrue);
-        
+      //  gc.create(grabaciPrue);
+        System.out.println("-----------------------------------Realizado la union de claves --------------------");
+      Consultas.mostrarBiografia();
+      Consultas.mostrarInstrumentos();
+           Consultas.mostarMusicos();
       // Consultas.mostarMusicos();
          Consultas.mostrarGrabaciones();
        
