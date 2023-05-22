@@ -38,9 +38,10 @@ public class CreacionModificacionBorradoEntidades {
     }
 
     public static void realizarGrabacion(Grabacion aux, Instrumento insAux) throws Exception {
-
-        aux.setIdInstrumento(insAux);
-        gc.edit(aux);
+        Instrumento i = ic.findInstrumento(insAux.getIdInstrumento());
+        Grabacion g = gc.findGrabacion(aux.getIdGrabacion());
+        g.setIdInstrumento(i);
+        gc.edit(g);
 
     }
 
@@ -133,24 +134,26 @@ public class CreacionModificacionBorradoEntidades {
         // ic.destroy(2);
         Consultas.mostrarInstrumentos();
 
-        /*
-            Biografia bio1 = new Biografia("Biografía 1", Utilidades.Utilidades.LocalADate(LocalDate.of(1990, 5, 10)), "Ciudad 1", null);
-            Musico musico1 = new Musico("Paco", "Rap", null, bio1);
-           Instrumento instrumento1 = new Instrumento("Guitarra", "Cuerda");
         
-         voy a coneectar  todas las entidades para que no tengan un campo a null
-         */
         musico1.setIdInstrumento(instrumento1);
         bio1.setIdMusico(musico1);
         Consultas.mostrarInstrumentos();
-        Grabacion grabaciPrue2 = new Grabacion("Segunda Grabacion", Utilidades.Utilidades.LocalADate(LocalDate.now()), null);
+       // Grabacion grabaciPrue2 = new Grabacion("Segunda Grabacion", Utilidades.Utilidades.LocalADate(LocalDate.now()), null);
+        Grabacion grabaciPrue3 = new Grabacion("Tercera Grabacion", Utilidades.Utilidades.LocalADate(LocalDate.now()), null);
+        Grabacion grabaciPrue4 = new Grabacion("Cuarta  Grabacion", Utilidades.Utilidades.LocalADate(LocalDate.now()), null);
 
-        gc.create(grabaciPrue2);
+       gc.create(grabaciPrue4);
         Consultas.mostrarGrabaciones();
         
         //instrumento1= ic.findInstrumento(instrumento1.getIdInstrumento());
-        instrumento1 = ic.findInstrumento(1);
-        realizarGrabacion(grabaciPrue2, instrumento1);
+      //  instrumento1 = ic.findInstrumento(1);
+       // realizarGrabacion(grabaciPrue3, instrumento2);
+//       instrumento2=ic.findInstrumento(2);
+//        grabaciPrue3= gc.findGrabacion(8);
+//       grabaciPrue3.setIdInstrumento(instrumento2);
+//       gc.edit(grabaciPrue3);
+       
+        realizarGrabacion(grabaciPrue4, instrumento4);
         Consultas.mostrarGrabaciones();
 
     }
