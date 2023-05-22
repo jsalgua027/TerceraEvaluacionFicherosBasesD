@@ -12,6 +12,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import entidades.Musico;
+import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -26,10 +27,11 @@ public class BiografiaJpaController implements Serializable {
     public BiografiaJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
-    public BiografiaJpaController(){
-      
-      emf= Persistence.createEntityManagerFactory("com.mycompany_musica_jar_1.0-SNAPSHOTPU");
-      }
+
+    public BiografiaJpaController() {
+
+        emf = Persistence.createEntityManagerFactory("com.mycompany_musica_jar_1.0-SNAPSHOTPU");
+    }
     private EntityManagerFactory emf = null;
 
     public EntityManager getEntityManager() {
@@ -177,6 +179,27 @@ public class BiografiaJpaController implements Serializable {
         } finally {
             em.close();
         }
+    }
+
+    // busqueda usando name query para la biografia----buscamos por lugar de nacimiento
+    public Biografia encontraBiografia(String lugarNacimiento) {
+        EntityManager em = getEntityManager();
+        Query q = em.createNamedQuery("Biografia.findByLugarNacimiento");
+        q.setParameter("lugarNacimiento", lugarNacimiento);
+        return (Biografia) q.getSingleResult();
+
+    }
+    
+    
+    // busqueda por fecha de nacimiento
+    
+    
+    public Biografia encotrarPorFechaNacimiento(LocalDate fechaNacimiento){
+      EntityManager em = getEntityManager();
+        Query q = em.createNamedQuery("Biografia.findByFechaNacimiento");
+         q.setParameter("fechaNacimiento", Utilidades.Utilidades.LocalADate(fechaNacimiento));
+        return (Biografia) q.getSingleResult();
+    
     }
     
 }

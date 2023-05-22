@@ -12,6 +12,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import entidades.Instrumento;
+import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -22,20 +23,21 @@ import javax.persistence.Persistence;
  * @author nacho
  */
 public class GrabacionJpaController implements Serializable {
-
+    
     public GrabacionJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
-    public GrabacionJpaController(){
-      
-      emf= Persistence.createEntityManagerFactory("com.mycompany_musica_jar_1.0-SNAPSHOTPU");
-      }
-    private EntityManagerFactory emf = null;
 
+    public GrabacionJpaController() {
+        
+        emf = Persistence.createEntityManagerFactory("com.mycompany_musica_jar_1.0-SNAPSHOTPU");
+    }
+    private EntityManagerFactory emf = null;
+    
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
-
+    
     public void create(Grabacion grabacion) {
         EntityManager em = null;
         try {
@@ -58,7 +60,7 @@ public class GrabacionJpaController implements Serializable {
             }
         }
     }
-
+    
     public void edit(Grabacion grabacion) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
@@ -96,7 +98,7 @@ public class GrabacionJpaController implements Serializable {
             }
         }
     }
-
+    
     public void destroy(Integer id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
@@ -122,15 +124,15 @@ public class GrabacionJpaController implements Serializable {
             }
         }
     }
-
+    
     public List<Grabacion> findGrabacionEntities() {
         return findGrabacionEntities(true, -1, -1);
     }
-
+    
     public List<Grabacion> findGrabacionEntities(int maxResults, int firstResult) {
         return findGrabacionEntities(false, maxResults, firstResult);
     }
-
+    
     private List<Grabacion> findGrabacionEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
@@ -146,7 +148,7 @@ public class GrabacionJpaController implements Serializable {
             em.close();
         }
     }
-
+    
     public Grabacion findGrabacion(Integer id) {
         EntityManager em = getEntityManager();
         try {
@@ -155,7 +157,7 @@ public class GrabacionJpaController implements Serializable {
             em.close();
         }
     }
-
+    
     public int getGrabacionCount() {
         EntityManager em = getEntityManager();
         try {
@@ -168,5 +170,23 @@ public class GrabacionJpaController implements Serializable {
             em.close();
         }
     }
+
+    // busqueda usando name query para los musicos----buscamos por nombre
+    public Grabacion encontraGrabaciTitulo(String titulo) {
+        EntityManager em = getEntityManager();
+        Query q = em.createNamedQuery("Grabacion.findByTitulo");
+        q.setParameter("titulo", titulo);
+        return (Grabacion) q.getSingleResult();
+        
+    }
+
+    // busqueda por fecha
     
+    public Grabacion encontraGrabaciFecha(LocalDate fecha) {
+        EntityManager em = getEntityManager();
+        Query q = em.createNamedQuery("Grabacion.findByFecha");
+        q.setParameter("fecha", Utilidades.Utilidades.LocalADate(fecha));
+        return (Grabacion) q.getSingleResult();
+        
+    }
 }

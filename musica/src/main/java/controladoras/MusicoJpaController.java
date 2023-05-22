@@ -208,5 +208,25 @@ public class MusicoJpaController implements Serializable {
             em.close();
         }
     }
+    
+    // busqueda usando name query para los musicos----buscamos por nombre
+
+    public Musico encontraMusicoNombre(String nombre) {
+        EntityManager em = getEntityManager();
+        Query q = em.createNamedQuery("Musico.findByNombre");
+        q.setParameter("nombre", nombre);
+        return (Musico) q.getSingleResult();
+
+    }
+    
+    // busqueda usando name query para los musicos----buscamos por genero
+
+    public Musico encontraMusicoGenero(String genero) {
+        EntityManager em = getEntityManager();
+        Query q = em.createNamedQuery("Musico.findByGenero");
+        q.setParameter("genero", genero);
+        return (Musico) q.getSingleResult();
+
+    }
 
 }
