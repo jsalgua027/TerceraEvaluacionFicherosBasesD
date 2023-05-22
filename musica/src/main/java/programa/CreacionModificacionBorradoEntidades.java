@@ -37,20 +37,10 @@ public class CreacionModificacionBorradoEntidades {
 
     }
 
-    public static void realizarGrabacion( Grabacion aux ,Instrumento insAux) {
-        boolean repetir = false;
-//       List<Instrumento> listaIntrumentos = new ArrayList<>();
-//        do {
-//            if (insAux.getMusicoList()==null) {
-//                System.out.println("El instrumento no tiene musico asignado");
-//                repetir=false;
-//            } else {
-//                repetir = true;
-//             
-                aux.setIdInstrumento(insAux);
-//            }
-//
-//        } while (true);
+    public static void realizarGrabacion(Grabacion aux, Instrumento insAux) throws Exception {
+
+        aux.setIdInstrumento(insAux);
+        gc.edit(aux);
 
     }
 
@@ -63,7 +53,7 @@ public class CreacionModificacionBorradoEntidades {
     private static final GrabacionJpaController gc = new GrabacionJpaController(emf);
     private static final BiografiaJpaController bc = new BiografiaJpaController(emf);
 
-    public static void main(String[] args) throws IllegalOrphanException, NonexistentEntityException {
+    public static void main(String[] args) throws IllegalOrphanException, NonexistentEntityException, Exception {
         Biografia bioPrueba = new Biografia("hhhhhhhh", Utilidades.Utilidades.LocalADate(LocalDate.of(2000, 3, 4)), "Madrid", null);
 
         Biografia bio1 = new Biografia("Biografía 1", Utilidades.Utilidades.LocalADate(LocalDate.of(1990, 5, 10)), "Ciudad 1", null);
@@ -112,12 +102,10 @@ public class CreacionModificacionBorradoEntidades {
 //         mc.create(musico8);
 //         mc.create(musico9);
 //         mc.create(musico10);
-//         
-        Consultas.mostrarBiografia();
-        Consultas.mostarMusicos();
+        // Consultas.mostrarBiografia();
+        // Consultas.mostarMusicos();
         //  bc.destroy(bioPrueba.getIdBiografia());
         //  mc.destroy(musicoPrueba.getIdMusico());
-
         Instrumento instruPrueba = new Instrumento("Piano", "Prueba");
 
         Instrumento instrumento1 = new Instrumento("Guitarra", "Cuerda");
@@ -151,23 +139,20 @@ public class CreacionModificacionBorradoEntidades {
            Instrumento instrumento1 = new Instrumento("Guitarra", "Cuerda");
         
          voy a coneectar  todas las entidades para que no tengan un campo a null
-        */
+         */
         musico1.setIdInstrumento(instrumento1);
         bio1.setIdMusico(musico1);
-       
+        Consultas.mostrarInstrumentos();
+        Grabacion grabaciPrue2 = new Grabacion("Segunda Grabacion", Utilidades.Utilidades.LocalADate(LocalDate.now()), null);
+
+        gc.create(grabaciPrue2);
+        Consultas.mostrarGrabaciones();
         
-        Grabacion grabaciPrue = new Grabacion("Primera Grabacion", Utilidades.Utilidades.LocalADate(LocalDate.now()), instrumento1);
-     //   Consultas.mostrarGrabaciones();
-        //asignarInstrumentoAMusico(musico1, instrumento1);
-      //  realizarGrabacion(grabaciPrue,instrumento9);
-      //  gc.create(grabaciPrue);
-        System.out.println("-----------------------------------Realizado la union de claves --------------------");
-      Consultas.mostrarBiografia();
-      Consultas.mostrarInstrumentos();
-           Consultas.mostarMusicos();
-      // Consultas.mostarMusicos();
-         Consultas.mostrarGrabaciones();
-       
+        //instrumento1= ic.findInstrumento(instrumento1.getIdInstrumento());
+        instrumento1 = ic.findInstrumento(1);
+        realizarGrabacion(grabaciPrue2, instrumento1);
+        Consultas.mostrarGrabaciones();
+
     }
 
 }

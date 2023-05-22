@@ -28,10 +28,11 @@ public class InstrumentoJpaController implements Serializable {
     public InstrumentoJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
-    public InstrumentoJpaController(){
-      
-      emf= Persistence.createEntityManagerFactory("com.mycompany_musica_jar_1.0-SNAPSHOTPU");
-      }
+
+    public InstrumentoJpaController() {
+
+        emf = Persistence.createEntityManagerFactory("com.mycompany_musica_jar_1.0-SNAPSHOTPU");
+    }
     private EntityManagerFactory emf = null;
 
     public EntityManager getEntityManager() {
@@ -240,5 +241,23 @@ public class InstrumentoJpaController implements Serializable {
             em.close();
         }
     }
-    
+    // busqueda usando name query para los instrumentos----buscamos por nombre
+
+    public Instrumento encontraInstrumentoNombre(String nombre) {
+        EntityManager em = getEntityManager();
+        Query q = em.createNamedQuery("Instrumento.findByNombre");
+        q.setParameter("nombre", nombre);
+        return (Instrumento) q.getSingleResult();
+
+    }
+    // busqueda usando name query para los instrumentos----buscamos por tipo
+
+    public Instrumento encontraInstrumentoTipo(String tipo) {
+        EntityManager em = getEntityManager();
+        Query q = em.createNamedQuery("Instrumento.findByTipo");
+        q.setParameter("tipo", tipo);
+        return (Instrumento) q.getSingleResult();
+
+    }
+
 }
