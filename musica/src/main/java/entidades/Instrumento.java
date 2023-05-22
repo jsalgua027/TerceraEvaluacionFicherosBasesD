@@ -6,6 +6,7 @@ package entidades;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -108,17 +109,29 @@ public class Instrumento implements Serializable {
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Instrumento)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Instrumento other = (Instrumento) object;
-        if ((this.idInstrumento == null && other.idInstrumento != null) || (this.idInstrumento != null && !this.idInstrumento.equals(other.idInstrumento))) {
+        if (getClass() != obj.getClass()) {
             return false;
         }
-        return true;
+        final Instrumento other = (Instrumento) obj;
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        if (!Objects.equals(this.tipo, other.tipo)) {
+            return false;
+        }
+        return Objects.equals(this.idInstrumento, other.idInstrumento);
     }
+
+ 
+
+   
 
     @Override
     public String toString() {

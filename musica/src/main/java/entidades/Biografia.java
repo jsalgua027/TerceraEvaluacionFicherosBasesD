@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -134,17 +135,27 @@ public class Biografia implements Serializable {
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Biografia)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Biografia other = (Biografia) object;
-        if ((this.idBiografia == null && other.idBiografia != null) || (this.idBiografia != null && !this.idBiografia.equals(other.idBiografia))) {
+        if (getClass() != obj.getClass()) {
             return false;
         }
-        return true;
+        final Biografia other = (Biografia) obj;
+        if (!Objects.equals(this.descripcion, other.descripcion)) {
+            return false;
+        }
+        if (!Objects.equals(this.lugarNacimiento, other.lugarNacimiento)) {
+            return false;
+        }
+        return Objects.equals(this.fechaNacimiento, other.fechaNacimiento);
     }
+
+    
 
     @Override
     public String toString() {

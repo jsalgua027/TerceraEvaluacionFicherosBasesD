@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -121,18 +122,24 @@ public class Grabacion implements Serializable {
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Grabacion)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Grabacion other = (Grabacion) object;
-        if ((this.idGrabacion == null && other.idGrabacion != null) || (this.idGrabacion != null && !this.idGrabacion.equals(other.idGrabacion))) {
+        if (getClass() != obj.getClass()) {
             return false;
         }
-        return true;
+        final Grabacion other = (Grabacion) obj;
+        if (!Objects.equals(this.titulo, other.titulo)) {
+            return false;
+        }
+        return Objects.equals(this.fecha, other.fecha);
     }
 
+  
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
