@@ -4,6 +4,7 @@
  */
 package programa;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 /**
@@ -111,6 +112,12 @@ public class Main {
                         gestionMenu = entrada.nextLine();
                         switch (gestionMenu) {
                             case "1":
+                                  String bioAux;
+                                  LocalDate fechaNaciAux;
+                                  String lugarNacimientoAux;
+                                  
+                                    System.out.println("Gestion de Altas");
+                                    System.out.println("Indique la descripcion de la Biografia");
 
                                 break;
 
