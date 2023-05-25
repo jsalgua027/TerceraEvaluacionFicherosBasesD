@@ -142,8 +142,8 @@ public class CreacionModificacionBorradoEntidades {
         Grabacion grabaciPrue3 = new Grabacion("Tercera Grabacion", Utilidades.Utilidades.LocalADate(LocalDate.now()), null);
         Grabacion grabaciPrue4 = new Grabacion("Cuarta  Grabacion", Utilidades.Utilidades.LocalADate(LocalDate.now()), null);
 
-       gc.create(grabaciPrue4);
-        Consultas.mostrarGrabaciones();
+    //   gc.create(grabaciPrue4);
+       // Consultas.mostrarGrabaciones();
         
         //instrumento1= ic.findInstrumento(instrumento1.getIdInstrumento());
       //  instrumento1 = ic.findInstrumento(1);
