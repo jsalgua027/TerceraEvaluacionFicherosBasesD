@@ -30,36 +30,6 @@ public class Main {
     private static final GrabacionJpaController gc = new GrabacionJpaController(emf);
     private static final BiografiaJpaController bc = new BiografiaJpaController(emf);
 
-    public static void mostarMusicos() {
-        System.out.println("-------Listado de Músicos------");
-        mc.findMusicoEntities().forEach(System.out::println);
-        System.out.println("---------------------------------------");
-
-    }
-
-    public static void mostrarInstrumentos() {
-        System.out.println("-------Listado de Instrumentos------");
-        ic.findInstrumentoEntities().forEach(System.out::println);
-        System.out.println("---------------------------------------");
-
-    }
-
-    public static void mostrarGrabaciones() {
-
-        System.out.println("-------Listado de Grabaciones------");
-        gc.findGrabacionEntities().forEach(System.out::println);
-
-        System.out.println("-----------------------------------");
-    }
-
-    public static void mostrarBiografia() {
-
-        System.out.println("-------Listado de biografias------");
-        bc.findBiografiaEntities().forEach(System.out::println);
-
-        System.out.println("-----------------------------------");
-    }
-
     public static void main(String[] args) throws NonexistentEntityException {
 
         String menuPrincipal = """
@@ -163,9 +133,9 @@ public class Main {
                                 Biografia altaBio = new Biografia();
                                 String descriAux;
                                 LocalDate fechaNaciAux;
-                                String dia;
-                                String mes;
-                                String anio;
+                                int dia = 0;
+                                int mes = 0;
+                                int anio = 0;
 
                                 String lugarNacimientoAux;
 
@@ -174,20 +144,25 @@ public class Main {
                                 descriAux = entrada.nextLine();
                                 System.out.println("Indique la Fecha de Nacimiento");
                                 System.out.println("Que año");
-                                anio = entrada.nextLine();
-                                System.out.println("Que Mes");
-                                mes = entrada.nextLine();
-                                System.out.println("Que dia");
-                                dia = entrada.nextLine();
+                                anio = Utilidades.Utilidades.leerEnteroSinErroresScanner();
+                                do {
+                                    System.out.println("Que Mes");
+                                    mes = Utilidades.Utilidades.leerEnteroSinErroresScanner();
+                                } while (mes < 1 || mes > 12);
+                                do {
+                                    System.out.println("Que dia");
+                                    dia = Utilidades.Utilidades.leerEnteroSinErroresScanner();
+                                } while (dia < 1 || dia > 31);
+
                                 System.out.println("Indique lugar de Nacimiento");
                                 lugarNacimientoAux = entrada.nextLine();
 
-                                fechaNaciAux = LocalDate.of(Integer.parseInt(anio), Integer.parseInt(mes), Integer.parseInt(dia));
+                                fechaNaciAux = LocalDate.of(anio, mes, dia);
                                 altaBio.setDescripcion(descriAux);
                                 altaBio.setFechaNacimiento(Utilidades.Utilidades.LocalADate(fechaNaciAux));
                                 altaBio.setLugarNacimiento(lugarNacimientoAux);
                                 bc.create(altaBio);
-                                mostrarBiografia();
+                                Utilidades.Utilidades.mostrarBiografia();
 
                                 break;
 
@@ -200,13 +175,12 @@ public class Main {
                             case "4":
                                 String codigoBorradoBio;
                                 System.out.println("BORRADO DE BIOGRAFIAS");
-                                mostrarBiografia();
+                                Utilidades.Utilidades.mostrarBiografia();
                                 System.out.println("Indique el código de biografia que quiere borrar");
-                                codigoBorradoBio=entrada.nextLine();
+                                codigoBorradoBio = entrada.nextLine();
                                 bc.findBiografia(Integer.parseInt(codigoBorradoBio));
                                 bc.destroy(Integer.parseInt(codigoBorradoBio));
-                                mostrarBiografia();
-                                        
+                                Utilidades.Utilidades.mostrarBiografia();
 
                                 break;
 
