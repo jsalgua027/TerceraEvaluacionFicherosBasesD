@@ -216,7 +216,8 @@ public class Main {
                                     Utilidades.Utilidades.borrarBiografia(Integer.valueOf(codigoBorradoBio));
                                     Utilidades.Utilidades.mostrarBiografia();
                                 } catch (NonexistentEntityException e) {
-                                    System.out.println("Esa Biografía  no se encuenta en la Base de datos");
+                                    System.out.println("Esa Biografía 1"
+                                            + " no se encuenta en la Base de datos");
                                 }
 
                                 break;
