@@ -169,7 +169,6 @@ public class Main {
                                             System.out.println("Indique el codigo de biografia que quiere modificar");
                                             int idModificar = Utilidades.Utilidades.leerEnteroSinErroresScanner();
                                             Utilidades.Utilidades.modificarBiografia(idModificar);
-
                                             Utilidades.Utilidades.mostrarBiografia();
 
                                             break;
@@ -193,8 +192,8 @@ public class Main {
                                 Utilidades.Utilidades.mostrarBiografia();
                                 System.out.println("Indique el código de biografia que quiere borrar");
                                 codigoBorradoBio = entrada.nextLine();
-                                bc.findBiografia(Integer.parseInt(codigoBorradoBio));
-                                bc.destroy(Integer.parseInt(codigoBorradoBio));
+                                bc.findBiografia(Integer.valueOf(codigoBorradoBio));
+                                bc.destroy(Integer.valueOf(codigoBorradoBio));
                                 Utilidades.Utilidades.mostrarBiografia();
 
                                 break;
@@ -211,7 +210,9 @@ public class Main {
                         gestionMenu = entrada.nextLine();
                         switch (gestionMenu) {
                             case "1":
-
+                              
+                                Utilidades.Utilidades.altaMusico();
+                                Utilidades.Utilidades.mostraMusicos();
                                 break;
 
                             case "2":
