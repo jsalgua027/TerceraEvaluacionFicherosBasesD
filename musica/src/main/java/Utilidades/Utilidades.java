@@ -8,6 +8,7 @@ import controladoras.BiografiaJpaController;
 import controladoras.GrabacionJpaController;
 import controladoras.InstrumentoJpaController;
 import controladoras.MusicoJpaController;
+import entidades.Biografia;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import static java.time.temporal.TemporalQueries.localDate;
@@ -21,27 +22,25 @@ import javax.persistence.Persistence;
  *
  * @author Windows10
  */
-
 public class Utilidades {
-    
-     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_musica_jar_1.0-SNAPSHOTPU");
+
+    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_musica_jar_1.0-SNAPSHOTPU");
     private static final MusicoJpaController mc = new MusicoJpaController(emf);
     private static final InstrumentoJpaController ic = new InstrumentoJpaController(emf);
     private static final GrabacionJpaController gc = new GrabacionJpaController(emf);
     private static final BiografiaJpaController bc = new BiografiaJpaController(emf);
-    
-  private static Scanner teclado = new Scanner(System.in);
-  
-  // metodo para gestionar los LocalDate a Date
+
+    private static Scanner teclado = new Scanner(System.in);
+
+    // metodo para gestionar los LocalDate a Date
     public static Date LocalADate(LocalDate fecha) {
 
         return Date.from(fecha.atStartOfDay(ZoneId.systemDefault()).toInstant());
 
     }
 
-    
     // metodos para mostrar los datos de las entidades
-      public static void mostarMusicos() {
+    public static void mostraMusicos() {
         System.out.println("-------Listado de Músicos------");
         mc.findMusicoEntities().forEach(System.out::println);
         System.out.println("---------------------------------------");
@@ -70,15 +69,14 @@ public class Utilidades {
 
         System.out.println("-----------------------------------");
     }
-    
-    
-       // leer enteros y decimales  sin errores  SCANNER (INPUTMISMATCHEXCEPTION)
+
+    // leer enteros y decimales  sin errores  SCANNER (INPUTMISMATCHEXCEPTION)
     public static int leerEnteroSinErroresScanner() {
         int num = 0;
         boolean repetir = true;
 
         do {
-          //  System.out.println("Introduce el numero entero");
+            //  System.out.println("Introduce el numero entero");
             try {
 
                 num = teclado.nextInt();
@@ -94,5 +92,48 @@ public class Utilidades {
 
         return num;
     }
-    
+
+    // ALTAS
+    public static void altaBiografia() {
+        Biografia altaBio = new Biografia();
+        String descriAux;
+        LocalDate fechaNaciAux;
+        int dia = 0;
+        int mes = 0;
+        int anio = 0;
+
+        String lugarNacimientoAux;
+
+        System.out.println("Gestion de Altas");
+        System.out.println("Indique la descripcion de la Biografia");
+        descriAux = teclado.nextLine();
+        System.out.println("Indique la Fecha de Nacimiento");
+        System.out.println("Que año");
+        anio = Utilidades.leerEnteroSinErroresScanner();
+        do {
+            System.out.println("Que Mes");
+            mes = Utilidades.leerEnteroSinErroresScanner();
+        } while (mes < 1 || mes > 12);
+        do {
+            System.out.println("Que dia");
+            dia = Utilidades.leerEnteroSinErroresScanner();
+        } while (dia < 1 || dia > 31);
+
+        System.out.println("Indique lugar de Nacimiento");
+        lugarNacimientoAux = teclado.nextLine();
+
+        fechaNaciAux = LocalDate.of(anio, mes, dia);
+        altaBio.setDescripcion(descriAux);
+        altaBio.setFechaNacimiento(Utilidades.LocalADate(fechaNaciAux));
+        altaBio.setLugarNacimiento(lugarNacimientoAux);
+        bc.create(altaBio);
+
+    }
+
+    //MODIFICADORES
+    public static void modificarBiografia(int id) {
+        bc.findBiografia(id);
+
+    }
+
 }

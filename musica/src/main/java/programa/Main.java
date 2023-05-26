@@ -127,7 +127,7 @@ public class Main {
         
         String modMusi
                 = """
-                                  MODIFICACION MUSICOs
+                                  MODIFICACION MUSICOS
                                  
                                  1.Para modificar Datos
                                  2.Para Añadir Biografia
@@ -152,38 +152,39 @@ public class Main {
                         gestionMenu = entrada.nextLine();
                         switch (gestionMenu) {
                             case "1":
-                                Biografia altaBio = new Biografia();
-                                String descriAux;
-                                LocalDate fechaNaciAux;
-                                int dia = 0;
-                                int mes = 0;
-                                int anio = 0;
-                                
-                                String lugarNacimientoAux;
-                                
-                                System.out.println("Gestion de Altas");
-                                System.out.println("Indique la descripcion de la Biografia");
-                                descriAux = entrada.nextLine();
-                                System.out.println("Indique la Fecha de Nacimiento");
-                                System.out.println("Que año");
-                                anio = Utilidades.Utilidades.leerEnteroSinErroresScanner();
-                                do {
-                                    System.out.println("Que Mes");
-                                    mes = Utilidades.Utilidades.leerEnteroSinErroresScanner();
-                                } while (mes < 1 || mes > 12);
-                                do {
-                                    System.out.println("Que dia");
-                                    dia = Utilidades.Utilidades.leerEnteroSinErroresScanner();
-                                } while (dia < 1 || dia > 31);
-                                
-                                System.out.println("Indique lugar de Nacimiento");
-                                lugarNacimientoAux = entrada.nextLine();
-                                
-                                fechaNaciAux = LocalDate.of(anio, mes, dia);
-                                altaBio.setDescripcion(descriAux);
-                                altaBio.setFechaNacimiento(Utilidades.Utilidades.LocalADate(fechaNaciAux));
-                                altaBio.setLugarNacimiento(lugarNacimientoAux);
-                                bc.create(altaBio);
+//                                Biografia altaBio = new Biografia();
+//                                String descriAux;
+//                                LocalDate fechaNaciAux;
+//                                int dia = 0;
+//                                int mes = 0;
+//                                int anio = 0;
+//                                
+//                                String lugarNacimientoAux;
+//                                
+//                                System.out.println("Gestion de Altas");
+//                                System.out.println("Indique la descripcion de la Biografia");
+//                                descriAux = entrada.nextLine();
+//                                System.out.println("Indique la Fecha de Nacimiento");
+//                                System.out.println("Que año");
+//                                anio = Utilidades.Utilidades.leerEnteroSinErroresScanner();
+//                                do {
+//                                    System.out.println("Que Mes");
+//                                    mes = Utilidades.Utilidades.leerEnteroSinErroresScanner();
+//                                } while (mes < 1 || mes > 12);
+//                                do {
+//                                    System.out.println("Que dia");
+//                                    dia = Utilidades.Utilidades.leerEnteroSinErroresScanner();
+//                                } while (dia < 1 || dia > 31);
+//                                
+//                                System.out.println("Indique lugar de Nacimiento");
+//                                lugarNacimientoAux = entrada.nextLine();
+//                                
+//                                fechaNaciAux = LocalDate.of(anio, mes, dia);
+//                                altaBio.setDescripcion(descriAux);
+//                                altaBio.setFechaNacimiento(Utilidades.Utilidades.LocalADate(fechaNaciAux));
+//                                altaBio.setLugarNacimiento(lugarNacimientoAux);
+//                                bc.create(altaBio);
+                                Utilidades.Utilidades.altaBiografia();
                                 Utilidades.Utilidades.mostrarBiografia();
                                 
                                 break;
@@ -195,11 +196,16 @@ public class Main {
                                     gestionMenu = entrada.nextLine();
                                     switch (gestionMenu) {
                                         case "1":
+                                             Utilidades.Utilidades.mostrarBiografia();
                                             System.out.println("Indique el codigo de biografia que quiere modificar");
-                                              Utilidades.Utilidades.mostrarBiografia();
+                                            int idModificar = Utilidades.Utilidades.leerEnteroSinErroresScanner();
+                                            bc.findBiografia(idModificar);
                                             
                                             break;
                                          case "2":
+                                             System.out.println("Mostramos la lista de Musicos Y Biografias");
+                                              Utilidades.Utilidades.mostrarBiografia();
+                                               Utilidades.Utilidades.mostraMusicos();
                                             
                                             break;
                                        

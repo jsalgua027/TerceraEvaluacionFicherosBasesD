@@ -104,7 +104,7 @@ public class CreacionModificacionBorradoEntidades {
 //         mc.create(musico9);
 //         mc.create(musico10);
         // Consultas.mostrarBiografia();
-        // Consultas.mostarMusicos();
+        // Consultas.mostraMusicos();
         //  bc.destroy(bioPrueba.getIdBiografia());
         //  mc.destroy(musicoPrueba.getIdMusico());
         Instrumento instruPrueba = new Instrumento("Piano", "Prueba");
