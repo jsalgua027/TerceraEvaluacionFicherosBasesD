@@ -8,10 +8,10 @@ import controladoras.BiografiaJpaController;
 import controladoras.GrabacionJpaController;
 import controladoras.InstrumentoJpaController;
 import controladoras.MusicoJpaController;
+import controladoras.exceptions.NonexistentEntityException;
 import entidades.Biografia;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import static java.time.temporal.TemporalQueries.localDate;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -131,9 +131,45 @@ public class Utilidades {
     }
 
     //MODIFICADORES
-    public static void modificarBiografia(int id) {
-        bc.findBiografia(id);
+    public static void modificarBiografia(int id) throws NonexistentEntityException, Exception {
 
+        var bio = bc.findBiografia(id);
+        System.out.println(bio);
+        if (bio != null) {
+
+            String descriAux;
+            LocalDate fechaNaciAux;
+            int dia = 0;
+            int mes = 0;
+            int anio = 0;
+
+            String lugarNacimientoAux;
+
+             teclado.nextLine(); // limpio bufer
+            System.out.println("Indique la descripcion de la Biografia");
+            descriAux = teclado.nextLine();
+            System.out.println("Indique la Fecha de Nacimiento");
+            System.out.println("Que año");
+            anio = Utilidades.leerEnteroSinErroresScanner();
+            do {
+                System.out.println("Que Mes");
+                mes = Utilidades.leerEnteroSinErroresScanner();
+            } while (mes < 1 || mes > 12);
+            do {
+                System.out.println("Que dia");
+                dia = Utilidades.leerEnteroSinErroresScanner();
+            } while (dia < 1 || dia > 31);
+
+            System.out.println("Indique lugar de Nacimiento");
+            lugarNacimientoAux = teclado.nextLine();
+
+            fechaNaciAux = LocalDate.of(anio, mes, dia);
+            bio.setDescripcion(descriAux);
+            bio.setFechaNacimiento(Utilidades.LocalADate(fechaNaciAux));
+            bio.setLugarNacimiento(lugarNacimientoAux);
+
+        }
+        bc.edit(bio);
     }
 
 }
