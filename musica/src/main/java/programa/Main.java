@@ -13,6 +13,7 @@ import entidades.Biografia;
 import java.time.LocalDate;
 import java.util.Scanner;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.Persistence;
 
 /**
@@ -211,8 +212,12 @@ public class Main {
                                 System.out.println("Indique el código de biografia que quiere borrar");
                                 codigoBorradoBio = entrada.nextLine();
                                 bc.findBiografia(Integer.valueOf(codigoBorradoBio));
-                                Utilidades.Utilidades.borrarBiografia(Integer.valueOf(codigoBorradoBio));
-                                Utilidades.Utilidades.mostrarBiografia();
+                                try {
+                                    Utilidades.Utilidades.borrarBiografia(Integer.valueOf(codigoBorradoBio));
+                                    Utilidades.Utilidades.mostrarBiografia();
+                                } catch (NonexistentEntityException e) {
+                                    System.out.println("Esa Biografía  no se encuenta en la Base de datos");
+                                }
 
                                 break;
 
@@ -278,8 +283,12 @@ public class Main {
                                 codigoBorradoMusci = entrada.nextLine();
 
                                 mc.findMusico(Integer.valueOf(codigoBorradoMusci));
-                                Utilidades.Utilidades.borrarMusico(Integer.valueOf(codigoBorradoMusci));
-                                Utilidades.Utilidades.mostraMusicos();
+                                try {
+                                    Utilidades.Utilidades.borrarMusico(Integer.valueOf(codigoBorradoMusci));
+                                    Utilidades.Utilidades.mostraMusicos();
+                                } catch (NonexistentEntityException e) {
+                                    System.out.println("Ese Músico no se encuenta en la Base de datos");
+                                }
 
                                 break;
 
@@ -324,7 +333,6 @@ public class Main {
                                             System.out.println("Indique el codigo de Musico que quiere enlazar");
                                             musicCod = Utilidades.Utilidades.leerEnteroSinErroresScanner();
                                             Utilidades.Utilidades.añadirMusicosAlInstrumento(instruCod, musicCod);
-                             
 
                                             break;
 
@@ -343,8 +351,14 @@ public class Main {
                                 System.out.println("Indique el código de Instrumento que quiere borrar");
                                 codigoBorradoInstrume = entrada.nextLine();
                                 ic.findInstrumento(Integer.valueOf(codigoBorradoInstrume));
-                                Utilidades.Utilidades.borrarInstruemtno(Integer.valueOf(codigoBorradoInstrume));
-                                Utilidades.Utilidades.mostrarInstrumentos();
+                                try {
+                                    Utilidades.Utilidades.borrarInstrumento(Integer.valueOf(codigoBorradoInstrume));
+                                    Utilidades.Utilidades.mostrarInstrumentos();
+                                } catch (NonexistentEntityException e) {
+                                    System.out.println("Ese Instrumento no se encuenta en la Base de datos");
+
+                                }
+
                                 break;
 
                         }
@@ -358,6 +372,8 @@ public class Main {
                         gestionMenu = entrada.nextLine();
                         switch (gestionMenu) {
                             case "1": // ALTA GRABA
+                                Utilidades.Utilidades.altaGrabacion();
+                                Utilidades.Utilidades.mostrarGrabaciones();
 
                                 break;
 
@@ -365,8 +381,20 @@ public class Main {
 
                                 break;
                             case "3": // MOSTRAR GRABA
-
+                                Utilidades.Utilidades.mostrarGrabaciones();
                             case "4": // BORRAR GRABA
+                                String codigoBorradoGrabacion;
+                                System.out.println("BORRADO DE GRABACIONES");
+                                Utilidades.Utilidades.mostrarGrabaciones();
+                                System.out.println("Indique el código de Grabación que quiere borrar");
+                                codigoBorradoGrabacion = entrada.nextLine();
+                                gc.findGrabacion(Integer.valueOf(codigoBorradoGrabacion));
+                                try {
+                                    Utilidades.Utilidades.borrarGrabacion(Integer.valueOf(codigoBorradoGrabacion));
+                                    Utilidades.Utilidades.mostrarGrabaciones();
+                                } catch (NonexistentEntityException e) {
+                                    System.out.println("Esa Grabación no se encuenta en la Base de datos");
+                                }
 
                                 break;
 

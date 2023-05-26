@@ -11,14 +11,13 @@ import controladoras.MusicoJpaController;
 import controladoras.exceptions.IllegalOrphanException;
 import controladoras.exceptions.NonexistentEntityException;
 import entidades.Biografia;
+import entidades.Grabacion;
 import entidades.Instrumento;
 import entidades.Musico;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -172,6 +171,36 @@ public class Utilidades {
 
     }
 
+    //alta grabacion
+    public static void altaGrabacion() {
+        Grabacion grabAux = new Grabacion();
+        String tituloAux;
+        LocalDate fechaGrabacAux;
+        int dia = 0;
+        int mes = 0;
+        int anio = 0;
+        System.out.println("Indique el Título de la Grabación");
+        tituloAux = teclado.nextLine();
+        System.out.println("Indique la Fecha de Grabación");
+        System.out.println("Que año");
+        anio = Utilidades.leerEnteroSinErroresScanner();
+        do {
+            System.out.println("Que Mes");
+            mes = Utilidades.leerEnteroSinErroresScanner();
+        } while (mes < 1 || mes > 12);
+        do {
+            System.out.println("Que dia");
+            dia = Utilidades.leerEnteroSinErroresScanner();
+        } while (dia < 1 || dia > 31);
+
+        fechaGrabacAux = LocalDate.of(anio, mes, dia);
+        grabAux.setTitulo(tituloAux);
+        grabAux.setFecha(Utilidades.LocalADate(fechaGrabacAux));
+
+        gc.create(grabAux);
+
+    }
+
     //MODIFICADORES
     //modificar biografia
     public static void modificarBiografia(int id) throws NonexistentEntityException, Exception {
@@ -274,45 +303,47 @@ public class Utilidades {
         }
         ic.edit(instrumento);
     }
-    
-      // enlazo a la Un instrumento  a un Musico
+
+    // enlazo a la Un instrumento  a un Musico
     public static void añadirMusicosAlInstrumento(int idIns, int idMUsico) throws NonexistentEntityException, Exception {
         var Intru = ic.findInstrumento(idIns);
         var musi = mc.findMusico(idMUsico);
-//        List<Musico>listaMusicos= new ArrayList<>();
-//        listaMusicos.add(musi);
+
         Intru.getMusicoList().add(musi);
-     
-        ic.edit(Intru); // no estoy seguro
+
+        ic.edit(Intru);
 
     }
 
-    
-    
     //BORRADOS
-    
     //borrado biografia
-    public static void borrarBiografia(Integer id) throws IllegalOrphanException, NonexistentEntityException{
-        // Se borra el cliente por ID, si no existe lanza excepción NonexistentEntityException
-        // Si tiene alquileres lanza excepción IllegalOrphanException
-        // Si tiene una tarjeta asociada, la tarjeta queda sin Cliente
+    public static void borrarBiografia(Integer id) throws IllegalOrphanException, NonexistentEntityException {
+        // Se borra el biografia por ID, si no existe lanza excepción NonexistentEntityException
+        // Si tiene musicos lanza excepción IllegalOrphanException
+        // Si tiene una musico asociad, la biografia se queda sin musico
         bc.destroy(id);
     }
-    
-     //borrado musico
-    public static void borrarMusico(Integer id) throws IllegalOrphanException, NonexistentEntityException{
-        // Se borra el cliente por ID, si no existe lanza excepción NonexistentEntityException
-        // Si tiene alquileres lanza excepción IllegalOrphanException
-        // Si tiene una tarjeta asociada, la tarjeta queda sin Cliente
+
+    //borrado musico
+    public static void borrarMusico(Integer id) throws IllegalOrphanException, NonexistentEntityException {
+        // Se borra el musico por ID, si no existe lanza excepción NonexistentEntityException
+        // Si tiene biografias lanza excepción IllegalOrphanException
+        // Si tiene una musico asociado, el musico se queda sin biografia
         mc.destroy(id);
     }
-    
-       //borrado musico
-    public static void borrarInstruemtno(Integer id) throws IllegalOrphanException, NonexistentEntityException{
-        // Se borra el cliente por ID, si no existe lanza excepción NonexistentEntityException
-        // Si tiene alquileres lanza excepción IllegalOrphanException
-        // Si tiene una tarjeta asociada, la tarjeta queda sin Cliente
+
+    //borrado musico
+    public static void borrarInstrumento(Integer id) throws IllegalOrphanException, NonexistentEntityException {
+        // Se borra el instrumento por ID, si no existe lanza excepción NonexistentEntityException
+
         ic.destroy(id);
     }
-    
+
+    //borrado grabacion
+    public static void borrarGrabacion(Integer id) throws IllegalOrphanException, NonexistentEntityException {
+        // Se borra el instrumento por ID, si no existe lanza excepción NonexistentEntityException
+
+        gc.destroy(id);
+    }
+
 }

@@ -56,10 +56,8 @@ public class Instrumento implements Serializable {
     public Instrumento(String nombre, String tipo) {
         this.nombre = nombre;
         this.tipo = tipo;
-      
+
     }
-    
-    
 
     public Integer getIdInstrumento() {
         return idInstrumento;
@@ -129,10 +127,6 @@ public class Instrumento implements Serializable {
         return Objects.equals(this.idInstrumento, other.idInstrumento);
     }
 
- 
-
-   
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -143,14 +137,15 @@ public class Instrumento implements Serializable {
         try {
             sb.append(", musicoList{");
             sb.append(toStringInstrumentos());
-              sb.append("} ");
+            sb.append("} ");
         } catch (NullPointerException e) {
             sb.append("No hay lista de musicos asociadas");
 
         }
         try {
-            sb.append(", grabacionList=");
+            sb.append(", grabacionList{");
             sb.append(toStringGrabaciones());
+            sb.append("} ");
         } catch (NullPointerException e) {
             sb.append("No hay lista de grabaciones");
 
@@ -162,10 +157,10 @@ public class Instrumento implements Serializable {
 
     private String toStringInstrumentos() {
         StringBuilder tmp = new StringBuilder();
-       
+
         for (Musico mus : musicoList) {
-            //tmp.append(append("id:")+mus.getIdMusico()).append(", ");
-          tmp.append("id:").append(mus.getIdMusico()).append(", ");
+
+            tmp.append("id:").append(mus.getIdMusico()).append(", ");
         }
 
         return tmp.length() == 0 ? tmp.toString() : tmp.toString() + "\b\b";
@@ -174,7 +169,8 @@ public class Instrumento implements Serializable {
     private String toStringGrabaciones() {
         StringBuilder tmp = new StringBuilder();
         for (Grabacion gra : grabacionList) {
-            tmp.append(gra.getIdGrabacion()).append(", ");
+
+            tmp.append("id:").append(gra.getIdGrabacion()).append(", ");
         }
 
         return tmp.length() == 0 ? tmp.toString() : tmp.toString() + "\b\b";
