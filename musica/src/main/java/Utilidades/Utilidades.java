@@ -147,8 +147,13 @@ public class Utilidades {
         mc.create(altaMusico);
         
     }
+    
+  
 
     //MODIFICADORES
+    
+    
+    //modificar biografia
     public static void modificarBiografia(int id) throws NonexistentEntityException, Exception {
         
         var bio = bc.findBiografia(id);
@@ -188,6 +193,17 @@ public class Utilidades {
             
         }
         bc.edit(bio);
+    }
+    
+    
+     // enlazo a la biografia un Musico
+      public static void enlazarMusicoABiografia(int idBio, int idMUsico) throws NonexistentEntityException, Exception {
+        var bio = bc.findBiografia(idBio);
+        var musi = mc.findMusico(idMUsico);
+        
+        bio.setIdMusico(musi);
+        bc.edit(bio);
+        
     }
     
 }

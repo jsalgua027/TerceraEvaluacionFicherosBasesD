@@ -53,9 +53,10 @@ public class Main {
                           
                                                1.Dar de alta Biografia
                                                2.Modificar biografia
-                                               3.Buscar Biografia
+                                               3.Mostrar Biografia
                                                4.Borrar Biografia
-                                               5.salir
+                                               5.Salir
+                                        
                                                 
                           
                           
@@ -67,9 +68,9 @@ public class Main {
                           
                                                1.Dar de alta Musico
                                                2.Modificar Musico
-                                               3.Buscar Musico
+                                               3.Mostrar Musico
                                                4.Borrar Musico
-                                               5.salir
+                                               5.Salir
                                                 
                                                     
                                            """;
@@ -81,9 +82,9 @@ public class Main {
                           
                                                1.Dar de alta Instrumento
                                                2.Modificar Instrumento
-                                               3.Buscar Instrumento
+                                               3.Mostrar Instrumento
                                                4.Borrar Instrumento
-                                               4.salir
+                                               5.Salir
                                                 
                                                     
                                            """;
@@ -95,9 +96,9 @@ public class Main {
                           
                                                1.Dar de alta Grabación
                                                2.Modificar Grabación
-                                               3.Buscar Grabación
+                                               3.Mostrar Grabación
                                                4.Borrar Grabacion
-                                               5.salir
+                                               5.Salir
                                                 
                                                     
                                            """;
@@ -145,26 +146,26 @@ public class Main {
             System.out.println("Elija una Opcion");
             gestionMenu = entrada.nextLine();
             switch (gestionMenu) {
-                case "1":
+                case "1": //BIOGRAFIA
                     do {
                         System.out.println(menuBiografia);
                         System.out.println("Elija una Opcion");
                         gestionMenu = entrada.nextLine();
                         switch (gestionMenu) {
-                            case "1":
+                            case "1"://BIO ALTA
 
                                 Utilidades.Utilidades.altaBiografia();
                                 Utilidades.Utilidades.mostrarBiografia();
 
                                 break;
 
-                            case "2":
+                            case "2":// BIO MOD
                                 do {
                                     System.out.println(modBio);
                                     System.out.println("Elija una Opcion");
                                     gestionMenu = entrada.nextLine();
                                     switch (gestionMenu) {
-                                        case "1":
+                                        case "1": //MOD A
                                             Utilidades.Utilidades.mostrarBiografia();
                                             System.out.println("Indique el codigo de biografia que quiere modificar");
                                             int idModificar = Utilidades.Utilidades.leerEnteroSinErroresScanner();
@@ -172,10 +173,18 @@ public class Main {
                                             Utilidades.Utilidades.mostrarBiografia();
 
                                             break;
-                                        case "2":
+                                        case "2": // MOD B
+                                            int bioCod;
+                                            int musicCod;
                                             System.out.println("Mostramos la lista de Musicos Y Biografias");
                                             Utilidades.Utilidades.mostrarBiografia();
                                             Utilidades.Utilidades.mostraMusicos();
+                                            System.out.println("Indique el codigo de biografia que quiere enlazar");
+                                            bioCod = Utilidades.Utilidades.leerEnteroSinErroresScanner();
+                                            System.out.println("Indique el codigo de Musico que quiere enlazar");
+                                            musicCod = Utilidades.Utilidades.leerEnteroSinErroresScanner();
+                                            Utilidades.Utilidades.enlazarMusicoABiografia(bioCod, musicCod);
+                                            Utilidades.Utilidades.mostrarBiografia();
 
                                             break;
 
@@ -183,10 +192,10 @@ public class Main {
 
                                 } while (!gestionMenu.contains("3"));
                                 break;
-                            case "3":
-
+                            case "3": // MOSTRAR BIO
+                                Utilidades.Utilidades.mostrarBiografia();
                                 break;
-                            case "4":
+                            case "4": // BORRAR BIO
                                 String codigoBorradoBio;
                                 System.out.println("BORRADO DE BIOGRAFIAS");
                                 Utilidades.Utilidades.mostrarBiografia();
@@ -203,25 +212,25 @@ public class Main {
                     } while (!gestionMenu.contains("5"));
                     break;
 
-                case "2":
+                case "2": // MUSICOS
                     do {
                         System.out.println(menuMusicos);
                         System.out.println("Elija una Opcion");
                         gestionMenu = entrada.nextLine();
                         switch (gestionMenu) {
-                            case "1":
-                              
+                            case "1": // ALTA MUSICO
+
                                 Utilidades.Utilidades.altaMusico();
                                 Utilidades.Utilidades.mostraMusicos();
                                 break;
 
-                            case "2":
+                            case "2": // MOD MUSICO
 
                                 break;
-                            case "3":
+                            case "3": // MOSTRAR MUSICO
 
                                 break;
-                            case "4":
+                            case "4": // BORRAR MUSICO
 
                                 break;
 
@@ -230,23 +239,23 @@ public class Main {
                     } while (!gestionMenu.contains("5"));
 
                     break;
-                case "3":
+                case "3": // INSTRUMENTOS
                     do {
                         System.out.println(menuInstrumentos);
                         System.out.println("Elija una Opcion");
                         gestionMenu = entrada.nextLine();
                         switch (gestionMenu) {
-                            case "1":
+                            case "1": // ALTA INSTRU
 
                                 break;
 
-                            case "2":
+                            case "2": // MOD INSTRU
 
                                 break;
-                            case "3":
+                            case "3": // MOSTRAR INSTRU
 
                                 break;
-                            case "4":
+                            case "4": // BORRAR INSTRI
 
                                 break;
 
@@ -254,22 +263,22 @@ public class Main {
 
                     } while (!gestionMenu.contains("5"));
                     break;
-                case "4":
+                case "4": // GRABACIONES
                     do {
                         System.out.println(menuGrabaciones);
                         System.out.println("Elija una Opcion");
                         gestionMenu = entrada.nextLine();
                         switch (gestionMenu) {
-                            case "1":
+                            case "1": // ALTA GRABA
 
                                 break;
 
-                            case "2":
+                            case "2": // MOD GRABA
 
                                 break;
-                            case "3":
+                            case "3": // MOSTRAR GRABA
 
-                            case "4":
+                            case "4": // BORRAR GRABA
 
                                 break;
 
@@ -283,7 +292,7 @@ public class Main {
                         System.out.println(menuCopiasSegurida);
                         System.out.println("Elija una Opcion");
                         gestionMenu = entrada.nextLine();
-                        switch (gestionMenu) {
+                        switch (gestionMenu) { // COPIAS SEGURIDAD
                             case "1":
 
                                 break;
