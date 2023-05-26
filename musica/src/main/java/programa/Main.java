@@ -131,7 +131,7 @@ public class Main {
                                   MODIFICACION MUSICOS
                                  
                                  1.Para modificar Datos
-                                 2.Para Añadir Biografia
+                                 2.Para Añadir Instrumento
                                  3.Salir
                                  
                                  
@@ -258,9 +258,19 @@ public class Main {
 
                                 break;
                             case "3": // MOSTRAR MUSICO
+                                Utilidades.Utilidades.mostraMusicos();
 
                                 break;
                             case "4": // BORRAR MUSICO
+                                String codigoBorradoMusci;
+                                System.out.println("BORRADO DE MUSICOS");
+                                Utilidades.Utilidades.mostraMusicos();
+                                System.out.println("Indique el código de Músico que quiere borrar");
+                                codigoBorradoMusci = entrada.nextLine();
+
+                                mc.findMusico(Integer.valueOf(codigoBorradoMusci));
+                                mc.destroy(Integer.valueOf(codigoBorradoMusci));
+                                Utilidades.Utilidades.mostraMusicos();
 
                                 break;
 

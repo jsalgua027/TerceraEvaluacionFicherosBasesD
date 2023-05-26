@@ -209,7 +209,7 @@ public class Utilidades {
 
             String nombre;
             String genero;
-
+            teclado.nextLine(); // limpio bufer
             System.out.println("Indique el Nombre del Músico");
             nombre = teclado.nextLine();
             System.out.println("Indique el genero Musical");
