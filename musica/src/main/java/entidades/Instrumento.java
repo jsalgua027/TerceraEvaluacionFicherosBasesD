@@ -141,8 +141,9 @@ public class Instrumento implements Serializable {
         sb.append(", nombre=").append(nombre);
         sb.append(", tipo=").append(tipo);
         try {
-            sb.append(", musicoList=");
+            sb.append(", musicoList{");
             sb.append(toStringInstrumentos());
+              sb.append("} ");
         } catch (NullPointerException e) {
             sb.append("No hay lista de musicos asociadas");
 
@@ -161,8 +162,10 @@ public class Instrumento implements Serializable {
 
     private String toStringInstrumentos() {
         StringBuilder tmp = new StringBuilder();
+       
         for (Musico mus : musicoList) {
-            tmp.append(mus.getIdMusico()).append(", ");
+            //tmp.append(append("id:")+mus.getIdMusico()).append(", ");
+          tmp.append("id:").append(mus.getIdMusico()).append(", ");
         }
 
         return tmp.length() == 0 ? tmp.toString() : tmp.toString() + "\b\b";

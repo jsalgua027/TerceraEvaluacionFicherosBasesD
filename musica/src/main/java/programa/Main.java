@@ -137,6 +137,15 @@ public class Main {
                                  
                                  """;
 
+        String modInstrumentos = """
+                                                 MODIFICACION INSTRUMENTOS
+                                                 
+                                                 1.Para modificar Datos
+                                                 2.Para Añadir Músicos
+                                                 3.Salir
+                               
+                                               """;
+
         String gestionMenu = " ";
 
         Scanner entrada = new Scanner(System.in);
@@ -202,7 +211,7 @@ public class Main {
                                 System.out.println("Indique el código de biografia que quiere borrar");
                                 codigoBorradoBio = entrada.nextLine();
                                 bc.findBiografia(Integer.valueOf(codigoBorradoBio));
-                                bc.destroy(Integer.valueOf(codigoBorradoBio));
+                                Utilidades.Utilidades.borrarBiografia(Integer.valueOf(codigoBorradoBio));
                                 Utilidades.Utilidades.mostrarBiografia();
 
                                 break;
@@ -269,7 +278,7 @@ public class Main {
                                 codigoBorradoMusci = entrada.nextLine();
 
                                 mc.findMusico(Integer.valueOf(codigoBorradoMusci));
-                                mc.destroy(Integer.valueOf(codigoBorradoMusci));
+                                Utilidades.Utilidades.borrarMusico(Integer.valueOf(codigoBorradoMusci));
                                 Utilidades.Utilidades.mostraMusicos();
 
                                 break;
@@ -286,17 +295,56 @@ public class Main {
                         gestionMenu = entrada.nextLine();
                         switch (gestionMenu) {
                             case "1": // ALTA INSTRU
-
+                                Utilidades.Utilidades.altaInstrumentos();
+                                Utilidades.Utilidades.mostrarInstrumentos();
                                 break;
 
                             case "2": // MOD INSTRU
+                                do {
+                                    System.out.println(modInstrumentos);
+                                    System.out.println("Elija una Opcion");
+                                    gestionMenu = entrada.nextLine();
+                                    switch (gestionMenu) {
+                                        case "1": //MOD A
+                                            Utilidades.Utilidades.mostrarInstrumentos();
+                                            System.out.println("Indique el codigo de Instrumento que quiere modificar");
+                                            int idModificar = Utilidades.Utilidades.leerEnteroSinErroresScanner();
+                                            Utilidades.Utilidades.modificarInstrumento(idModificar);
+                                            Utilidades.Utilidades.mostrarInstrumentos();
+
+                                            break;
+                                        case "2": // MOD B
+                                            int instruCod;
+                                            int musicCod;
+                                            System.out.println("Mostramos la lista de Instrumentos y Músicos");
+                                            Utilidades.Utilidades.mostrarInstrumentos();
+                                            Utilidades.Utilidades.mostraMusicos();
+                                            System.out.println("Indique el codigo de Instrumento que quiere enlazar");
+                                            instruCod = Utilidades.Utilidades.leerEnteroSinErroresScanner();
+                                            System.out.println("Indique el codigo de Musico que quiere enlazar");
+                                            musicCod = Utilidades.Utilidades.leerEnteroSinErroresScanner();
+                                            Utilidades.Utilidades.añadirMusicosAlInstrumento(instruCod, musicCod);
+                             
+
+                                            break;
+
+                                    }
+
+                                } while (!gestionMenu.contains("3"));
 
                                 break;
                             case "3": // MOSTRAR INSTRU
-
+                                Utilidades.Utilidades.mostrarInstrumentos();
                                 break;
                             case "4": // BORRAR INSTRI
-
+                                String codigoBorradoInstrume;
+                                System.out.println("BORRADO DE INSTRUMENTOS");
+                                Utilidades.Utilidades.mostraMusicos();
+                                System.out.println("Indique el código de Instrumento que quiere borrar");
+                                codigoBorradoInstrume = entrada.nextLine();
+                                ic.findInstrumento(Integer.valueOf(codigoBorradoInstrume));
+                                Utilidades.Utilidades.borrarInstruemtno(Integer.valueOf(codigoBorradoInstrume));
+                                Utilidades.Utilidades.mostrarInstrumentos();
                                 break;
 
                         }

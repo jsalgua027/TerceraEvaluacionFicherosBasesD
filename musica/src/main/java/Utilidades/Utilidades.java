@@ -8,13 +8,17 @@ import controladoras.BiografiaJpaController;
 import controladoras.GrabacionJpaController;
 import controladoras.InstrumentoJpaController;
 import controladoras.MusicoJpaController;
+import controladoras.exceptions.IllegalOrphanException;
 import controladoras.exceptions.NonexistentEntityException;
 import entidades.Biografia;
+import entidades.Instrumento;
 import entidades.Musico;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -95,6 +99,7 @@ public class Utilidades {
     }
 
     // ALTAS
+    //alta biografia
     public static void altaBiografia() {
         Biografia altaBio = new Biografia();
         String descriAux;
@@ -130,6 +135,7 @@ public class Utilidades {
         bc.create(altaBio);
 
     }
+    // alta musico
 
     public static void altaMusico() {
         Musico altaMusico = new Musico();
@@ -145,6 +151,24 @@ public class Utilidades {
         altaMusico.setNombre(nombre);
         altaMusico.setGenero(genero);
         mc.create(altaMusico);
+
+    }
+
+    //alta Instrumentos
+    public static void altaInstrumentos() {
+        Instrumento altaInstru = new Instrumento();
+        String nombre;
+        String tipo;
+
+        System.out.println("Gestion de Altas Instrumentos");
+        System.out.println("Indique el Nombre del Instrumento");
+        nombre = teclado.nextLine();
+        System.out.println("Indique el tipo de instrumento");
+        tipo = teclado.nextLine();
+
+        altaInstru.setNombre(nombre);
+        altaInstru.setTipo(tipo);
+        ic.create(altaInstru);
 
     }
 
@@ -231,4 +255,64 @@ public class Utilidades {
 
     }
 
+    // modificador Instrumento
+    public static void modificarInstrumento(int idInstrumento) throws NonexistentEntityException, Exception {
+        var instrumento = ic.findInstrumento(idInstrumento);
+        System.out.println(instrumento);
+        if (instrumento != null) {
+
+            String nombre;
+            String tipo;
+            teclado.nextLine(); // limpio bufer
+            System.out.println("Indique el Nombre del Instrumento");
+            nombre = teclado.nextLine();
+            System.out.println("Indique el Tipo");
+            tipo = teclado.nextLine();
+
+            instrumento.setNombre(nombre);
+            instrumento.setTipo(tipo);
+        }
+        ic.edit(instrumento);
+    }
+    
+      // enlazo a la Un instrumento  a un Musico
+    public static void añadirMusicosAlInstrumento(int idIns, int idMUsico) throws NonexistentEntityException, Exception {
+        var Intru = ic.findInstrumento(idIns);
+        var musi = mc.findMusico(idMUsico);
+//        List<Musico>listaMusicos= new ArrayList<>();
+//        listaMusicos.add(musi);
+        Intru.getMusicoList().add(musi);
+     
+        ic.edit(Intru); // no estoy seguro
+
+    }
+
+    
+    
+    //BORRADOS
+    
+    //borrado biografia
+    public static void borrarBiografia(Integer id) throws IllegalOrphanException, NonexistentEntityException{
+        // Se borra el cliente por ID, si no existe lanza excepción NonexistentEntityException
+        // Si tiene alquileres lanza excepción IllegalOrphanException
+        // Si tiene una tarjeta asociada, la tarjeta queda sin Cliente
+        bc.destroy(id);
+    }
+    
+     //borrado musico
+    public static void borrarMusico(Integer id) throws IllegalOrphanException, NonexistentEntityException{
+        // Se borra el cliente por ID, si no existe lanza excepción NonexistentEntityException
+        // Si tiene alquileres lanza excepción IllegalOrphanException
+        // Si tiene una tarjeta asociada, la tarjeta queda sin Cliente
+        mc.destroy(id);
+    }
+    
+       //borrado musico
+    public static void borrarInstruemtno(Integer id) throws IllegalOrphanException, NonexistentEntityException{
+        // Se borra el cliente por ID, si no existe lanza excepción NonexistentEntityException
+        // Si tiene alquileres lanza excepción IllegalOrphanException
+        // Si tiene una tarjeta asociada, la tarjeta queda sin Cliente
+        ic.destroy(id);
+    }
+    
 }
