@@ -225,6 +225,36 @@ public class Main {
                                 break;
 
                             case "2": // MOD MUSICO
+                                do {
+                                    System.out.println(modMusi);
+                                    System.out.println("Elija una Opcion");
+                                    gestionMenu = entrada.nextLine();
+                                    switch (gestionMenu) {
+                                        case "1": //MOD A
+                                            Utilidades.Utilidades.mostraMusicos();
+                                            System.out.println("Indique el codigo de biografia que quiere modificar");
+                                            int idModificar = Utilidades.Utilidades.leerEnteroSinErroresScanner();
+                                            Utilidades.Utilidades.modificarMusico(idModificar);
+                                            Utilidades.Utilidades.mostraMusicos();
+
+                                            break;
+                                        case "2": // MOD B
+                                            int codInstru;
+                                            int musicCod;
+                                            System.out.println("Mostramos la lista de Musicos Y Instrumento");
+                                            Utilidades.Utilidades.mostrarInstrumentos();
+                                            Utilidades.Utilidades.mostraMusicos();
+                                            System.out.println("Indique el codigo de Músico que quiere enlazar");
+                                            musicCod = Utilidades.Utilidades.leerEnteroSinErroresScanner();
+                                            System.out.println("Indique el codigo de Instrumento que quiere enlazar");
+                                            codInstru = Utilidades.Utilidades.leerEnteroSinErroresScanner();
+                                            Utilidades.Utilidades.enlazarInstrumentoAMusico(codInstru, musicCod);
+                                            Utilidades.Utilidades.mostraMusicos();
+                                            break;
+
+                                    }
+
+                                } while (!gestionMenu.contains("3"));
 
                                 break;
                             case "3": // MOSTRAR MUSICO
