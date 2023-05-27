@@ -14,6 +14,7 @@ import entidades.Biografia;
 import entidades.Grabacion;
 import entidades.Instrumento;
 import entidades.Musico;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -43,6 +44,16 @@ public class Utilidades {
 
     }
 
+    
+    //metodo para gestionar de LocalDate a date
+    
+    public static  LocalDate DateALocalDate( Date fecha){
+    Instant aux = fecha.toInstant();
+    return aux.atZone(ZoneId.systemDefault()).toLocalDate();
+    }
+    
+    
+    
     // metodos para mostrar los datos de las entidades
     public static void mostraMusicos() {
         System.out.println("-------Listado de Músicos------");

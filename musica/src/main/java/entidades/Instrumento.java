@@ -154,6 +154,16 @@ public class Instrumento implements Serializable {
         sb.append('}');
         return sb.toString();
     }
+    
+
+    
+    public String toString2() {
+        return    idInstrumento + ";" + nombre + ";" + tipo + ";" + musicoList + ";" + grabacionList ;
+    }
+    
+    
+    
+    
 
     private String toStringInstrumentos() {
         StringBuilder tmp = new StringBuilder();
