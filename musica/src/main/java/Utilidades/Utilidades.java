@@ -252,11 +252,16 @@ public class Utilidades {
 
     // enlazo a la biografia un Musico
     public static void enlazarMusicoABiografia(int idBio, int idMUsico) throws NonexistentEntityException, Exception {
-        var bio = bc.findBiografia(idBio);
-        var musi = mc.findMusico(idMUsico);
 
-        bio.setIdMusico(musi);
-        bc.edit(bio);
+        var bio = bc.findBiografia(idBio);
+        try {
+            var musi = mc.findMusico(idMUsico);
+
+            bio.setIdMusico(musi);
+            bc.edit(bio);
+        } catch (NullPointerException e) {
+            System.out.println("El Musico no existe");
+        }
 
     }
 
@@ -289,10 +294,15 @@ public class Utilidades {
     // enlazo a la Un instrumento  a un Musico
     public static void enlazarInstrumentoAMusico(int idIns, int idMUsico) throws NonexistentEntityException, Exception {
         var Intru = ic.findInstrumento(idIns);
-        var musi = mc.findMusico(idMUsico);
 
-        musi.setIdInstrumento(Intru);
-        mc.edit(musi);
+        try {
+            var musi = mc.findMusico(idMUsico);
+
+            musi.setIdInstrumento(Intru);
+            mc.edit(musi);
+        } catch (NullPointerException e) {
+            System.out.println("El Instrumento no existe");
+        }
 
     }
 
@@ -325,21 +335,30 @@ public class Utilidades {
     // enlazo a la Un instrumento  a un Musico
     public static void añadirMusicosAlInstrumento(int idIns, int idMUsico) throws NonexistentEntityException, Exception {
         var Intru = ic.findInstrumento(idIns);
-        var musi = mc.findMusico(idMUsico);
 
-        Intru.getMusicoList().add(musi);
+        try {
+            var musi = mc.findMusico(idMUsico);
 
-        ic.edit(Intru);
+            Intru.getMusicoList().add(musi);
+
+            ic.edit(Intru);
+        } catch (NullPointerException e) {
+            System.out.println("No existe ese Musico");
+        }
 
     }
 
     // enlazo a la Un instrumento  las grabaciones
     public static void añadirGrabacionesAlInstrumento(int idIns, int idGraba) throws NonexistentEntityException, Exception {
         var Intru = ic.findInstrumento(idIns);
-        var graba = gc.findGrabacion(idGraba);
+        try {
+            var graba = gc.findGrabacion(idGraba);
 
-        Intru.getGrabacionList().add(graba);
-        ic.edit(Intru);
+            Intru.getGrabacionList().add(graba);
+            ic.edit(Intru);
+        } catch (NullPointerException e) {
+            System.out.println("No existe esa Grabación");
+        }
 
     }
 
@@ -385,11 +404,15 @@ public class Utilidades {
     // enlazo Musicos a la grabacion
     public static void añadirInstrumentosAGrabacion(int idGraba, int idInstru) throws NonexistentEntityException, Exception {
         var graba = gc.findGrabacion(idGraba);
-        var instru = ic.findInstrumento(idInstru);
+        try {
+            var instru = ic.findInstrumento(idInstru);
 
-        graba.setIdInstrumento(instru);
+            graba.setIdInstrumento(instru);
 
-        gc.edit(graba);
+            gc.edit(graba);
+        } catch (NullPointerException e) {
+            System.out.println("No existe ese Instrumento");
+        }
 
     }
 
