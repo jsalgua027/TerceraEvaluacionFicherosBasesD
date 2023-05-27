@@ -165,34 +165,37 @@ public class Main {
             System.out.println("Elija una Opcion");
             gestionMenu = entrada.nextLine();
             switch (gestionMenu) {
-                case "1": //BIOGRAFIA
+                case "1" -> {
+                    //BIOGRAFIA
                     do {
                         System.out.println(menuBiografia);
                         System.out.println("Elija una Opcion");
                         gestionMenu = entrada.nextLine();
                         switch (gestionMenu) {
-                            case "1"://BIO ALTA
-
+                            case "1" -> {
+                                //BIO ALTA
+                                
                                 Utilidades.Utilidades.altaBiografia();
                                 Utilidades.Utilidades.mostrarBiografia();
+                            }
 
-                                break;
-
-                            case "2":// BIO MOD
+                            case "2" -> {
+                                // BIO MOD
                                 do {
                                     System.out.println(modBio);
                                     System.out.println("Elija una Opcion");
                                     gestionMenu = entrada.nextLine();
                                     switch (gestionMenu) {
-                                        case "1": //MOD A
+                                        case "1" -> {
+                                            //MOD A
                                             Utilidades.Utilidades.mostrarBiografia();
                                             System.out.println("Indique el codigo de biografia que quiere modificar");
                                             int idModificar = Utilidades.Utilidades.leerEnteroSinErroresScanner();
                                             Utilidades.Utilidades.modificarBiografia(idModificar);
                                             Utilidades.Utilidades.mostrarBiografia();
-
-                                            break;
-                                        case "2": // MOD B
+                                        }
+                                        case "2" -> {
+                                            // MOD B
                                             int bioCod;
                                             int musicCod;
                                             System.out.println("Mostramos la lista de Musicos Y Biografias");
@@ -204,17 +207,16 @@ public class Main {
                                             musicCod = Utilidades.Utilidades.leerEnteroSinErroresScanner();
                                             Utilidades.Utilidades.enlazarMusicoABiografia(bioCod, musicCod);
                                             Utilidades.Utilidades.mostrarBiografia();
-
-                                            break;
+                                        }
 
                                     }
 
                                 } while (!gestionMenu.contains("3"));
-                                break;
-                            case "3": // MOSTRAR BIO
+                            }
+                            case "3" -> // MOSTRAR BIO
                                 Utilidades.Utilidades.mostrarBiografia();
-                                break;
-                            case "4": // BORRAR BIO
+                            case "4" -> {
+                                // BORRAR BIO
                                 String codigoBorradoBio;
                                 System.out.println("BORRADO DE BIOGRAFIAS");
                                 Utilidades.Utilidades.mostrarBiografia();
@@ -229,41 +231,44 @@ public class Main {
                                     System.out.println("Esa Biografía 1"
                                             + " no se encuenta en la Base de datos");
                                 }
-
-                                break;
+                            }
 
                         }
 
                     } while (!gestionMenu.contains("5"));
-                    break;
+                }
 
-                case "2": // MUSICOS
+                case "2" -> {
+                    // MUSICOS
                     do {
                         System.out.println(menuMusicos);
                         System.out.println("Elija una Opcion");
                         gestionMenu = entrada.nextLine();
                         switch (gestionMenu) {
-                            case "1": // ALTA MUSICO
-
+                            case "1" -> {
+                                // ALTA MUSICO
+                                
                                 Utilidades.Utilidades.altaMusico();
                                 Utilidades.Utilidades.mostraMusicos();
-                                break;
+                            }
 
-                            case "2": // MOD MUSICO
+                            case "2" -> {
+                                // MOD MUSICO
                                 do {
                                     System.out.println(modMusi);
                                     System.out.println("Elija una Opcion");
                                     gestionMenu = entrada.nextLine();
                                     switch (gestionMenu) {
-                                        case "1": //MOD A
+                                        case "1" -> {
+                                            //MOD A
                                             Utilidades.Utilidades.mostraMusicos();
                                             System.out.println("Indique el codigo de biografia que quiere modificar");
                                             int idModificar = Utilidades.Utilidades.leerEnteroSinErroresScanner();
                                             Utilidades.Utilidades.modificarMusico(idModificar);
                                             Utilidades.Utilidades.mostraMusicos();
-
-                                            break;
-                                        case "2": // MOD B
+                                        }
+                                        case "2" -> {
+                                            // MOD B
                                             int codInstru;
                                             int musicCod;
                                             System.out.println("Mostramos la lista de Musicos Y Instrumento");
@@ -275,18 +280,16 @@ public class Main {
                                             codInstru = Utilidades.Utilidades.leerEnteroSinErroresScanner();
                                             Utilidades.Utilidades.enlazarInstrumentoAMusico(codInstru, musicCod);
                                             Utilidades.Utilidades.mostraMusicos();
-                                            break;
+                                        }
 
                                     }
 
                                 } while (!gestionMenu.contains("3"));
-
-                                break;
-                            case "3": // MOSTRAR MUSICO
+                            }
+                            case "3" -> // MOSTRAR MUSICO
                                 Utilidades.Utilidades.mostraMusicos();
-
-                                break;
-                            case "4": // BORRAR MUSICO
+                            case "4" -> {
+                                // BORRAR MUSICO
                                 String codigoBorradoMusci;
                                 System.out.println("BORRADO DE MUSICOS");
                                 Utilidades.Utilidades.mostraMusicos();
@@ -300,40 +303,42 @@ public class Main {
                                 } catch (NonexistentEntityException e) {
                                     System.out.println("Ese Músico no se encuenta en la Base de datos");
                                 }
-
-                                break;
+                            }
 
                         }
 
                     } while (!gestionMenu.contains("5"));
-
-                    break;
-                case "3": // INSTRUMENTOS
+                }
+                case "3" -> {
+                    // INSTRUMENTOS
                     do {
                         System.out.println(menuInstrumentos);
                         System.out.println("Elija una Opcion");
                         gestionMenu = entrada.nextLine();
                         switch (gestionMenu) {
-                            case "1": // ALTA INSTRU
+                            case "1" -> {
+                                // ALTA INSTRU
                                 Utilidades.Utilidades.altaInstrumentos();
                                 Utilidades.Utilidades.mostrarInstrumentos();
-                                break;
+                            }
 
-                            case "2": // MOD INSTRU
+                            case "2" -> {
+                                // MOD INSTRU
                                 do {
                                     System.out.println(modInstrumentos);
                                     System.out.println("Elija una Opcion");
                                     gestionMenu = entrada.nextLine();
                                     switch (gestionMenu) {
-                                        case "1": //MOD A
+                                        case "1" -> {
+                                            //MOD A
                                             Utilidades.Utilidades.mostrarInstrumentos();
                                             System.out.println("Indique el codigo de Instrumento que quiere modificar");
                                             int idModificar = Utilidades.Utilidades.leerEnteroSinErroresScanner();
                                             Utilidades.Utilidades.modificarInstrumento(idModificar);
                                             Utilidades.Utilidades.mostrarInstrumentos();
-
-                                            break;
-                                        case "2": // MOD B
+                                        }
+                                        case "2" -> {
+                                            // MOD B
                                             int instruCod;
                                             int musicCod;
                                             System.out.println("Mostramos la lista de Instrumentos y Músicos");
@@ -344,18 +349,16 @@ public class Main {
                                             System.out.println("Indique el codigo de Musico que quiere enlazar");
                                             musicCod = Utilidades.Utilidades.leerEnteroSinErroresScanner();
                                             Utilidades.Utilidades.añadirMusicosAlInstrumento(instruCod, musicCod);
-
-                                            break;
+                                        }
 
                                     }
 
                                 } while (!gestionMenu.contains("3"));
-
-                                break;
-                            case "3": // MOSTRAR INSTRU
+                            }
+                            case "3" -> // MOSTRAR INSTRU
                                 Utilidades.Utilidades.mostrarInstrumentos();
-                                break;
-                            case "4": // BORRAR INSTRI
+                            case "4" -> {
+                                // BORRAR INSTRI
                                 String codigoBorradoInstrume;
                                 System.out.println("BORRADO DE INSTRUMENTOS");
                                 Utilidades.Utilidades.mostraMusicos();
@@ -369,40 +372,42 @@ public class Main {
                                     System.out.println("Ese Instrumento no se encuenta en la Base de datos");
 
                                 }
-
-                                break;
+                            }
 
                         }
 
                     } while (!gestionMenu.contains("5"));
-                    break;
-                case "4": // GRABACIONES
+                }
+                case "4" -> {
+                    // GRABACIONES
                     do {
                         System.out.println(menuGrabaciones);
                         System.out.println("Elija una Opcion");
                         gestionMenu = entrada.nextLine();
                         switch (gestionMenu) {
-                            case "1": // ALTA GRABA
+                            case "1" -> {
+                                // ALTA GRABA
                                 Utilidades.Utilidades.altaGrabacion();
                                 Utilidades.Utilidades.mostrarGrabaciones();
+                            }
 
-                                break;
-
-                            case "2": // MOD GRABA
+                            case "2" -> {
+                                // MOD GRABA
                                 do {
                                     System.out.println(modInstrumentos);
                                     System.out.println("Elija una Opcion");
                                     gestionMenu = entrada.nextLine();
                                     switch (gestionMenu) {
-                                        case "1": //MOD A
+                                        case "1" -> {
+                                            //MOD A
                                             Utilidades.Utilidades.mostrarGrabaciones();
                                             System.out.println("Indique el codigo de Grabacion que quiere modificar");
                                             int idModificar = Utilidades.Utilidades.leerEnteroSinErroresScanner();
                                             Utilidades.Utilidades.modificarGrabacion(idModificar);
                                             Utilidades.Utilidades.mostrarGrabaciones();
-
-                                            break;
-                                        case "2": // MOD B
+                                        }
+                                        case "2" -> {
+                                            // MOD B
                                             int instruCod;
                                             int grabaCod;
                                             System.out.println("Mostramos la lista de Grabaciones y Instrumentos");
@@ -413,18 +418,16 @@ public class Main {
                                             System.out.println("Indique el codigo del Instrumento que quiere enlazar");
                                             instruCod = Utilidades.Utilidades.leerEnteroSinErroresScanner();
                                             Utilidades.Utilidades.añadirInstrumentosAGrabacion(grabaCod, instruCod);
-
-                                            break;
+                                        }
 
                                     }
 
                                 } while (!gestionMenu.contains("3"));
-
-                                break;
-                            case "3": // MOSTRAR GRABA
+                            }
+                            case "3" -> // MOSTRAR GRABA
                                 Utilidades.Utilidades.mostrarGrabaciones();
-                                break;
-                            case "4": // BORRAR GRABA
+                            case "4" -> {
+                                // BORRAR GRABA
                                 String codigoBorradoGrabacion;
                                 System.out.println("BORRADO DE GRABACIONES");
                                 Utilidades.Utilidades.mostrarGrabaciones();
@@ -437,39 +440,33 @@ public class Main {
                                 } catch (NonexistentEntityException e) {
                                     System.out.println("Esa Grabación no se encuenta en la Base de datos");
                                 }
-
-                                break;
+                            }
 
                         }
 
                     } while (!gestionMenu.contains("5"));
-
-                    break;
-                case "5":
+                }
+                case "5" -> {
                     do {
                         System.out.println(menuCopiasSegurida);
                         System.out.println("Elija una Opcion");
                         gestionMenu = entrada.nextLine();
                         switch (gestionMenu) { // COPIAS SEGURIDAD
-                            case "1":
+                            case "1" -> {
+                            }
 
-                                break;
-
-                            case "2":
-
-                                break;
-                            case "3":
-
-                                break;
-                            case "4":
-
-                                break;
+                            case "2" -> {
+                            }
+                            case "3" -> {
+                            }
+                            case "4" -> {
+                            }
 
                         }
-
+                        // COPIAS SEGURIDAD
+                        
                     } while (!gestionMenu.contains("5"));
-
-                    break;
+                }
 
             }
 
