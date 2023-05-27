@@ -207,41 +207,47 @@ public class Utilidades {
 
         var bio = bc.findBiografia(id);
         System.out.println(bio);
-        if (bio != null) {
+        try {
+            if (bio != null) {
 
-            String descriAux;
-            LocalDate fechaNaciAux;
-            int dia = 0;
-            int mes = 0;
-            int anio = 0;
+                String descriAux;
+                LocalDate fechaNaciAux;
+                int dia = 0;
+                int mes = 0;
+                int anio = 0;
 
-            String lugarNacimientoAux;
+                String lugarNacimientoAux;
 
-            teclado.nextLine(); // limpio bufer
-            System.out.println("Indique la descripcion de la Biografia");
-            descriAux = teclado.nextLine();
-            System.out.println("Indique la Fecha de Nacimiento");
-            System.out.println("Que año");
-            anio = Utilidades.leerEnteroSinErroresScanner();
-            do {
-                System.out.println("Que Mes");
-                mes = Utilidades.leerEnteroSinErroresScanner();
-            } while (mes < 1 || mes > 12);
-            do {
-                System.out.println("Que dia");
-                dia = Utilidades.leerEnteroSinErroresScanner();
-            } while (dia < 1 || dia > 31);
+                teclado.nextLine(); // limpio bufer
+                System.out.println("Indique la descripcion de la Biografia");
+                descriAux = teclado.nextLine();
+                System.out.println("Indique la Fecha de Nacimiento");
+                System.out.println("Que año");
+                anio = Utilidades.leerEnteroSinErroresScanner();
+                do {
+                    System.out.println("Que Mes");
+                    mes = Utilidades.leerEnteroSinErroresScanner();
+                } while (mes < 1 || mes > 12);
+                do {
+                    System.out.println("Que dia");
+                    dia = Utilidades.leerEnteroSinErroresScanner();
+                } while (dia < 1 || dia > 31);
 
-            System.out.println("Indique lugar de Nacimiento");
-            lugarNacimientoAux = teclado.nextLine();
+                System.out.println("Indique lugar de Nacimiento");
+                lugarNacimientoAux = teclado.nextLine();
 
-            fechaNaciAux = LocalDate.of(anio, mes, dia);
-            bio.setDescripcion(descriAux);
-            bio.setFechaNacimiento(Utilidades.LocalADate(fechaNaciAux));
-            bio.setLugarNacimiento(lugarNacimientoAux);
+                fechaNaciAux = LocalDate.of(anio, mes, dia);
+                bio.setDescripcion(descriAux);
+                bio.setFechaNacimiento(Utilidades.LocalADate(fechaNaciAux));
+                bio.setLugarNacimiento(lugarNacimientoAux);
 
+            }
+            bc.edit(bio);
+
+        } catch (NullPointerException e) {
+            System.out.println("Esa biográfia no existe");
         }
-        bc.edit(bio);
+
     }
 
     // enlazo a la biografia un Musico
@@ -258,20 +264,26 @@ public class Utilidades {
     public static void modificarMusico(int idmus) throws NonexistentEntityException, Exception {
         var musci = mc.findMusico(idmus);
         System.out.println(musci);
-        if (musci != null) {
+        try {
+            if (musci != null) {
 
-            String nombre;
-            String genero;
-            teclado.nextLine(); // limpio bufer
-            System.out.println("Indique el Nombre del Músico");
-            nombre = teclado.nextLine();
-            System.out.println("Indique el genero Musical");
-            genero = teclado.nextLine();
+                String nombre;
+                String genero;
+                teclado.nextLine(); // limpio bufer
+                System.out.println("Indique el Nombre del Músico");
+                nombre = teclado.nextLine();
+                System.out.println("Indique el genero Musical");
+                genero = teclado.nextLine();
 
-            musci.setNombre(nombre);
-            musci.setGenero(genero);
+                musci.setNombre(nombre);
+                musci.setGenero(genero);
+            }
+            mc.edit(musci);
+
+        } catch (NullPointerException e) {
+            System.out.println("Ese Músico no existe");
         }
-        mc.edit(musci);
+
     }
 
     // enlazo a la Un instrumento  a un Musico
@@ -288,20 +300,26 @@ public class Utilidades {
     public static void modificarInstrumento(int idInstrumento) throws NonexistentEntityException, Exception {
         var instrumento = ic.findInstrumento(idInstrumento);
         System.out.println(instrumento);
-        if (instrumento != null) {
+        try {
+            if (instrumento != null) {
 
-            String nombre;
-            String tipo;
-            teclado.nextLine(); // limpio bufer
-            System.out.println("Indique el Nombre del Instrumento");
-            nombre = teclado.nextLine();
-            System.out.println("Indique el Tipo");
-            tipo = teclado.nextLine();
+                String nombre;
+                String tipo;
+                teclado.nextLine(); // limpio bufer
+                System.out.println("Indique el Nombre del Instrumento");
+                nombre = teclado.nextLine();
+                System.out.println("Indique el Tipo");
+                tipo = teclado.nextLine();
 
-            instrumento.setNombre(nombre);
-            instrumento.setTipo(tipo);
+                instrumento.setNombre(nombre);
+                instrumento.setTipo(tipo);
+            }
+            ic.edit(instrumento);
+
+        } catch (NullPointerException e) {
+            System.out.println("No existe ese Instrumento");
         }
-        ic.edit(instrumento);
+
     }
 
     // enlazo a la Un instrumento  a un Musico
@@ -312,6 +330,66 @@ public class Utilidades {
         Intru.getMusicoList().add(musi);
 
         ic.edit(Intru);
+
+    }
+
+    // enlazo a la Un instrumento  las grabaciones
+    public static void añadirGrabacionesAlInstrumento(int idIns, int idGraba) throws NonexistentEntityException, Exception {
+        var Intru = ic.findInstrumento(idIns);
+        var graba = gc.findGrabacion(idGraba);
+
+        Intru.getGrabacionList().add(graba);
+        ic.edit(Intru);
+
+    }
+
+    // modificador Grabación
+    public static void modificarGrabacion(int idGraba) throws NonexistentEntityException, Exception {
+        var grabacion = gc.findGrabacion(idGraba);
+        System.out.println(grabacion);
+        try {
+            if (grabacion != null) {
+
+                String tituloAux;
+                LocalDate fechaGrabacAux;
+                int dia = 0;
+                int mes = 0;
+                int anio = 0;
+                teclado.nextLine(); // limpio bufer
+                System.out.println("Indique el Título de la Grabación");
+                tituloAux = teclado.nextLine();
+                System.out.println("Indique la Fecha de Grabación");
+                System.out.println("Que año");
+                anio = Utilidades.leerEnteroSinErroresScanner();
+                do {
+                    System.out.println("Que Mes");
+                    mes = Utilidades.leerEnteroSinErroresScanner();
+                } while (mes < 1 || mes > 12);
+                do {
+                    System.out.println("Que dia");
+                    dia = Utilidades.leerEnteroSinErroresScanner();
+                } while (dia < 1 || dia > 31);
+
+                fechaGrabacAux = LocalDate.of(anio, mes, dia);
+                grabacion.setTitulo(tituloAux);
+                grabacion.setFecha(Utilidades.LocalADate(fechaGrabacAux));
+            }
+            gc.edit(grabacion);
+
+        } catch (NullPointerException e) {
+            System.out.println("No existe esa Grabación");
+        }
+
+    }
+
+    // enlazo Musicos a la grabacion
+    public static void añadirInstrumentosAGrabacion(int idGraba, int idInstru) throws NonexistentEntityException, Exception {
+        var graba = gc.findGrabacion(idGraba);
+        var instru = ic.findInstrumento(idInstru);
+
+        graba.setIdInstrumento(instru);
+
+        gc.edit(graba);
 
     }
 

@@ -147,6 +147,15 @@ public class Main {
                                
                                                """;
 
+        String modGrabaciones = """
+                                                 MODIFICACION GRABACIONES
+                                                 
+                                                 1.Para modificar Grabacion
+                                                 2.Para Añadir Instrumentos
+                                                 3.Salir
+                               
+                                               """;
+
         String gestionMenu = " ";
 
         Scanner entrada = new Scanner(System.in);
@@ -212,6 +221,7 @@ public class Main {
                                 System.out.println("Indique el código de biografia que quiere borrar");
                                 codigoBorradoBio = entrada.nextLine();
                                 bc.findBiografia(Integer.valueOf(codigoBorradoBio));
+
                                 try {
                                     Utilidades.Utilidades.borrarBiografia(Integer.valueOf(codigoBorradoBio));
                                     Utilidades.Utilidades.mostrarBiografia();
@@ -379,10 +389,41 @@ public class Main {
                                 break;
 
                             case "2": // MOD GRABA
+                                do {
+                                    System.out.println(modInstrumentos);
+                                    System.out.println("Elija una Opcion");
+                                    gestionMenu = entrada.nextLine();
+                                    switch (gestionMenu) {
+                                        case "1": //MOD A
+                                            Utilidades.Utilidades.mostrarGrabaciones();
+                                            System.out.println("Indique el codigo de Grabacion que quiere modificar");
+                                            int idModificar = Utilidades.Utilidades.leerEnteroSinErroresScanner();
+                                            Utilidades.Utilidades.modificarGrabacion(idModificar);
+                                            Utilidades.Utilidades.mostrarGrabaciones();
+
+                                            break;
+                                        case "2": // MOD B
+                                            int instruCod;
+                                            int grabaCod;
+                                            System.out.println("Mostramos la lista de Grabaciones y Instrumentos");
+                                            Utilidades.Utilidades.mostrarGrabaciones();
+                                            Utilidades.Utilidades.mostrarInstrumentos();
+                                            System.out.println("Indique el codigo de Grabación que quiere enlazar");
+                                            grabaCod = Utilidades.Utilidades.leerEnteroSinErroresScanner();
+                                            System.out.println("Indique el codigo del Instrumento que quiere enlazar");
+                                            instruCod = Utilidades.Utilidades.leerEnteroSinErroresScanner();
+                                            Utilidades.Utilidades.añadirInstrumentosAGrabacion(grabaCod, instruCod);
+
+                                            break;
+
+                                    }
+
+                                } while (!gestionMenu.contains("3"));
 
                                 break;
                             case "3": // MOSTRAR GRABA
                                 Utilidades.Utilidades.mostrarGrabaciones();
+                                break;
                             case "4": // BORRAR GRABA
                                 String codigoBorradoGrabacion;
                                 System.out.println("BORRADO DE GRABACIONES");
