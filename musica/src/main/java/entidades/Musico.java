@@ -159,4 +159,13 @@ public class Musico implements Serializable {
         return sb.toString();
     }
 
+
+    public String toString2() {
+        return   idMusico + ";" + nombre + ";" + genero + ";" + idInstrumento.getNombre() + ";" + biografia.getDescripcion() ;
+    }
+    
+    
+    
+    
+
 }

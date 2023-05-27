@@ -158,4 +158,11 @@ public class Grabacion implements Serializable {
         return sb.toString();
     }
 
+ 
+    public String toString2() {
+        return   idGrabacion + ";" + titulo + ";" + fecha + ";" + idInstrumento.getNombre() ;
+    }
+
+    
+    
 }

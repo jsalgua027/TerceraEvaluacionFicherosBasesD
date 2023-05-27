@@ -176,4 +176,12 @@ public class Biografia implements Serializable {
         return sb.toString();
     }
 
+
+    public String toString2() {
+        return   idBiografia + ";" + descripcion + ";" + fechaNacimiento + ";" + lugarNacimiento + ";" + idMusico.getNombre() ;
+    }
+    
+    
+    
+
 }

@@ -107,11 +107,11 @@ public class Main {
         String menuCopiasSegurida = """
                                                             GESTION COPIAS DE SEGURIDAD
                                                              
-                                                            1.Copia de seguridad de  listado de Biografias
-                                                            2.Copia de seguridad de listado de Musicos
-                                                            3.Copia de seguridad de listado de Instrumentos
-                                                            4.Copia de seguridad de listado de Grabaciones
-                                                            5. Salir
+                                                            1.Realizar Copia de Seguridad
+                                                            2.Mostrar Directorios
+                                                            3.Restaurar
+                                                            4.Salir
+                                                     
                                   
                                   
                                                            """;
@@ -453,19 +453,22 @@ public class Main {
                         gestionMenu = entrada.nextLine();
                         switch (gestionMenu) { // COPIAS SEGURIDAD
                             case "1" -> {
+                                Utilidades.ServicioArchivos.crearDirectorioFechas();
+                               Utilidades.ServicioArchivos.rellenarDirectorios();
                             }
 
                             case "2" -> {
+                                 Utilidades.ServicioArchivos.mostrarConteniDirectorio("./copias/");
+                                 
                             }
                             case "3" -> {
                             }
-                            case "4" -> {
-                            }
+                       
 
                         }
                         // COPIAS SEGURIDAD
                         
-                    } while (!gestionMenu.contains("5"));
+                    } while (!gestionMenu.contains("4"));
                 }
 
             }

@@ -4,17 +4,37 @@
  */
 package Utilidades;
 
+import controladoras.BiografiaJpaController;
+import controladoras.GrabacionJpaController;
+import controladoras.InstrumentoJpaController;
+import controladoras.MusicoJpaController;
+import entidades.Biografia;
+import entidades.Grabacion;
+import entidades.Instrumento;
+import entidades.Musico;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  *
  * @author nacho
  */
 public class ServicioArchivos {
+
+    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_musica_jar_1.0-SNAPSHOTPU");
+    private static final MusicoJpaController mc = new MusicoJpaController(emf);
+    private static final InstrumentoJpaController ic = new InstrumentoJpaController(emf);
+    private static final GrabacionJpaController gc = new GrabacionJpaController(emf);
+    private static final BiografiaJpaController bc = new BiografiaJpaController(emf);
 
     public static void crearDirectorio(String nombreDirecT) {
 
@@ -26,6 +46,31 @@ public class ServicioArchivos {
             System.out.println(e.toString());
         }
 
+    }
+
+    public static void crearDirectorioFechas() {
+        String fechaCarpeta = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy-HH-mm-ss"));
+        Path directory = Paths.get("./copias/" + fechaCarpeta);
+        try {
+            Files.createDirectory(directory);
+            
+        } catch (IOException e) {
+            System.out.println("Problema creando el directorio.");
+            System.out.println(e.toString());
+        }
+
+    }
+
+    public static void rellenarDirectorios( ) {
+   String fechaCarpeta = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy-HH-mm-ss"));
+        List<Musico> listaMusi = mc.findMusicoEntities();
+        List<Biografia> listaBio = bc.findBiografiaEntities();
+        List<Instrumento> listaInstru = ic.findInstrumentoEntities();
+        List<Grabacion> listaGraba = gc.findGrabacionEntities();
+        LecturaYEscritura.escrituraBiogra(listaBio, "./copias/" + fechaCarpeta + "/Biografias.csv");
+        LecturaYEscritura.escrituraMusicos(listaMusi, "./copias/" + fechaCarpeta + "/Musicos.csv");
+        LecturaYEscritura.escrituraGraba(listaGraba, "./copias/" + fechaCarpeta + "/Grabaciones.csv");
+        LecturaYEscritura.escrituraInstru(listaInstru, "./copias/" + fechaCarpeta + "/Instrumentos.csv");
     }
 
     public static void crearFicheroVacio(String nombreDirectorio, String nombreArchivoVacio) {
@@ -68,9 +113,12 @@ public class ServicioArchivos {
 
     public static void mostrarConteniDirectorio(String directorio) {
         File f = new File(directorio);
+        // uso el inidice de la lista para seleccionar al carpeta que quiera el usuario
+        List<String> listaIndice = new ArrayList<>();
         if (f.exists()) {
             File[] ficheros = f.listFiles();
             for (File file2 : ficheros) {
+                listaIndice.add(file2.getName());
                 System.out.println(file2.getName());
             }
         } else {

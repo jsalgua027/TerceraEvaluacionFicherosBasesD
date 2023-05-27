@@ -44,7 +44,7 @@ public class LecturaYEscritura {
         try ( BufferedWriter flujo = new BufferedWriter(new FileWriter(ruta))) {
 
             for (Instrumento instru : aux) {
-                tmp = instru.toString();
+                tmp = instru.toString2();
                 flujo.write(tmp);
                 flujo.newLine();
             }
@@ -66,7 +66,7 @@ public class LecturaYEscritura {
         try ( BufferedWriter flujo = new BufferedWriter(new FileWriter(ruta))) {
 
             for (Musico music : aux) {
-                tmp = music.toString();
+                tmp = music.toString2();
                 flujo.write(tmp);
                 flujo.newLine();
             }
@@ -88,7 +88,7 @@ public class LecturaYEscritura {
         try ( BufferedWriter flujo = new BufferedWriter(new FileWriter(ruta))) {
 
             for (Grabacion graba : aux) {
-                tmp = graba.toString();
+                tmp = graba.toString2();
                 flujo.write(tmp);
                 flujo.newLine();
             }
@@ -110,7 +110,7 @@ public class LecturaYEscritura {
         try ( BufferedWriter flujo = new BufferedWriter(new FileWriter(ruta))) {
 
             for (Biografia biogra : aux) {
-                tmp = biogra.toString();
+                tmp = biogra.toString2();
                 flujo.write(tmp);
                 flujo.newLine();
             }
@@ -263,7 +263,53 @@ public class LecturaYEscritura {
 
     }
 
-    public static void leerArchivoCSV(String ruta) {
+    // de csv a la persistencia Biografia
+    public static void leerCsvYcrearObjetoGrabaciones(String ruta) {
+
+        // Fichero a leer con datos de ejemplo
+        String idFichero = ruta;
+
+        // Variables para guardar los datos que se van leyendo
+        String[] tokens;
+        String linea;
+        Grabacion aux = null;
+        List<Grabacion> listaGrab = new ArrayList<>();
+        System.out.println("Leyendo el fichero: " + idFichero);
+
+        // Inicialización del flujo "datosFichero" en función del archivo llamado "idFichero"
+        // Estructura try-with-resources. Permite cerrar los recursos una vez finalizadas
+        // las operaciones con el archivo
+        try ( Scanner datosFichero = new Scanner(new File(idFichero), "UTF-8")) {
+            // hasNextLine devuelve true mientras haya líneas por leer
+            while (datosFichero.hasNextLine()) {
+                aux = new Grabacion();
+                // Guarda la línea completa en un String
+                linea = datosFichero.nextLine();
+                // Se guarda en el array de String cada elemento de la
+                // línea en función del carácter separador de campos del fichero CSV
+                tokens = linea.split(";");
+                for (String string : tokens) {
+
+                    aux.setTitulo(tokens[1]);
+                    aux.setFecha(Utilidades.LocalADate(LocalDate.parse(tokens[2])));
+                    aux.setIdInstrumento(ic.findInstrumento(Integer.valueOf(tokens[4])));
+
+                }
+                listaGrab.add(aux);
+
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+
+        // meto el instrumento en la base de datos 
+        for (Grabacion gra : listaGrab) {
+            gc.create(gra);
+        }
+
+    }
+
+    public static void leerArchivoCSVMostrar(String ruta) {
         // Fichero a leer con datos de ejemplo
         String idFichero = ruta;
 
