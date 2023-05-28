@@ -453,15 +453,22 @@ public class Main {
                         gestionMenu = entrada.nextLine();
                         switch (gestionMenu) { // COPIAS SEGURIDAD
                             case "1" -> {
+                                // creo directorio y archivos
                                 Utilidades.ServicioArchivos.crearDirectorioFechas();
                                Utilidades.ServicioArchivos.rellenarDirectorios();
                             }
 
                             case "2" -> {
+                                // muestro
                                  Utilidades.ServicioArchivos.mostrarConteniDirectorio("./copias/");
                                  
                             }
                             case "3" -> {
+                                //Restauraciones
+                                 int posicion;
+                                  Utilidades.ServicioArchivos.mostrarConteniDirectorio("./copias/");
+                                  System.out.println("Indique que Directorio quiere Restaurar de la lista, según el orden del listado indique que número quiere restaurar");
+                                
                             }
                        
 
