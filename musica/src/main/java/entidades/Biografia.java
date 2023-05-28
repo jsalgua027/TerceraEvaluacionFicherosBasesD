@@ -35,7 +35,8 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Biografia.findAll", query = "SELECT b FROM Biografia b"),
     @NamedQuery(name = "Biografia.findByIdBiografia", query = "SELECT b FROM Biografia b WHERE b.idBiografia = :idBiografia"),
     @NamedQuery(name = "Biografia.findByFechaNacimiento", query = "SELECT b FROM Biografia b WHERE b.fechaNacimiento = :fechaNacimiento"),
-    @NamedQuery(name = "Biografia.findByLugarNacimiento", query = "SELECT b FROM Biografia b WHERE b.lugarNacimiento = :lugarNacimiento")})
+    @NamedQuery(name = "Biografia.findByLugarNacimiento", query = "SELECT b FROM Biografia b WHERE b.lugarNacimiento = :lugarNacimiento"),
+    @NamedQuery(name = "Biografia.findByDescripcion", query = "SELECT b FROM Biografia b WHERE b.descripcion = :descripcion")})
 public class Biografia implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -69,9 +70,7 @@ public class Biografia implements Serializable {
         this.lugarNacimiento = lugarNacimiento;
         this.idMusico = idMusico;
     }
- 
-    
-    
+
     public Integer getIdBiografia() {
         return idBiografia;
     }
@@ -155,12 +154,10 @@ public class Biografia implements Serializable {
         return Objects.equals(this.fechaNacimiento, other.fechaNacimiento);
     }
 
-    
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         sb.append("Biografia{");
         sb.append("idBiografia=").append(idBiografia);
         sb.append(", descripcion=").append(descripcion);
@@ -176,12 +173,8 @@ public class Biografia implements Serializable {
         return sb.toString();
     }
 
-
     public String toString2() {
-        return   idBiografia + ";" + descripcion + ";" + fechaNacimiento + ";" + lugarNacimiento + ";" + idMusico.getNombre() ;
+        return idBiografia + ";" + descripcion + ";" + fechaNacimiento + ";" + lugarNacimiento + ";" + idMusico.getNombre();
     }
-    
-    
-    
 
 }

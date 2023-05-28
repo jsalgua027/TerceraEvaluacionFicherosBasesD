@@ -472,6 +472,8 @@ public class Main {
                                 posicion = Utilidades.Utilidades.leerEnteroSinErroresScanner()-1 ;
                                 ruta = Utilidades.ServicioArchivos.optenerRutaDirectorio("./copias/", posicion);
                                 Utilidades.Utilidades.borrarBase();
+                                
+                                System.out.println("LA RUTA QUE LLEGA AL METODO ES: "+ ruta);
                                 Utilidades.ServicioArchivos.DirectorioABasededatos(ruta);
 
                             }

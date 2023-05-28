@@ -199,8 +199,8 @@ public class LecturaYEscritura {
 
                     aux.setNombre(tokens[1]);
                     aux.setGenero(tokens[2]);
-                    aux.setIdInstrumento(ic.findInstrumento(Integer.valueOf(tokens[3])));
-                    aux.setBiografia(bc.findBiografia(Integer.valueOf(tokens[4])));
+                    aux.setIdInstrumento(ic.encontraInstrumentoNombre(tokens[3]));
+                    aux.setBiografia(bc.encontrarPorDescripcion(tokens[4]));
                 }
                 listaMusi.add(aux);
 

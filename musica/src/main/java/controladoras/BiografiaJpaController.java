@@ -202,4 +202,13 @@ public class BiografiaJpaController implements Serializable {
     
     }
     
+    
+    public Biografia encontrarPorDescripcion (String descripcion){
+    
+    EntityManager em = getEntityManager();
+        Query q = em.createNamedQuery("Biografia.findByDescripcion");
+         q.setParameter("descripcion", descripcion);
+        return (Biografia) q.getSingleResult();
+    }
+    
 }

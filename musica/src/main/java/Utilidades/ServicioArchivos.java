@@ -152,19 +152,13 @@ public class ServicioArchivos {
     // metodo para restaurar  datos del directorio seleccionado a la base de datos
     public static void DirectorioABasededatos(String ruta) {
 
-        if (ruta.equalsIgnoreCase(ruta + "/Biografias.csv")) {
-            LecturaYEscritura.leerCsvYcrearObjetoBiografia(ruta + "/Biografias.csv");
+        LecturaYEscritura.leerCsvYcrearObjetoMusicos("./copias/" + ruta + "/Musicos.csv");
 
-        } else if (ruta.equalsIgnoreCase(ruta + "/Musicos.csv")) {
-            LecturaYEscritura.leerCsvYcrearObjetoMusicos(ruta + "/Musicos.csv");
+        LecturaYEscritura.leerCsvYcrearObjetoBiografia("./copias/" + ruta + "/Biografias.csv");
 
-        } else if (ruta.equalsIgnoreCase(ruta + "/Instrumentos.csv")) {
-            LecturaYEscritura.leerCsvYcrearObjetoInstrumento(ruta + "/Instrumentos.csv");
+        LecturaYEscritura.leerCsvYcrearObjetoInstrumento("./copias/" + ruta + "/Instrumentos.csv");
 
-        } else if (ruta.equalsIgnoreCase(ruta + "/Grabaciones.csv")) {
-            LecturaYEscritura.leerCsvYcrearObjetoGrabaciones(ruta + "/Grabaciones.csv");
-
-        }
+        LecturaYEscritura.leerCsvYcrearObjetoGrabaciones("./copias/" + ruta + "/Grabaciones.csv");
 
     }
 
