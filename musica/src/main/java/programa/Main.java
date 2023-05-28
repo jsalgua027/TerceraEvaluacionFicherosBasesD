@@ -174,7 +174,7 @@ public class Main {
                         switch (gestionMenu) {
                             case "1" -> {
                                 //BIO ALTA
-                                
+
                                 Utilidades.Utilidades.altaBiografia();
                                 Utilidades.Utilidades.mostrarBiografia();
                             }
@@ -247,7 +247,7 @@ public class Main {
                         switch (gestionMenu) {
                             case "1" -> {
                                 // ALTA MUSICO
-                                
+
                                 Utilidades.Utilidades.altaMusico();
                                 Utilidades.Utilidades.mostraMusicos();
                             }
@@ -455,26 +455,30 @@ public class Main {
                             case "1" -> {
                                 // creo directorio y archivos
                                 Utilidades.ServicioArchivos.crearDirectorioFechas();
-                               Utilidades.ServicioArchivos.rellenarDirectorios();
+                                Utilidades.ServicioArchivos.rellenarDirectorios();
                             }
 
                             case "2" -> {
                                 // muestro
-                                 Utilidades.ServicioArchivos.mostrarConteniDirectorio("./copias/");
-                                 
+                                Utilidades.ServicioArchivos.mostrarConteniDirectorio("./copias/");
+
                             }
                             case "3" -> {
                                 //Restauraciones
-                                 int posicion;
-                                  Utilidades.ServicioArchivos.mostrarConteniDirectorio("./copias/");
-                                  System.out.println("Indique que Directorio quiere Restaurar de la lista, según el orden del listado indique que número quiere restaurar");
-                                
+                                int posicion;
+                                String ruta;
+                                Utilidades.ServicioArchivos.mostrarConteniDirectorio("./copias/");
+                                System.out.println("Indique que Directorio quiere Restaurar de la lista, según el orden del listado indique que número quiere restaurar");
+                                posicion = Utilidades.Utilidades.leerEnteroSinErroresScanner()-1 ;
+                                ruta = Utilidades.ServicioArchivos.optenerRutaDirectorio("./copias/", posicion);
+                                Utilidades.Utilidades.borrarBase();
+                                Utilidades.ServicioArchivos.DirectorioABasededatos(ruta);
+
                             }
-                       
 
                         }
                         // COPIAS SEGURIDAD
-                        
+
                     } while (!gestionMenu.contains("4"));
                 }
 

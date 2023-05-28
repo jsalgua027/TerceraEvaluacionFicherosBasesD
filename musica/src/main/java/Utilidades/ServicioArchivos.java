@@ -53,16 +53,17 @@ public class ServicioArchivos {
         Path directory = Paths.get("./copias/" + fechaCarpeta);
         try {
             Files.createDirectory(directory);
-            
+
         } catch (IOException e) {
             System.out.println("Problema creando el directorio.");
             System.out.println(e.toString());
         }
 
     }
+    // metodo para crear directorios con fechas y crear los archivos
 
-    public static void rellenarDirectorios( ) {
-   String fechaCarpeta = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy-HH-mm-ss"));
+    public static void rellenarDirectorios() {
+        String fechaCarpeta = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy-HH-mm-ss"));
         List<Musico> listaMusi = mc.findMusicoEntities();
         List<Biografia> listaBio = bc.findBiografiaEntities();
         List<Instrumento> listaInstru = ic.findInstrumentoEntities();
@@ -110,6 +111,7 @@ public class ServicioArchivos {
         }
 
     }
+// metodo para ver todos los directorios
 
     public static void mostrarConteniDirectorio(String directorio) {
         File f = new File(directorio);
@@ -123,6 +125,45 @@ public class ServicioArchivos {
             }
         } else {
             System.out.println("El directorio a listar no existe");
+        }
+
+    }
+
+    // metodo para obtener  la ruta del directorio para restaurar
+    public static String optenerRutaDirectorio(String directorio, int posicion) {
+        File f = new File(directorio);
+        String ruta = "";
+        // uso el inidice de la lista para seleccionar al carpeta que quiera el usuario
+        List<String> listaIndice = new ArrayList<>();
+        if (f.exists()) {
+            File[] ficheros = f.listFiles();
+            for (File file2 : ficheros) {
+                listaIndice.add(file2.getName());
+
+            }
+            System.out.println("El directorio es:  " + listaIndice.get(posicion));
+            ruta = listaIndice.get(posicion);
+        } else {
+            System.out.println("El directorio a listar no existe");
+        }
+        return ruta;
+    }
+
+    // metodo para restaurar  datos del directorio seleccionado a la base de datos
+    public static void DirectorioABasededatos(String ruta) {
+
+        if (ruta.equalsIgnoreCase(ruta + "/Biografias.csv")) {
+            LecturaYEscritura.leerCsvYcrearObjetoBiografia(ruta + "/Biografias.csv");
+
+        } else if (ruta.equalsIgnoreCase(ruta + "/Musicos.csv")) {
+            LecturaYEscritura.leerCsvYcrearObjetoMusicos(ruta + "/Musicos.csv");
+
+        } else if (ruta.equalsIgnoreCase(ruta + "/Instrumentos.csv")) {
+            LecturaYEscritura.leerCsvYcrearObjetoInstrumento(ruta + "/Instrumentos.csv");
+
+        } else if (ruta.equalsIgnoreCase(ruta + "/Grabaciones.csv")) {
+            LecturaYEscritura.leerCsvYcrearObjetoGrabaciones(ruta + "/Grabaciones.csv");
+
         }
 
     }
