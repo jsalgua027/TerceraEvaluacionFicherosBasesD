@@ -29,6 +29,16 @@ public class Consultas {
      *
      *
      *
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
      */
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_musica_jar_1.0-SNAPSHOTPU");
     private static final MusicoJpaController mc = new MusicoJpaController(emf);

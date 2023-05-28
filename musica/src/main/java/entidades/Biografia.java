@@ -68,7 +68,7 @@ public class Biografia implements Serializable {
         this.descripcion = descripcion;
         this.fechaNacimiento = fechaNacimiento;
         this.lugarNacimiento = lugarNacimiento;
-        this.idMusico = idMusico;
+      //  this.idMusico = idMusico;
     }
 
     public Integer getIdBiografia() {
