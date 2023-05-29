@@ -107,11 +107,7 @@ public class Musico implements Serializable {
         return true;
     }
 
-//    @Override
-//    public String toString() {
-//        return "entidades.Musico[ idMusico=" + idMusico + " ]";
-//    }
-    
+
     
      @Override
     public String toString() {

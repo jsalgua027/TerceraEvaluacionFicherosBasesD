@@ -150,9 +150,9 @@ public class ServicioArchivos {
     // metodo para restaurar  datos del directorio seleccionado a la base de datos
     public static void DirectorioABasededatos(String ruta) {
 
-        LecturaYEscritura.leerCsvYcrearObjetoInstrumento("./copias/" + ruta + "/Instrumentos.csv");
-
         LecturaYEscritura.leerCsvYcrearObjetoMusicos("./copias/" + ruta + "/Musicos.csv");
+
+        LecturaYEscritura.leerCsvYcrearObjetoInstrumento("./copias/" + ruta + "/Instrumentos.csv");
 
         LecturaYEscritura.leerCsvYcrearObjetoGrabaciones("./copias/" + ruta + "/Grabaciones.csv");
 
