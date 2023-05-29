@@ -119,40 +119,39 @@ public class Instrumento implements Serializable {
         return true;
     }
 
+
 //    @Override
 //    public String toString() {
-//        return "entidades.Instrumento[ idInstrumento=" + idInstrumento + " ]";
+//        StringBuilder sb = new StringBuilder();
+//        sb.append("Instrumento{");
+//        sb.append("idInstrumento=").append(idInstrumento);
+//        sb.append(", nombre=").append(nombre);
+//        sb.append(", tipo=").append(tipo);
+//        try {
+//              sb.append(", idMusico=");
+//            sb.append(idMusico);
+//
+//        } catch (NullPointerException e) {
+//            sb.append("No hay lista de musicos asociadas");
+//
+//        }
+//        try {
+//            sb.append(", grabacionList{");
+//            sb.append(toStringGrabaciones());
+//            sb.append("} ");
+//        } catch (NullPointerException e) {
+//            sb.append("No hay lista de grabaciones");
+//
+//        }
+//
+//        sb.append('}');
+//        return sb.toString();
 //    }
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Instrumento{");
-        sb.append("idInstrumento=").append(idInstrumento);
-        sb.append(", nombre=").append(nombre);
-        sb.append(", tipo=").append(tipo);
-        try {
-              sb.append(", idMusico=");
-            sb.append(idMusico);
 
-        } catch (NullPointerException e) {
-            sb.append("No hay lista de musicos asociadas");
-
-        }
-        try {
-            sb.append(", grabacionList{");
-            sb.append(toStringGrabaciones());
-            sb.append("} ");
-        } catch (NullPointerException e) {
-            sb.append("No hay lista de grabaciones");
-
-        }
-
-        sb.append('}');
-        return sb.toString();
-    }
-
+    
+    
     public String toString2() {
-        return idInstrumento + ";" + nombre + ";" + tipo + ";" + idMusico + ";" + grabacionList;
+        return idInstrumento + ";" + nombre + ";" + tipo + ";" + idMusico.getNombre() + ";" + toStringGrabaciones();
     }
 
     private String toStringGrabaciones() {

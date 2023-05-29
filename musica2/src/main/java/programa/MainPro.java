@@ -269,7 +269,7 @@ public class MainPro {
                                 // BORRAR INSTRI
                                 String codigoBorradoInstrume;
                                 System.out.println("BORRADO DE INSTRUMENTOS");
-                                Utilidades.UtilidadesProg.mostraMusicos();
+                                Utilidades.UtilidadesProg.mostrarInstrumentos();
                                 System.out.println("Indique el código de Instrumento que quiere borrar");
                                 codigoBorradoInstrume = entrada.nextLine();
                                 ic.findInstrumento(Integer.valueOf(codigoBorradoInstrume));

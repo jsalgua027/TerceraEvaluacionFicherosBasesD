@@ -129,7 +129,7 @@ public class LecturaYEscritura {
 
                     aux.setNombre(tokens[1]);
                     aux.setTipo(tokens[2]);
-                    aux.setIdMusico(mc.findMusico(Integer.valueOf(tokens[3])));
+                    aux.setIdMusico(mc.encontraMusicoNombre(tokens[3]));
                     aux.setGrabacionList(new ArrayList());
 
                 }
