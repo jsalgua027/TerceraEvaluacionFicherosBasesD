@@ -326,7 +326,7 @@ public class MainPro {
                                             System.out.println("Indique el codigo del Instrumento que quiere enlazar");
                                             instruCod = Utilidades.UtilidadesProg.leerEnteroSinErroresScanner();
                                             try {
-                                                Utilidades.UtilidadesProg.añadirInstrumentosAGrabacion(grabaCod, instruCod);
+                                                Utilidades.UtilidadesProg.añadirGrabacionAInstrumentos(grabaCod, instruCod);
                                                 Utilidades.UtilidadesProg.mostrarGrabaciones();
                                             } catch (NullPointerException e) {
 

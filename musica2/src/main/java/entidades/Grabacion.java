@@ -152,7 +152,7 @@ public class Grabacion implements Serializable {
 
  
     public String toString2() {
-        return   idGrabacion + ";" + titulo + ";" + fecha + ";" + idInstrumento.getNombre() ;
+        return   idGrabacion + ";" + titulo + ";" + Utilidades.UtilidadesProg.DateALocalDate(fecha)+ ";" + idInstrumento.getIdInstrumento() ;
     }
     
     

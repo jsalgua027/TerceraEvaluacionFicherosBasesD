@@ -110,6 +110,7 @@ public class LecturaYEscritura {
         String[] tokens;
         String linea;
         Instrumento aux = null;
+        Musico auxMus=null;
         List<Instrumento> listaInstr = new ArrayList<>();
         System.out.println("Leyendo el fichero: " + idFichero);
 
@@ -126,10 +127,10 @@ public class LecturaYEscritura {
                 // línea en función del carácter separador de campos del fichero CSV
                 tokens = linea.split(";");
                 for (String string : tokens) {
-
+                    auxMus=mc.findMusico(Integer.valueOf(tokens[3]));
                     aux.setNombre(tokens[1]);
                     aux.setTipo(tokens[2]);
-                    aux.setIdMusico(mc.encontraMusicoNombre(tokens[3]));
+                    aux.setIdMusico(auxMus);
                     aux.setGrabacionList(new ArrayList());
 
                 }
@@ -157,6 +158,7 @@ public class LecturaYEscritura {
         String[] tokens;
         String linea;
         Musico aux = null;
+        Instrumento insAux = null;
         List<Musico> listaMusi = new ArrayList<>();
         System.out.println("Leyendo el fichero: " + idFichero);
 
@@ -172,11 +174,14 @@ public class LecturaYEscritura {
                 // Se guarda en el array de String cada elemento de la
                 // línea en función del carácter separador de campos del fichero CSV
                 tokens = linea.split(";");
+                
                 for (String string : tokens) {
-
+                   
+                    // insAux=ic.encontraInstrumentoNombre(tokens[3]);
+                     
                     aux.setNombre(tokens[1]);
                     aux.setGenero(tokens[2]);
-                    aux.setInstrumento(ic.encontraInstrumentoNombre(tokens[3]));
+                    aux.setInstrumento(null);
 
                 }
                 listaMusi.add(aux);
@@ -203,6 +208,7 @@ public class LecturaYEscritura {
         String[] tokens;
         String linea;
         Grabacion aux = null;
+        Instrumento insAux= null;
         List<Grabacion> listaGrab = new ArrayList<>();
         System.out.println("Leyendo el fichero: " + idFichero);
 
@@ -219,10 +225,11 @@ public class LecturaYEscritura {
                 // línea en función del carácter separador de campos del fichero CSV
                 tokens = linea.split(";");
                 for (String string : tokens) {
-
+                    LocalDate fecha =LocalDate.parse(tokens[2]);
+                    insAux= ic.findInstrumento(Integer.valueOf(tokens[3]));
                     aux.setTitulo(tokens[1]);
-                    aux.setFecha(UtilidadesProg.LocalADate(LocalDate.parse(tokens[2])));
-                    aux.setIdInstrumento(ic.encontraInstrumentoNombre(tokens[4]));
+                    aux.setFecha(UtilidadesProg.LocalADate(fecha));
+                    aux.setIdInstrumento(insAux);
 
                 }
                 listaGrab.add(aux);

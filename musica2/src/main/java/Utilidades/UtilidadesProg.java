@@ -138,6 +138,7 @@ public class UtilidadesProg {
         int dia = 0;
         int mes = 0;
         int anio = 0;
+
         System.out.println("Indique el Título de la Grabación");
         tituloAux = teclado.nextLine();
         System.out.println("Indique la Fecha de Grabación");
@@ -204,17 +205,15 @@ public class UtilidadesProg {
         }
 
     }
-    
-    
+
     // MODIFICADORES
-    
     // modificador musico
     public static void modificarMusico(int idmus) throws NonexistentEntityException, Exception {
         var musci = mc.findMusico(idmus);
         System.out.println(musci);
         try {
             if (musci != null) {
-                
+
                 String nombre;
                 String genero;
                 teclado.nextLine(); // limpio bufer
@@ -222,39 +221,40 @@ public class UtilidadesProg {
                 nombre = teclado.nextLine();
                 System.out.println("Indique el genero Musical");
                 genero = teclado.nextLine();
-                
+
                 musci.setNombre(nombre);
                 musci.setGenero(genero);
             }
             mc.edit(musci);
-            
+
         } catch (NullPointerException e) {
             System.out.println("Ese Músico no existe");
         }
-        
+
     }
-    
+
     // enlazo a la Un instrumento  a un Musico
     public static void enlazarInstrumentoAMusico(int idIns, int idMUsico) throws NonexistentEntityException, Exception {
         var Intru = ic.findInstrumento(idIns);
-        
+
         try {
             var musi = mc.findMusico(idMUsico);
-            
+
             musi.setInstrumento(Intru);
             mc.edit(musi);
         } catch (NullPointerException e) {
             System.out.println("El Instrumento no existe");
         }
-        
+
     }
-  // modificador Instrumento
+    // modificador Instrumento
+
     public static void modificarInstrumento(int idInstrumento) throws NonexistentEntityException, Exception {
         var instrumento = ic.findInstrumento(idInstrumento);
         System.out.println(instrumento);
         try {
             if (instrumento != null) {
-                
+
                 String nombre;
                 String tipo;
                 teclado.nextLine(); // limpio bufer
@@ -262,41 +262,41 @@ public class UtilidadesProg {
                 nombre = teclado.nextLine();
                 System.out.println("Indique el Tipo");
                 tipo = teclado.nextLine();
-                
+
                 instrumento.setNombre(nombre);
                 instrumento.setTipo(tipo);
             }
             ic.edit(instrumento);
-            
+
         } catch (NullPointerException e) {
             System.out.println("No existe ese Instrumento");
         }
-        
+
     }
-  // enlazo a la Un instrumento  a un Musico  Este metodo es usado en Instrmento
+    // enlazo a la Un instrumento  a un Musico  Este metodo es usado en Instrmento
+
     public static void añadirMusicosAlInstrumento(int idIns, int idMUsico) throws NonexistentEntityException, Exception {
         var Intru = ic.findInstrumento(idIns);
-        
+
         try {
             var musi = mc.findMusico(idMUsico);
-            
+
             Intru.setIdMusico(musi);
-            
+
             ic.edit(Intru);
         } catch (NullPointerException e) {
             System.out.println("No existe ese Musico");
         }
-        
+
     }
-    
-    
-      // modificador Grabación
+
+    // modificador Grabación
     public static void modificarGrabacion(int idGraba) throws NonexistentEntityException, Exception {
         var grabacion = gc.findGrabacion(idGraba);
         System.out.println(grabacion);
         try {
             if (grabacion != null) {
-                
+
                 String tituloAux;
                 LocalDate fechaGrabacAux;
                 int dia = 0;
@@ -316,31 +316,33 @@ public class UtilidadesProg {
                     System.out.println("Que dia");
                     dia = UtilidadesProg.leerEnteroSinErroresScanner();
                 } while (dia < 1 || dia > 31);
-                
+
                 fechaGrabacAux = LocalDate.of(anio, mes, dia);
                 grabacion.setTitulo(tituloAux);
                 grabacion.setFecha(UtilidadesProg.LocalADate(fechaGrabacAux));
             }
             gc.edit(grabacion);
-            
+
         } catch (NullPointerException e) {
             System.out.println("No existe esa Grabación");
         }
-        
+
     }
-     // enlazo Musicos a la grabacion
-    public static void añadirInstrumentosAGrabacion(int idGraba, int idInstru) throws NonexistentEntityException, Exception {
-        var graba = gc.findGrabacion(idGraba);
+    // enlazo Musicos a la grabacion
+
+    public static void añadirGrabacionAInstrumentos(int idGraba, int idInstru) throws NonexistentEntityException, Exception {
+        var instru = ic.findInstrumento(idInstru);
         try {
-            var instru = ic.findInstrumento(idInstru);
-            
-            graba.setIdInstrumento(instru);
-            
-            gc.edit(graba);
+
+            var graba = gc.findGrabacion(idGraba);
+
+            instru.getGrabacionList().add(graba);
+
+            ic.edit(instru);
         } catch (NullPointerException e) {
             System.out.println("No existe ese Instrumento");
         }
-        
+
     }
 
 }

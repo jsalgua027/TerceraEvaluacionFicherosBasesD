@@ -120,45 +120,45 @@ public class Instrumento implements Serializable {
     }
 
 
-//    @Override
-//    public String toString() {
-//        StringBuilder sb = new StringBuilder();
-//        sb.append("Instrumento{");
-//        sb.append("idInstrumento=").append(idInstrumento);
-//        sb.append(", nombre=").append(nombre);
-//        sb.append(", tipo=").append(tipo);
-//        try {
-//              sb.append(", idMusico=");
-//            sb.append(idMusico);
-//
-//        } catch (NullPointerException e) {
-//            sb.append("No hay lista de musicos asociadas");
-//
-//        }
-//        try {
-//            sb.append(", grabacionList{");
-//            sb.append(toStringGrabaciones());
-//            sb.append("} ");
-//        } catch (NullPointerException e) {
-//            sb.append("No hay lista de grabaciones");
-//
-//        }
-//
-//        sb.append('}');
-//        return sb.toString();
-//    }
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Instrumento{");
+        sb.append("idInstrumento=").append(idInstrumento);
+        sb.append(", nombre=").append(nombre);
+        sb.append(", tipo=").append(tipo);
+        try {
+              sb.append(", idMusico=");
+            sb.append(idMusico);
+
+        } catch (NullPointerException e) {
+            sb.append("No hay lista de musicos asociadas");
+
+        }
+        try {
+            sb.append(", grabacionList{");
+            sb.append(toStringGrabaciones());
+            sb.append("} ");
+        } catch (NullPointerException e) {
+            sb.append("No hay lista de grabaciones");
+
+        }
+
+        sb.append('}');
+        return sb.toString();
+    }
 
     
     
     public String toString2() {
-        return idInstrumento + ";" + nombre + ";" + tipo + ";" + idMusico.getNombre() + ";" + toStringGrabaciones();
+        return idInstrumento + ";" + nombre + ";" + tipo + ";" + idMusico.getIdMusico()+ ";" + toStringGrabaciones();
     }
 
     private String toStringGrabaciones() {
         StringBuilder tmp = new StringBuilder();
         for (Grabacion gra : grabacionList) {
 
-            tmp.append("id:").append(gra.getIdGrabacion()).append(", ");
+            tmp.append(gra.getIdGrabacion());
         }
 
         return tmp.length() == 0 ? tmp.toString() : tmp.toString() + "\b\b";

@@ -129,7 +129,7 @@ public class Musico implements Serializable {
 
 
     public String toString2() {
-        return   idMusico + ";" + nombre + ";" + genero + ";" + instrumento.getNombre() ;
+        return   idMusico + ";" + nombre + ";" + genero + ";" + instrumento.getIdInstrumento() ;
     }
     
     
