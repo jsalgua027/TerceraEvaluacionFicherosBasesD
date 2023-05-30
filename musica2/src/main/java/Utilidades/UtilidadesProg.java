@@ -152,7 +152,7 @@ public class UtilidadesProg {
             System.out.println("Que dia");
             dia = UtilidadesProg.leerEnteroSinErroresScanner();
         } while (dia < 1 || dia > 31);
-
+        teclado.nextLine();//buffer
         fechaGrabacAux = LocalDate.of(anio, mes, dia);
         grabAux.setTitulo(tituloAux);
         grabAux.setFecha(UtilidadesProg.LocalADate(fechaGrabacAux));

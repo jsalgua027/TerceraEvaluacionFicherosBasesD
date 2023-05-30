@@ -137,7 +137,8 @@ public class Instrumento implements Serializable {
         }
         try {
             sb.append(", grabacionList{");
-            sb.append(toStringGrabaciones());
+            //sb.append(toStringGrabaciones());
+               sb.append(toStringGrabaciones());
             sb.append("} ");
         } catch (NullPointerException e) {
             sb.append("No hay lista de grabaciones");

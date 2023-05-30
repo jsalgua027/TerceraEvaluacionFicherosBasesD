@@ -115,11 +115,12 @@ public class ServicioArchivos {
         File f = new File(directorio);
         // uso el inidice de la lista para seleccionar al carpeta que quiera el usuario
         List<String> listaIndice = new ArrayList<>();
+        int contador=1;
         if (f.exists()) {
             File[] ficheros = f.listFiles();
             for (File file2 : ficheros) {
                 listaIndice.add(file2.getName());
-                System.out.println(file2.getName());
+                System.out.println(contador+++"." +file2.getName());
             }
         } else {
             System.out.println("El directorio a listar no existe");
