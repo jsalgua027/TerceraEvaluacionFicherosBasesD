@@ -120,7 +120,8 @@ public class ServicioArchivos {
             File[] ficheros = f.listFiles();
             for (File file2 : ficheros) {
                 listaIndice.add(file2.getName());
-                System.out.println(contador+++"." +file2.getName());
+               System.out.println(contador+++"." +file2.getName());
+               //  System.out.println(file2.getName());
             }
         } else {
             System.out.println("El directorio a listar no existe");

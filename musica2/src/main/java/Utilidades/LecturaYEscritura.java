@@ -28,7 +28,7 @@ import javax.persistence.Persistence;
  * @author nacho
  */
 public class LecturaYEscritura {
-
+    
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_musica2_jar_1.0-SNAPSHOTPU");
     private static final MusicoJpaController mc = new MusicoJpaController(emf);
     private static final InstrumentoJpaController ic = new InstrumentoJpaController(emf);
@@ -36,68 +36,69 @@ public class LecturaYEscritura {
 
 //Instrumento
     public static void escrituraInstru(List<Instrumento> aux, String ruta) {
-
+        
         String tmp = " ";
-
+        
         try ( BufferedWriter flujo = new BufferedWriter(new FileWriter(ruta))) {
-
+            
             for (Instrumento instru : aux) {
                 tmp = instru.toString2();
                 flujo.write(tmp);
                 flujo.newLine();
             }
-
+            
             flujo.flush();
-
+            
             System.out.println("Fichero " + ruta + " creado correctamente.");
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-
+        
     }
 
     //Musicos
     public static void escrituraMusicos(List<Musico> aux, String ruta) {
-
+        
         String tmp = " ";
-
+        
         try ( BufferedWriter flujo = new BufferedWriter(new FileWriter(ruta))) {
-
+            
             for (Musico music : aux) {
                 tmp = music.toString2();
                 flujo.write(tmp);
                 flujo.newLine();
             }
-
+            
             flujo.flush();
-
+            
             System.out.println("Fichero " + ruta + " creado correctamente.");
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-
+        
     }
 
     //Grabaciones
     public static void escrituraGraba(List<Grabacion> aux, String ruta) {
-
+        
         String tmp = " ";
-
+        
         try ( BufferedWriter flujo = new BufferedWriter(new FileWriter(ruta))) {
-
+            
             for (Grabacion graba : aux) {
                 tmp = graba.toString2();
+                //   tmp= graba.getTitulo()+";"+graba.getFecha()+";"+graba.getIdInstrumento().getNombre();
                 flujo.write(tmp);
                 flujo.newLine();
             }
-
+            
             flujo.flush();
-
+            
             System.out.println("Fichero " + ruta + " creado correctamente.");
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-
+        
     }
 
     // de csv a la persistencia Instrumentos
@@ -110,7 +111,7 @@ public class LecturaYEscritura {
         String[] tokens;
         String linea;
         Instrumento aux = null;
-        Musico auxMus=null;
+        Musico auxMus = null;
         List<Instrumento> listaInstr = new ArrayList<>();
         System.out.println("Leyendo el fichero: " + idFichero);
 
@@ -127,15 +128,17 @@ public class LecturaYEscritura {
                 // línea en función del carácter separador de campos del fichero CSV
                 tokens = linea.split(";");
                 for (String string : tokens) {
-                    auxMus=mc.findMusico(Integer.valueOf(tokens[3]));
+                    
+                    auxMus = mc.findMusico(Integer.valueOf(tokens[3]));
+                    aux.setIdInstrumento(Integer.valueOf(tokens[0]));
                     aux.setNombre(tokens[1]);
                     aux.setTipo(tokens[2]);
                     aux.setIdMusico(auxMus);
                     aux.setGrabacionList(new ArrayList());
-
+                    
                 }
                 listaInstr.add(aux);
-
+                
             }
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
@@ -143,9 +146,11 @@ public class LecturaYEscritura {
 
         // meto el instrumento en la base de datos 
         for (Instrumento instrumento : listaInstr) {
+            
+            ic.modificarAutoIncrementInstru(instrumento);
             ic.create(instrumento);
         }
-
+        
     }
 
     // de csv a la persistencia Musicos
@@ -176,26 +181,29 @@ public class LecturaYEscritura {
                 tokens = linea.split(";");
                 
                 for (String string : tokens) {
-                   
+
                     // insAux=ic.encontraInstrumentoNombre(tokens[3]);
-                     
+                    aux.setIdMusico(Integer.valueOf(tokens[0]));
                     aux.setNombre(tokens[1]);
                     aux.setGenero(tokens[2]);
-                    aux.setInstrumento(null);
-
+                    insAux = ic.findInstrumento(Integer.valueOf(tokens[3]));
+                    aux.setInstrumento(insAux);
+                    
                 }
                 listaMusi.add(aux);
-
+                
             }
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
 
-        // meto el instrumento en la base de datos 
+        // meto el musico en la base de datos 
         for (Musico mus : listaMusi) {
+            //  controlarIds(aux);
+            mc.modificarAutoIncrement(mus);
             mc.create(mus);
         }
-
+        
     }
 
     // de csv a la persistencia Biografia
@@ -208,7 +216,7 @@ public class LecturaYEscritura {
         String[] tokens;
         String linea;
         Grabacion aux = null;
-        Instrumento insAux= null;
+        Instrumento insAux = null;
         List<Grabacion> listaGrab = new ArrayList<>();
         System.out.println("Leyendo el fichero: " + idFichero);
 
@@ -225,15 +233,17 @@ public class LecturaYEscritura {
                 // línea en función del carácter separador de campos del fichero CSV
                 tokens = linea.split(";");
                 for (String string : tokens) {
-                    LocalDate fecha =LocalDate.parse(tokens[2]);
-                    insAux= ic.findInstrumento(Integer.valueOf(tokens[3]));
+                    
+                    LocalDate fecha = LocalDate.parse(tokens[2]);
+                    insAux = ic.findInstrumento(Integer.valueOf(tokens[3]));
+                    aux.setIdGrabacion(Integer.valueOf(tokens[0]));
                     aux.setTitulo(tokens[1]);
                     aux.setFecha(UtilidadesProg.LocalADate(fecha));
                     aux.setIdInstrumento(insAux);
-
+                    
                 }
                 listaGrab.add(aux);
-
+                
             }
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
@@ -241,11 +251,12 @@ public class LecturaYEscritura {
 
         // meto el instrumento en la base de datos 
         for (Grabacion gra : listaGrab) {
+            gc.modificarAutoIncrementGrabacion(gra);
             gc.create(gra);
         }
-
+        
     }
-
+    
     public static void leerArchivoCSVMostrar(String ruta) {
         // Fichero a leer con datos de ejemplo
         String idFichero = ruta;
@@ -253,7 +264,7 @@ public class LecturaYEscritura {
         // Variables para guardar los datos que se van leyendo
         String[] tokens;
         String linea;
-
+        
         System.out.println("Leyendo el fichero: " + idFichero);
 
         // Inicialización del flujo "datosFichero" en función del archivo llamado "idFichero"
@@ -275,7 +286,7 @@ public class LecturaYEscritura {
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
-
+        
     }
-
+    
 }

@@ -189,4 +189,31 @@ public class GrabacionJpaController implements Serializable {
         
     }
     
+    // metodo para controlar los autoIncrement
+    
+     public void modificarAutoIncrementGrabacion(Grabacion auxGrab) {
+
+        int idGrabacion = auxGrab.getIdGrabacion();
+        EntityManager em = getEntityManager();
+        
+        try {
+            em.getTransaction().begin();
+            
+            String consulta = "ALTER TABLE grabacion AUTO_INCREMENT = "+idGrabacion;
+            em.createNativeQuery(consulta).executeUpdate();
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            System.out.println("No se ha podido modificar");
+            
+        }finally{
+        
+        em.close();
+        }
+        
+
+    }
+    
+    
+    
 }

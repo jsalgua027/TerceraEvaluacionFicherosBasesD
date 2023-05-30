@@ -32,11 +32,11 @@ public class MusicoJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-       public MusicoJpaController() {
-        
+    public MusicoJpaController() {
+
         emf = Persistence.createEntityManagerFactory("com.mycompany_musica2_jar_1.0-SNAPSHOTPU");
     }
-    
+
     public void create(Musico musico) {
         EntityManager em = null;
         try {
@@ -57,6 +57,7 @@ public class MusicoJpaController implements Serializable {
                 instrumento.setIdMusico(musico);
                 instrumento = em.merge(instrumento);
             }
+            //   Utilidades.LecturaYEscritura.controlarIds(musico);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -179,9 +180,8 @@ public class MusicoJpaController implements Serializable {
             em.close();
         }
     }
-    
-    // busqueda usando name query para los musicos----buscamos por nombre
 
+    // busqueda usando name query para los musicos----buscamos por nombre
     public Musico encontraMusicoNombre(String nombre) {
         EntityManager em = getEntityManager();
         Query q = em.createNamedQuery("Musico.findByNombre");
@@ -189,9 +189,8 @@ public class MusicoJpaController implements Serializable {
         return (Musico) q.getSingleResult();
 
     }
-    
-    // busqueda usando name query para los musicos----buscamos por genero
 
+    // busqueda usando name query para los musicos----buscamos por genero
     public Musico encontraMusicoGenero(String genero) {
         EntityManager em = getEntityManager();
         Query q = em.createNamedQuery("Musico.findByGenero");
@@ -199,6 +198,27 @@ public class MusicoJpaController implements Serializable {
         return (Musico) q.getSingleResult();
 
     }
+// metodo para controlar los autoIncrement
+    public void modificarAutoIncrement(Musico auxMusi) {
 
-    
+        int idMusico = auxMusi.getIdMusico();
+        EntityManager em = getEntityManager();
+        
+        try {
+            em.getTransaction().begin();
+            
+            String consulta = "ALTER TABLE  musico AUTO_INCREMENT = "+ idMusico;
+            em.createNativeQuery(consulta).executeUpdate();
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            System.out.println("No se ha podido modificar");
+            
+        }finally{
+        
+        em.close();
+        }
+        
+
+    }
 }

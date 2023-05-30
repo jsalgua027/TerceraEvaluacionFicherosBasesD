@@ -249,6 +249,30 @@ public class InstrumentoJpaController implements Serializable {
 
     }
 
+// metodo para controlar los autoIncrement    
+     public void modificarAutoIncrementInstru(Instrumento auxInstr) {
+
+        int idInstrumento = auxInstr.getIdInstrumento();
+        EntityManager em = getEntityManager();
+        
+        try {
+            em.getTransaction().begin();
+            
+            String consulta = "ALTER TABLE  instrumento AUTO_INCREMENT = "+ idInstrumento;
+            em.createNativeQuery(consulta).executeUpdate();
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            System.out.println("No se ha podido modificar");
+            
+        }finally{
+        
+        em.close();
+        }
+        
+
+    }
+    
     
     
 }
